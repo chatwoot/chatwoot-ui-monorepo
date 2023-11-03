@@ -1,7 +1,7 @@
 import { MESSAGE_TYPE } from 'widget/helpers/constants';
 import { isASubmittedFormMessage } from '@chatwoot/shared/helpers/MessageTypeHelper';
 
-import getUuid from '../../../helpers/uuid';
+import getUuid from '@chatwoot/shared/helpers/uuid';
 export const createTemporaryMessage = ({ attachments, content, replyTo }) => {
   const timestamp = new Date().getTime() / 1000;
   return {

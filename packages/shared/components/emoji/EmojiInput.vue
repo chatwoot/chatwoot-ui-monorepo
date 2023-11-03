@@ -196,7 +196,7 @@ export default {
 }
 </style>
 <style lang="scss">
-@import '~dashboard/assets/scss/mixins';
+@import 'dashboard/assets/scss/_mixins';
 
 .emoji-dialog {
   &::before {
