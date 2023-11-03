@@ -1,0 +1,10 @@
+{
+  "name": "@chatwoot/ui",
+  "version": "3.2.0",
+  "private": true,
+  "packageManager": "yarn@1.22.17",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ]
+}
