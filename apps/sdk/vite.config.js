@@ -1,6 +1,15 @@
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+  build: {
+    lib: {
+      entry: resolve(__dirname, 'main.js'),
+      name: 'chatwoot-sdk',
+      fileName: 'sdk',
+      formats: ['es', 'cjs']
+    },
+  },
   server: {
     /*
      Kaprekar's constant, also known as the Kaprekar routine or 6174, is a unique four-digit math number.
