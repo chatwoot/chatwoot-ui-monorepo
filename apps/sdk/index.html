@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Livechat SDK</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      console.log('loaded')
+      window.chatwootSettings = {
+        hideMessageBubble: false,
+        // baseDomain: '.loca.lt',
+        position: '<%= @widget_position %>',
+        locale: 'en',
+        useBrowserLanguage: true,
+        type: '<%= @widget_type %>',
+        // showPopoutButton: true,
+        widgetStyle: '<%= @widget_style %>',
+        darkMode: '<%= @dark_mode %>',
+      };
+      window.chatwootSDK.run({
+        websiteToken: '4cWzuf9i9jxN9tbnv8K9STKU',
+        baseUrl: 'http://localhost:4104'
+      })
+      window.addEventListener('chatwoot:ready', function () {
+        console.log('chatwoot:ready', window.$chatwoot);
+        if (window.location.search.includes('setUser')) {
+          window.$chatwoot.setUser('<%= user_id %>', {
+            identifier_hash: '<%= user_hash %>',
+            email: 'jane@example.com',
+            name: 'Jane Doe',
+            phone_number: ''
+          });
+        }
+      })
+
+      window.addEventListener('chatwoot:error', function (e) {
+        console.log('chatwoot:error', e.detail)
+      })
+
+
+      window.addEventListener('chatwoot:on-message', function (e) {
+        console.log('chatwoot:on-message', e.detail)
+      })
+
+
+      window.addEventListener('chatwoot:on-start-conversation', function (e) {
+        console.log('chatwoot:on-start-conversation', e.detail)
+      })
+    });
+
+  </script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="module" src="/main.js"></script>
+
+</body>
+
+
+
+</html>
