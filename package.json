@@ -10,8 +10,6 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
-    "eslint": "eslint **/*.{js,vue}",
-    "eslint:fix": "eslint **/*.{js,vue} --fix",
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
