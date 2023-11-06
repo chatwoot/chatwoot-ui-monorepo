@@ -2,9 +2,13 @@
   "name": "@chatwoot/ui",
   "version": "3.2.0",
   "private": true,
-  "packageManager": "yarn@1.22.17",
+  "packageManager": "yarn@1.22.19",
   "workspaces": [
     "packages/*",
     "apps/*"
-  ]
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build"
+  }
 }
