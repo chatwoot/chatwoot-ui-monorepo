@@ -30,7 +30,7 @@
     "husky": "^8.0.0"
   },
   "lint-staged": {
-    "app/**/*.{js,vue}": [
+    "**/*.{js,vue}": [
       "eslint --fix",
       "git add"
     ]
