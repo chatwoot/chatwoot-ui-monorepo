@@ -6,23 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Livechat SDK - Playground</title>
   <script>
+    (function (d, t) {
+      var BASE_URL = 'http://localhost:6174';
+      var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      g.src = BASE_URL + "/dist/sdk.js";
+      g.defer = true;
+      g.async = true;
+      s.parentNode.insertBefore(g, s);
+      g.onload = function () {
+        console.log('test')
+        window.chatwootSDK.run({
+          websiteToken: '4cWzuf9i9jxN9tbnv8K9STKU',
+          baseUrl: 'http://localhost:4104'
+        })
+      }
+    })(document, "script");
+  </script>
+  <script>
     document.addEventListener("DOMContentLoaded", function () {
-      console.log('loaded')
-      window.chatwootSettings = {
-        hideMessageBubble: false,
-        // baseDomain: '.loca.lt',
-        position: '<%= @widget_position %>',
-        locale: 'en',
-        useBrowserLanguage: true,
-        type: '<%= @widget_type %>',
-        // showPopoutButton: true,
-        widgetStyle: '<%= @widget_style %>',
-        darkMode: '<%= @dark_mode %>',
-      };
-      window.chatwootSDK.run({
-        websiteToken: '4cWzuf9i9jxN9tbnv8K9STKU',
-        baseUrl: 'http://localhost:4104'
-      })
       window.addEventListener('chatwoot:ready', function () {
         console.log('chatwoot:ready', window.$chatwoot);
         if (window.location.search.includes('setUser')) {
@@ -55,7 +56,7 @@
 
 <body>
   <div id="app"></div>
-  <script type="module" src="./main.js"></script>
+  <!-- <script type="module" src="./main.js"></script> -->
 
 </body>
 
