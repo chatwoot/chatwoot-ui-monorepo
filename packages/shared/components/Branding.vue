@@ -18,12 +18,6 @@
 <script>
 import globalConfigMixin from '@chatwoot/shared/mixins/globalConfigMixin';
 
-const {
-  LOGO_THUMBNAIL: logoThumbnail,
-  BRAND_NAME: brandName,
-  WIDGET_BRAND_URL: widgetBrandURL,
-} = window.globalConfig || {};
-
 export default {
   mixins: [globalConfigMixin],
   props: {
@@ -31,15 +25,10 @@ export default {
       type: Boolean,
       default: false,
     },
-  },
-  data() {
-    return {
-      globalConfig: {
-        brandName,
-        logoThumbnail,
-        widgetBrandURL,
-      },
-    };
+    globalConfig: {
+      type: Object,
+      required: true,
+    },
   },
   computed: {
     brandRedirectURL() {

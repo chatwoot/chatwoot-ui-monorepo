@@ -146,22 +146,3 @@ export default {
   },
 };
 </script>
-<style scoped lang="scss">
-@import 'widget/assets/scss/_variables.scss';
-
-.branding {
-  align-items: center;
-  color: $color-body;
-  display: flex;
-  font-size: $font-size-default;
-  justify-content: center;
-  padding: $space-one;
-  text-align: center;
-  text-decoration: none;
-
-  img {
-    margin-right: $space-small;
-    max-width: $space-two;
-  }
-}
-</style>

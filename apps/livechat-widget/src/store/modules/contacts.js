@@ -100,6 +100,9 @@ export const actions = {
       // Ignore error
     }
   },
+  setCurrentUser({ commit }, data) {
+    commit(SET_CURRENT_USER, data);
+  },
 };
 
 export const mutations = {

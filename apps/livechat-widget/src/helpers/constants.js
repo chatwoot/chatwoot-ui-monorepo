@@ -1,5 +1,3 @@
-export const APP_BASE_URL = 'http://localhost:3000/';
-
 export const MESSAGE_STATUS = {
   FAILED: 'failed',
   SUCCESS: 'success',

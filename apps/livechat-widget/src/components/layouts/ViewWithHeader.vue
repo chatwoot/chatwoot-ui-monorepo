@@ -32,13 +32,17 @@
       </div>
       <banner />
       <router-view />
-      <branding v-if="!isOnArticleViewer" :disable-branding="channelConfig.disableBranding" />
+      <branding
+        v-if="!isOnArticleViewer"
+        :disable-branding="channelConfig.disableBranding"
+        :global-config="globalConfig"
+      />
     </div>
   </div>
 </template>
 <script>
 import Banner from '../Banner.vue';
-import Branding from '../Branding.vue';
+import Branding from '@chatwoot/shared/components/Branding.vue';
 import ChatHeader from '../ChatHeader.vue';
 import ChatHeaderExpanded from '../ChatHeaderExpanded.vue';
 import configMixin from '../../mixins/configMixin';
@@ -65,10 +69,8 @@ export default {
       appConfig: 'appConfig/getAppConfig',
       availableAgents: 'agent/availableAgents',
       widgetColor: 'appConfig/getWidgetColor',
+      globalConfig: 'globalConfig/get',
     }),
-    portal() {
-      return this.channelConfig.portal;
-    },
     isHeaderCollapsed() {
       if (!this.hasIntroText) {
         return true;

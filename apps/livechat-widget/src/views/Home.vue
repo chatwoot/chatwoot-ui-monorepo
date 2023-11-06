@@ -106,7 +106,7 @@ export default {
       return this.replaceRoute('messages');
     },
     openArticleInArticleViewer(link) {
-      let linkToOpen = `${link}?show_plain_layout=true`;
+      let linkToOpen = `${this.channelConfig.apiHost}/${link}?show_plain_layout=true`;
       const isDark = this.prefersDarkMode;
       if (isDark) {
         linkToOpen = `${linkToOpen}&theme=dark`;
@@ -117,7 +117,7 @@ export default {
       });
     },
     viewAllArticles() {
-      this.openArticleInArticleViewer(`/hc/${this.portal.slug}/${this.defaultLocale}`);
+      this.openArticleInArticleViewer(`${this.channelConfig.apiHost}/hc/${this.portal.slug}/${this.defaultLocale}`);
     },
   },
 };

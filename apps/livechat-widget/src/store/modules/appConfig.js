@@ -15,6 +15,7 @@ import { BUS_EVENTS } from '@chatwoot/shared/constants/busEvents';
 
 const state = {
   channelConfig: {},
+  darkMode: 'light',
   hideMessageBubble: false,
   isCampaignViewClicked: false,
   isWebWidgetTriggered: false,
@@ -22,11 +23,8 @@ const state = {
   position: 'right',
   referrerHost: '',
   showPopoutButton: false,
+  uiFlags: { isFetching: true, hasError: false },
   widgetStyle: 'standard',
-  darkMode: 'light',
-  uiFlags: {
-    isFetching: true,
-  },
 };
 
 export const getters = {
@@ -42,6 +40,10 @@ export const getters = {
   getUIFlags: $state => $state.uiFlags,
 };
 
+const setWindowTitle = (brandName = '') => {
+  document.title = `Live Chat with ${brandName}`;
+};
+
 export const actions = {
   setAppConfig(
     { commit },
@@ -55,15 +57,18 @@ export const actions = {
       darkMode,
     });
   },
-  async fetchAppConfig({ commit }, params) {
+  async fetchAppConfig({ commit, dispatch }, params) {
     commit(SET_APP_CONFIG_UI_FLAGS, { isFetching: true });
     try {
       const { data } = await fetchAppConfigAPI(params);
-      const { websiteChannelConfig, contact } = changeKeys.camelCase(data || {}, 2);
+      const { websiteChannelConfig, contact, globalConfig } = changeKeys.camelCase(data || {}, 2);
       commit(SET_CHANNEL_CONFIG, websiteChannelConfig);
+      dispatch('contacts/setCurrentUser', contact, { root: true });
+      dispatch('globalConfig/setGlobalConfig', globalConfig, { root: true });
+      setWindowTitle(websiteChannelConfig.websiteName);
       bus.$emit(BUS_EVENTS.INITIALIZE_WEBSOCKET_EVENTS, { channelConfig: websiteChannelConfig, contact });
     } catch (error) {
-      // Ignore error
+      commit(SET_APP_CONFIG_UI_FLAGS, { isFetching: false, hasError: true });
     } finally {
       commit(SET_APP_CONFIG_UI_FLAGS, { isFetching: false });
     }

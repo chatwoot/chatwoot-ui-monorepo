@@ -1,10 +1,12 @@
 import axios from 'axios';
-import { APP_BASE_URL } from 'widget/helpers/constants';
 
-export const API = axios.create({
-  baseURL: APP_BASE_URL,
-  withCredentials: false,
-});
+export const API = axios.create({ withCredentials: false });
+
+export const setBaseURL = () => {
+  if (import.meta.env.VITE_API_HOST) {
+    API.defaults.baseURL = import.meta.env.VITE_API_HOST;
+  }
+};
 
 export const setHeader = (value, key = 'X-Auth-Token') => {
   API.defaults.headers.common[key] = value;

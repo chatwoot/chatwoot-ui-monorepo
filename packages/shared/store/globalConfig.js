@@ -1,3 +1,4 @@
+import Vue from 'vue';
 const {
   API_CHANNEL_NAME: apiChannelName,
   API_CHANNEL_THUMBNAIL: apiChannelThumbnail,
@@ -62,7 +63,7 @@ export const actions = {
 
 export const mutations = {
   [SET_GLOBAL_CONFIG]($state, data) {
-    $state = data;
+    Object.keys(data).forEach(key => Vue.set($state, key, data[key]));
   },
 };
 

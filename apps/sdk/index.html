@@ -6,17 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Livechat SDK - Playground</title>
   <script>
+    const url = new URL(window.location.href);
+    window.chatwootSettings = {
+      showPopoutButton: Boolean(url.searchParams.get('popout') || false),
+      hideMessageBubble: Boolean(url.searchParams.get('hide_bubble') || false),
+      position: url.searchParams.get('position') || 'right',
+      locale: 'en' || url.searchParams.get('locale'),
+      useBrowserLanguage: Boolean(url.searchParams.get('browser_language') || false),
+      type: url.searchParams.get('type') || 'expanded',
+      widgetStyle: url.searchParams.get('style') || 'standard',
+      darkMode: url.searchParams.get('dark_mode') || 'system',
+    };
     (function (d, t) {
       var BASE_URL = 'http://localhost:6174';
       var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      g.src = BASE_URL + "/dist/sdk.js";
+      g.src = BASE_URL + '/main.js';
+      g.type = 'module';
       g.defer = true;
       g.async = true;
       s.parentNode.insertBefore(g, s);
       g.onload = function () {
-        console.log('test')
         window.chatwootSDK.run({
-          websiteToken: '4cWzuf9i9jxN9tbnv8K9STKU',
+          websiteToken: url.searchParams.get('website_token') || '',
           baseUrl: 'http://localhost:4104'
         })
       }
@@ -56,8 +67,6 @@
 
 <body>
   <div id="app"></div>
-  <!-- <script type="module" src="./main.js"></script> -->
-
 </body>
 
 
