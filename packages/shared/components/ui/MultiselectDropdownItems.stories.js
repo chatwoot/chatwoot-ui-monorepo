@@ -31,8 +31,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { DropdownItems },
-  template:
-    '<dropdown-items v-bind="$props" @click="onClick"></dropdown-items>',
+  template: '<dropdown-items v-bind="$props" @click="onClick"></dropdown-items>',
 });
 
 export const MultiselectDropdownItems = Template.bind({});

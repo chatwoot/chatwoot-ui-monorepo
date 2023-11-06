@@ -3,9 +3,7 @@ import wootConstants from 'dashboard/constants/globals';
 export default {
   methods: {
     setFilterAttributes() {
-      const allCustomAttributes = this.$store.getters[
-        'attributes/getAttributesByModel'
-      ](this.attributeModel);
+      const allCustomAttributes = this.$store.getters['attributes/getAttributesByModel'](this.attributeModel);
       const customAttributesFormatted = {
         name: this.$t(`${this.filtersFori18n}.GROUPS.CUSTOM_ATTRIBUTES`),
         attributes: allCustomAttributes.map(attr => {
@@ -21,9 +19,7 @@ export default {
           attributes: group.attributes.map(attribute => {
             return {
               key: attribute.key,
-              name: this.$t(
-                `${this.filtersFori18n}.ATTRIBUTES.${attribute.i18nKey}`,
-              ),
+              name: this.$t(`${this.filtersFori18n}.ATTRIBUTES.${attribute.i18nKey}`),
             };
           }),
         };
@@ -54,9 +50,7 @@ export default {
           values: [
             {
               id: this.activeStatus,
-              name: this.$t(
-                `CHAT_LIST.CHAT_STATUS_FILTER_ITEMS.${this.activeStatus}.TEXT`,
-              ),
+              name: this.$t(`CHAT_LIST.CHAT_STATUS_FILTER_ITEMS.${this.activeStatus}.TEXT`),
             },
           ],
           query_operator: 'and',

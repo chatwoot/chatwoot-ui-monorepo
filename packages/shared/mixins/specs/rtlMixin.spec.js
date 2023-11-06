@@ -5,7 +5,7 @@ import rtlMixin from '@chatwoot/shared/mixins/rtlMixin';
 describe('rtlMixin', () => {
   it('returns is direction right-to-left view', () => {
     const Component = {
-      render() { },
+      render() {},
       mixins: [rtlMixin, uiSettingsMixin],
       data() {
         return { uiSettings: { rtl_view: true } };
@@ -17,7 +17,7 @@ describe('rtlMixin', () => {
 
   it('returns is direction left-to-right view', () => {
     const Component = {
-      render() { },
+      render() {},
       mixins: [rtlMixin, uiSettingsMixin],
       data() {
         return { uiSettings: { rtl_view: false } };

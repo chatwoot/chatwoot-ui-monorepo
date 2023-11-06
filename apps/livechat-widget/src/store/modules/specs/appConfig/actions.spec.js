@@ -5,9 +5,7 @@ describe('#actions', () => {
   describe('#setReferrerHost', () => {
     it('creates actions properly', () => {
       actions.setReferrerHost({ commit }, 'www.chatwoot.com');
-      expect(commit.mock.calls).toEqual([
-        ['SET_REFERRER_HOST', 'www.chatwoot.com'],
-      ]);
+      expect(commit.mock.calls).toEqual([['SET_REFERRER_HOST', 'www.chatwoot.com']]);
     });
   });
 

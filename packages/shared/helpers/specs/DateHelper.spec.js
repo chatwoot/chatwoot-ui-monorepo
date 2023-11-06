@@ -1,10 +1,4 @@
-import {
-  formatDate,
-  formatUnixDate,
-  formatDigitToString,
-  isTimeAfter,
-  generateRelativeTime,
-} from '../DateHelper';
+import { formatDate, formatUnixDate, formatDigitToString, isTimeAfter, generateRelativeTime } from '../DateHelper';
 
 describe('#DateHelper', () => {
   it('should format unix date correctly without dateFormat', () => {
@@ -21,7 +15,7 @@ describe('#DateHelper', () => {
         date: 'Dec 14, 2019',
         todayText: 'Today',
         yesterdayText: 'Yesterday',
-      }),
+      })
     ).toEqual('Dec 14, 2019');
   });
   it('should format date as today ', () => {
@@ -30,7 +24,7 @@ describe('#DateHelper', () => {
         date: new Date(),
         todayText: 'Today',
         yesterdayText: 'Yesterday',
-      }),
+      })
     ).toEqual('Today');
   });
   it('should format date as yesterday ', () => {
@@ -42,7 +36,7 @@ describe('#DateHelper', () => {
         date: yesterday,
         todayText: 'Today',
         yesterdayText: 'Yesterday',
-      }),
+      })
     ).toEqual('Yesterday');
   });
 });

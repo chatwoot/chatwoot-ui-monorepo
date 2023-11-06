@@ -1,8 +1,4 @@
-import {
-  formatBytes,
-  fileSizeInMegaBytes,
-  checkFileSizeLimit,
-} from '../FileHelper';
+import { formatBytes, fileSizeInMegaBytes, checkFileSizeLimit } from '../FileHelper';
 
 describe('#File Helpers', () => {
   describe('formatBytes', () => {

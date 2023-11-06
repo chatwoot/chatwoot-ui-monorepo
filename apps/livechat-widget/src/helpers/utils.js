@@ -1,13 +1,9 @@
 import { WOOT_PREFIX } from './constants';
 
-export const isEmptyObject = obj =>
-  Object.keys(obj).length === 0 && obj.constructor === Object;
+export const isEmptyObject = obj => Object.keys(obj).length === 0 && obj.constructor === Object;
 
 export const sendMessage = msg => {
-  window.parent.postMessage(
-    `chatwoot-widget:${JSON.stringify({ ...msg })}`,
-    '*',
-  );
+  window.parent.postMessage(`chatwoot-widget:${JSON.stringify({ ...msg })}`, '*');
 };
 
 export const IFrameHelper = {
@@ -22,9 +18,7 @@ export const IFrameHelper = {
 export const RNHelper = {
   isRNWebView: () => window.ReactNativeWebView,
   sendMessage: msg => {
-    window.ReactNativeWebView.postMessage(
-      `chatwoot-widget:${JSON.stringify({ ...msg })}`,
-    );
+    window.ReactNativeWebView.postMessage(`chatwoot-widget:${JSON.stringify({ ...msg })}`);
   },
 };
 

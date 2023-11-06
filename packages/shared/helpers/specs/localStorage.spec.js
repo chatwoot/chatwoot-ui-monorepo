@@ -42,9 +42,7 @@ describe('LocalStorage utility', () => {
 
   it('getFromJsonStore method', () => {
     LocalStorage.set('testStore', { testKey: 'testValue' });
-    expect(LocalStorage.getFromJsonStore('testStore', 'testKey')).toBe(
-      'testValue',
-    );
+    expect(LocalStorage.getFromJsonStore('testStore', 'testKey')).toBe('testValue');
   });
 
   it('deleteFromJsonStore method', () => {

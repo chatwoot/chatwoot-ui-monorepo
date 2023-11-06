@@ -10,12 +10,7 @@ export const getLocale = (search = '') => {
   return new URLSearchParams(search).get('locale');
 };
 
-export const buildPopoutURL = ({
-  origin,
-  conversationCookie,
-  websiteToken,
-  locale,
-}) => {
+export const buildPopoutURL = ({ origin, conversationCookie, websiteToken, locale }) => {
   const popoutUrl = new URL('/widget', origin);
   popoutUrl.searchParams.append('cw_conversation', conversationCookie);
   popoutUrl.searchParams.append('website_token', websiteToken);

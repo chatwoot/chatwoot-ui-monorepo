@@ -62,7 +62,7 @@ export const generateTimeSlots = (step = 15) => {
         hour: '2-digit',
         minute: '2-digit',
         hour12: true,
-      }),
+      })
     );
     date.setMinutes(date.getMinutes() + step);
   }

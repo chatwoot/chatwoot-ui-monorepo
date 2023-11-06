@@ -57,7 +57,7 @@ describe('#triggerCampaign', () => {
       endPoints.triggerCampaign({
         websiteToken,
         campaignId,
-      }),
+      })
     ).toEqual({
       url: '/api/v1/widget/events',
       data: {
@@ -89,7 +89,7 @@ describe('#getConversation', () => {
     expect(
       endPoints.getConversation({
         after: 123,
-      }),
+      })
     ).toEqual({
       url: '/api/v1/widget/messages',
       params: {

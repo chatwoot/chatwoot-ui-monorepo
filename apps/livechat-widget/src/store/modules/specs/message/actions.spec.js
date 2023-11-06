@@ -26,7 +26,7 @@ describe('#actions', () => {
             },
           },
         },
-        user,
+        user
       );
       expect(commit.mock.calls).toEqual([
         ['toggleUpdateStatus', true],
@@ -55,7 +55,7 @@ describe('#actions', () => {
             },
           },
         },
-        {},
+        {}
       );
 
       expect(commit.mock.calls).toEqual([]);

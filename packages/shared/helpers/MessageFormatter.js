@@ -35,14 +35,8 @@ class MessageFormatter {
   formatMessage() {
     let updatedMessage = this.message;
     if (this.isATweet && !this.isAPrivateNote) {
-      updatedMessage = updatedMessage.replace(
-        TWITTER_USERNAME_REGEX,
-        TWITTER_USERNAME_REPLACEMENT,
-      );
-      updatedMessage = updatedMessage.replace(
-        TWITTER_HASH_REGEX,
-        TWITTER_HASH_REPLACEMENT,
-      );
+      updatedMessage = updatedMessage.replace(TWITTER_USERNAME_REGEX, TWITTER_USERNAME_REPLACEMENT);
+      updatedMessage = updatedMessage.replace(TWITTER_HASH_REGEX, TWITTER_HASH_REPLACEMENT);
     }
     return md.render(updatedMessage);
   }
@@ -52,10 +46,7 @@ class MessageFormatter {
   }
 
   get plainText() {
-    const strippedOutHtml = new DOMParser().parseFromString(
-      this.formattedMessage,
-      'text/html',
-    );
+    const strippedOutHtml = new DOMParser().parseFromString(this.formattedMessage, 'text/html');
     return strippedOutHtml.body.textContent || '';
   }
 }

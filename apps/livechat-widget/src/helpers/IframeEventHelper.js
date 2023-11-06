@@ -37,9 +37,9 @@ export const shouldTriggerMessageUpdateEvent = message => {
     return false;
   }
 
-  const hasSubmittedValueChanges = Object.keys(
-    previousChanges.content_attributes[1] || {},
-  ).includes('submitted_values');
+  const hasSubmittedValueChanges = Object.keys(previousChanges.content_attributes[1] || {}).includes(
+    'submitted_values'
+  );
 
   return hasSubmittedValueChanges;
 };

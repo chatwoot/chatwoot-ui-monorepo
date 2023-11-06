@@ -72,9 +72,7 @@ export const generateEmptyHeatmapData = () => {
 export const reconcileHeatmapData = (data, dataFromStore) => {
   const parsedData = flattenHeatmapData(data);
   // make a copy of the data from store
-  const heatmapData = dataFromStore.length
-    ? dataFromStore
-    : generateEmptyHeatmapData();
+  const heatmapData = dataFromStore.length ? dataFromStore : generateEmptyHeatmapData();
 
   return heatmapData.map(dataItem => {
     if (parsedData[dataItem.timestamp]) {

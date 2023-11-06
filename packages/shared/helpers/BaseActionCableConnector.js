@@ -30,7 +30,7 @@ class BaseActionCableConnector {
           // TODO: Remove this after completing the conversation list refetching
           window.bus.$emit(BUS_EVENTS.WEBSOCKET_DISCONNECT);
         },
-      },
+      }
     );
     this.app = app;
     this.events = {};
@@ -47,8 +47,7 @@ class BaseActionCableConnector {
 
   checkConnection() {
     const isConnectionActive = this.consumer.connection.isOpen();
-    const isReconnected =
-      BaseActionCableConnector.isDisconnected && isConnectionActive;
+    const isReconnected = BaseActionCableConnector.isDisconnected && isConnectionActive;
     if (isReconnected) {
       this.clearReconnectTimer();
       this.onReconnect();
@@ -73,10 +72,10 @@ class BaseActionCableConnector {
   };
 
   // eslint-disable-next-line class-methods-use-this
-  onReconnect = () => { };
+  onReconnect = () => {};
 
   // eslint-disable-next-line class-methods-use-this
-  onDisconnected = () => { };
+  onDisconnected = () => {};
 
   disconnect() {
     this.consumer.disconnect();

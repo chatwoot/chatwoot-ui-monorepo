@@ -11,10 +11,7 @@ export const getters = {
 };
 
 export const actions = {
-  update: async (
-    { commit, dispatch, getters: { getUIFlags: uiFlags } },
-    { email, messageId, submittedValues },
-  ) => {
+  update: async ({ commit, dispatch, getters: { getUIFlags: uiFlags } }, { email, messageId, submittedValues }) => {
     if (uiFlags.isUpdating) {
       return;
     }
@@ -34,7 +31,7 @@ export const actions = {
             submitted_values: email ? null : submittedValues,
           },
         },
-        { root: true },
+        { root: true }
       );
       dispatch('contacts/get', {}, { root: true });
     } catch (error) {

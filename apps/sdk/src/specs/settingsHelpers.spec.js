@@ -1,9 +1,4 @@
-import {
-  getBubbleView,
-  getWidgetStyle,
-  isExpandedView,
-  isFlatWidgetStyle,
-} from '../settingsHelper';
+import { getBubbleView, getWidgetStyle, isExpandedView, isFlatWidgetStyle } from '../settingsHelper';
 
 describe('#getBubbleView', () => {
   it('returns correct view', () => {

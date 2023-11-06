@@ -302,8 +302,7 @@ export const agents = [
     available_name: 'Fayaz',
     name: 'Fayaz',
     role: 'administrator',
-    thumbnail:
-      'https://www.gravatar.com/avatar/0d722ac7bc3b3c92c030d0da9690d981?d=404',
+    thumbnail: 'https://www.gravatar.com/avatar/0d722ac7bc3b3c92c030d0da9690d981?d=404',
   },
   {
     id: 5,
@@ -315,8 +314,7 @@ export const agents = [
     available_name: 'John',
     name: 'John',
     role: 'agent',
-    thumbnail:
-      'https://www.gravatar.com/avatar/6a6c19fea4a3676970167ce51f39e6ee?d=404',
+    thumbnail: 'https://www.gravatar.com/avatar/6a6c19fea4a3676970167ce51f39e6ee?d=404',
   },
 ];
 export const booleanFilterOptions = [
@@ -357,8 +355,7 @@ export const contacts = [
     name: 'asd123123',
     phone_number: null,
     identifier: null,
-    thumbnail:
-      'https://www.gravatar.com/avatar/46000d9a1eef3e24a02ca9d6c2a8f494?d=404',
+    thumbnail: 'https://www.gravatar.com/avatar/46000d9a1eef3e24a02ca9d6c2a8f494?d=404',
     custom_attributes: {},
     conversations_count: 5,
     last_activity_at: 1650519706,
@@ -371,8 +368,7 @@ export const contacts = [
     name: 'barry_allen',
     phone_number: null,
     identifier: null,
-    thumbnail:
-      'https://www.gravatar.com/avatar/ab5ff99efa3bc1f74db1dc2885f9e2ce?d=404',
+    thumbnail: 'https://www.gravatar.com/avatar/ab5ff99efa3bc1f74db1dc2885f9e2ce?d=404',
     custom_attributes: {},
     conversations_count: 1,
     last_activity_at: 1643728899,
@@ -392,8 +388,7 @@ export const inboxes = [
     csat_survey_enabled: true,
     sender_name_type: 0,
     enable_auto_assignment: true,
-    out_of_office_message:
-      'We are unavailable at the moment. Leave a message we will respond once we are back.',
+    out_of_office_message: 'We are unavailable at the moment. Leave a message we will respond once we are back.',
     working_hours: [
       {
         day_of_week: 0,
@@ -660,9 +655,7 @@ export const automationToSubmit = {
       custom_attribute_type: '',
     },
   ],
-  actions: [
-    { action_name: 'add_label', action_params: [{ id: 2, name: 'testlabel' }] },
-  ],
+  actions: [{ action_name: 'add_label', action_params: [{ id: 2, name: 'testlabel' }] }],
 };
 
 export const savedAutomation = {

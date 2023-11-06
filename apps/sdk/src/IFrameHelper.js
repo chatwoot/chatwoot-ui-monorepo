@@ -1,9 +1,5 @@
 import Cookies from 'js-cookie';
-import {
-  addClasses,
-  removeClasses,
-  onLocationChangeListener,
-} from './DOMHelpers';
+import { addClasses, removeClasses, onLocationChangeListener } from './DOMHelpers';
 import {
   body,
   widgetHolder,
@@ -25,17 +21,15 @@ import { dispatchWindowEvent } from '@chatwoot/shared/helpers/CustomEventHelper'
 import { CHATWOOT_ERROR, CHATWOOT_READY } from '@chatwoot/shared/constants/sdkEvents';
 import { SET_USER_ERROR } from '@chatwoot/shared/constants/errorTypes';
 import { getUserCookieName, setCookieWithDomain } from './cookieHelpers';
-import {
-  getAlertAudio,
-  initOnEvents,
-} from '@chatwoot/shared/helpers/AudioNotificationHelper';
+import { getAlertAudio, initOnEvents } from '@chatwoot/shared/helpers/AudioNotificationHelper';
 import { isFlatWidgetStyle } from './settingsHelper';
 import { popoutChatWindow } from '@chatwoot/shared/helpers/popoutHelper';
 import addHours from 'date-fns/addHours';
 
-const updateAuthCookie = (cookieContent, baseDomain = '') => setCookieWithDomain('cw_conversation', cookieContent, {
-  baseDomain,
-});
+const updateAuthCookie = (cookieContent, baseDomain = '') =>
+  setCookieWithDomain('cw_conversation', cookieContent, {
+    baseDomain,
+  });
 
 const updateCampaignReadStatus = baseDomain => {
   const expireBy = addHours(new Date(), 1);
@@ -83,17 +77,11 @@ export const IFrameHelper = {
   getBubbleHolder: () => document.getElementsByClassName('woot--bubble-holder'),
   sendMessage: (key, value) => {
     const element = IFrameHelper.getAppFrame();
-    element.contentWindow.postMessage(
-      `chatwoot-widget:${JSON.stringify({ event: key, ...value })}`,
-      '*',
-    );
+    element.contentWindow.postMessage(`chatwoot-widget:${JSON.stringify({ event: key, ...value })}`, '*');
   },
   initPostMessageCommunication: () => {
     window.onmessage = e => {
-      if (
-        typeof e.data !== 'string'
-        || e.data.indexOf('chatwoot-widget:') !== 0
-      ) {
+      if (typeof e.data !== 'string' || e.data.indexOf('chatwoot-widget:') !== 0) {
         return;
       }
       const message = JSON.parse(e.data.replace('chatwoot-widget:', ''));
@@ -112,10 +100,7 @@ export const IFrameHelper = {
       const visibleHeight = widgetHolder.offsetHeight;
       const scrollTop = widgetHolder.scrollTop;
 
-      if (
-        (scrollTop === 0 && deltaY < 0)
-        || (visibleHeight + scrollTop === contentHeight && deltaY > 0)
-      ) {
+      if ((scrollTop === 0 && deltaY < 0) || (visibleHeight + scrollTop === contentHeight && deltaY > 0)) {
         event.preventDefault();
       }
     });
@@ -130,13 +115,11 @@ export const IFrameHelper = {
 
   setupAudioListeners: () => {
     const { baseUrl = '' } = window.$chatwoot;
-    getAlertAudio(baseUrl, { type: 'widget', alertTone: 'ding' }).then(() => initOnEvents.forEach(event => {
-      document.removeEventListener(
-        event,
-        IFrameHelper.setupAudioListeners,
-        false,
-      );
-    }));
+    getAlertAudio(baseUrl, { type: 'widget', alertTone: 'ding' }).then(() =>
+      initOnEvents.forEach(event => {
+        document.removeEventListener(event, IFrameHelper.setupAudioListeners, false);
+      })
+    );
   },
 
   events: {
@@ -162,7 +145,7 @@ export const IFrameHelper = {
         IFrameHelper.sendMessage('set-user', window.$chatwoot.user);
       }
 
-      window.playAudioAlert = () => { };
+      window.playAudioAlert = () => {};
 
       initOnEvents.forEach(e => {
         document.addEventListener(e, IFrameHelper.setupAudioListeners, false);
@@ -246,10 +229,7 @@ export const IFrameHelper = {
       }
 
       const bubbleElement = document.querySelector('.woot-widget-bubble');
-      if (
-        event.unreadMessageCount > 0
-        && !bubbleElement.classList.contains('unread-notification')
-      ) {
+      if (event.unreadMessageCount > 0 && !bubbleElement.classList.contains('unread-notification')) {
         addClasses(bubbleElement, 'unread-notification');
       } else if (event.unreadMessageCount === 0) {
         removeClasses(bubbleElement, 'unread-notification');

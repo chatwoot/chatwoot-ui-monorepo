@@ -39,7 +39,7 @@ const createComponent = (
   computed = {},
   // eslint-disable-next-line default-param-last
   methods = {},
-  validations,
+  validations
 ) => {
   const Component = {
     render() {},
@@ -101,9 +101,7 @@ describe('automationMethodsMixin', () => {
       return {};
     };
     const wrapper = createComponent([methodsMixin], data);
-    expect(
-      wrapper.vm.getFileName(automation.actions[0], automation.files),
-    ).toEqual(automation.files[0].filename);
+    expect(wrapper.vm.getFileName(automation.actions[0], automation.files)).toEqual(automation.files[0].filename);
   });
 
   it('getAttributes returns all attributes', () => {
@@ -113,9 +111,7 @@ describe('automationMethodsMixin', () => {
       };
     };
     const wrapper = createComponent([methodsMixin], data);
-    expect(wrapper.vm.getAttributes('conversation_created')).toEqual(
-      AUTOMATIONS.conversation_created.conditions,
-    );
+    expect(wrapper.vm.getAttributes('conversation_created')).toEqual(AUTOMATIONS.conversation_created.conditions);
   });
 
   it('getAttributes returns all respective attributes', () => {
@@ -140,9 +136,7 @@ describe('automationMethodsMixin', () => {
       };
     };
     const wrapper = createComponent([methodsMixin], data);
-    expect(wrapper.vm.getOperators('status')).toEqual(
-      AUTOMATIONS.conversation_created.conditions[0].filterOperators,
-    );
+    expect(wrapper.vm.getOperators('status')).toEqual(AUTOMATIONS.conversation_created.conditions[0].filterOperators);
   });
 
   it('getAutomationType returns the correct automationType', () => {
@@ -153,9 +147,7 @@ describe('automationMethodsMixin', () => {
       };
     };
     const wrapper = createComponent([methodsMixin], data);
-    expect(wrapper.vm.getAutomationType('status')).toEqual(
-      AUTOMATIONS[automation.event_name].conditions[0],
-    );
+    expect(wrapper.vm.getAutomationType('status')).toEqual(AUTOMATIONS[automation.event_name].conditions[0]);
   });
 
   it('getConditionDropdownValues returns respective condition dropdown values', () => {
@@ -166,27 +158,15 @@ describe('automationMethodsMixin', () => {
       };
     };
     const wrapper = createComponent([methodsMixin], data, computed);
-    expect(wrapper.vm.getConditionDropdownValues('status')).toEqual(
-      statusFilterOptions,
-    );
+    expect(wrapper.vm.getConditionDropdownValues('status')).toEqual(statusFilterOptions);
     expect(wrapper.vm.getConditionDropdownValues('team_id')).toEqual(teams);
-    expect(wrapper.vm.getConditionDropdownValues('assignee_id')).toEqual(
-      agents,
-    );
+    expect(wrapper.vm.getConditionDropdownValues('assignee_id')).toEqual(agents);
     expect(wrapper.vm.getConditionDropdownValues('contact')).toEqual(contacts);
     expect(wrapper.vm.getConditionDropdownValues('inbox_id')).toEqual(inboxes);
-    expect(wrapper.vm.getConditionDropdownValues('campaigns')).toEqual(
-      campaigns,
-    );
-    expect(wrapper.vm.getConditionDropdownValues('browser_language')).toEqual(
-      languages,
-    );
-    expect(wrapper.vm.getConditionDropdownValues('country_code')).toEqual(
-      countries,
-    );
-    expect(wrapper.vm.getConditionDropdownValues('message_type')).toEqual(
-      MESSAGE_CONDITION_VALUES,
-    );
+    expect(wrapper.vm.getConditionDropdownValues('campaigns')).toEqual(campaigns);
+    expect(wrapper.vm.getConditionDropdownValues('browser_language')).toEqual(languages);
+    expect(wrapper.vm.getConditionDropdownValues('country_code')).toEqual(countries);
+    expect(wrapper.vm.getConditionDropdownValues('message_type')).toEqual(MESSAGE_CONDITION_VALUES);
   });
 
   it('appendNewCondition appends a new condition to the automation data property', () => {
@@ -204,9 +184,7 @@ describe('automationMethodsMixin', () => {
     };
     const wrapper = createComponent([methodsMixin], data);
     wrapper.vm.appendNewCondition();
-    expect(automation.conditions[automation.conditions.length - 1]).toEqual(
-      condition,
-    );
+    expect(automation.conditions[automation.conditions.length - 1]).toEqual(condition);
   });
 
   it('appendNewAction appends a new condition to the automation data property', () => {
@@ -329,9 +307,7 @@ describe('automationMethodsMixin', () => {
       },
     ];
     const wrapper = createComponent([methodsMixin], data, {}, methods);
-    expect(wrapper.vm.manifestConditions(savedAutomation)).toEqual(
-      manifestedConditions,
-    );
+    expect(wrapper.vm.manifestConditions(savedAutomation)).toEqual(manifestedConditions);
   });
 
   it('generateActionsArray return the manifested actions array', () => {
@@ -379,9 +355,7 @@ describe('automationMethodsMixin', () => {
     ];
 
     const wrapper = createComponent([methodsMixin], data, computed, methods);
-    expect(wrapper.vm.generateActionsArray(testAction)).toEqual(
-      expectedActionArray,
-    );
+    expect(wrapper.vm.generateActionsArray(testAction)).toEqual(expectedActionArray);
   });
 
   it('manifestActions manifest the received action and generate the correct array', () => {
@@ -414,9 +388,7 @@ describe('automationMethodsMixin', () => {
       },
     ];
     const wrapper = createComponent([methodsMixin], data, {}, methods);
-    expect(wrapper.vm.manifestActions(savedAutomation)).toEqual(
-      expectedActions,
-    );
+    expect(wrapper.vm.manifestActions(savedAutomation)).toEqual(expectedActions);
   });
 
   it('getActionDropdownValues returns Action dropdown Values', () => {
@@ -439,9 +411,7 @@ describe('automationMethodsMixin', () => {
       { id: 'snoozes', name: 'snoozes' },
     ];
     const wrapper = createComponent([methodsMixin], data, computed);
-    expect(wrapper.vm.getActionDropdownValues('add_label')).toEqual(
-      expectedActionDropdownValues,
-    );
+    expect(wrapper.vm.getActionDropdownValues('add_label')).toEqual(expectedActionDropdownValues);
   });
 });
 

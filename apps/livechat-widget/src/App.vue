@@ -32,10 +32,7 @@ import { getLocale } from './helpers/urlParamsHelper';
 import { isEmptyObject } from 'widget/helpers/utils';
 import Spinner from '@chatwoot/shared/components/Spinner.vue';
 import routerMixin from './mixins/routerMixin';
-import {
-  getExtraSpaceToScroll,
-  loadedEventConfig,
-} from './helpers/IframeEventHelper';
+import { getExtraSpaceToScroll, loadedEventConfig } from './helpers/IframeEventHelper';
 import {
   ON_AGENT_MESSAGE_RECEIVED,
   ON_CAMPAIGN_MESSAGE_CLICK,
@@ -113,11 +110,7 @@ export default {
       'setColorScheme',
     ]),
     ...mapActions('conversation', ['fetchOldConversations', 'setUserLastSeen']),
-    ...mapActions('campaign', [
-      'initCampaigns',
-      'executeCampaign',
-      'resetCampaign',
-    ]),
+    ...mapActions('campaign', ['initCampaigns', 'executeCampaign', 'resetCampaign']),
     ...mapActions('agent', ['fetchAvailableAgents']),
     scrollConversationToBottom() {
       const container = this.$el.querySelector('.conversation-wrap');
@@ -143,12 +136,8 @@ export default {
       if (!localeWithVariation) return;
       const { enabledLanguages } = window.chatwootWebChannel;
       const localeWithoutVariation = localeWithVariation.split('_')[0];
-      const hasLocaleWithoutVariation = enabledLanguages.some(
-        lang => lang.iso_639_1_code === localeWithoutVariation
-      );
-      const hasLocaleWithVariation = enabledLanguages.some(
-        lang => lang.iso_639_1_code === localeWithVariation
-      );
+      const hasLocaleWithoutVariation = enabledLanguages.some(lang => lang.iso_639_1_code === localeWithoutVariation);
+      const hasLocaleWithVariation = enabledLanguages.some(lang => lang.iso_639_1_code === localeWithVariation);
 
       if (hasLocaleWithVariation) {
         this.$root.$i18n.locale = localeWithVariation;
@@ -191,12 +180,8 @@ export default {
     },
     setCampaignView() {
       const { messageCount, activeCampaign } = this;
-      const shouldSnoozeCampaign =
-        this.campaignsSnoozedTill && this.campaignsSnoozedTill > Date.now();
-      const isCampaignReadyToExecute =
-        !isEmptyObject(activeCampaign) &&
-        !messageCount &&
-        !shouldSnoozeCampaign;
+      const shouldSnoozeCampaign = this.campaignsSnoozedTill && this.campaignsSnoozedTill > Date.now();
+      const isCampaignReadyToExecute = !isEmptyObject(activeCampaign) && !messageCount && !shouldSnoozeCampaign;
       if (this.isIFrame && isCampaignReadyToExecute) {
         this.replaceRoute('campaigns').then(() => {
           this.setIframeHeight(true);
@@ -234,10 +219,7 @@ export default {
     createWidgetEvents(message) {
       const { eventName } = message;
       const isWidgetTriggerEvent = eventName === 'webwidget.triggered';
-      if (
-        isWidgetTriggerEvent &&
-        ['unread-messages', 'campaigns'].includes(this.$route.name)
-      ) {
+      if (isWidgetTriggerEvent && ['unread-messages', 'campaigns'].includes(this.$route.name)) {
         return;
       }
       this.$store.dispatch('events/create', { name: eventName });
@@ -279,25 +261,13 @@ export default {
         } else if (message.event === 'set-user') {
           this.$store.dispatch('contacts/setUser', message);
         } else if (message.event === 'set-custom-attributes') {
-          this.$store.dispatch(
-            'contacts/setCustomAttributes',
-            message.customAttributes
-          );
+          this.$store.dispatch('contacts/setCustomAttributes', message.customAttributes);
         } else if (message.event === 'delete-custom-attribute') {
-          this.$store.dispatch(
-            'contacts/deleteCustomAttribute',
-            message.customAttribute
-          );
+          this.$store.dispatch('contacts/deleteCustomAttribute', message.customAttribute);
         } else if (message.event === 'set-conversation-custom-attributes') {
-          this.$store.dispatch(
-            'conversation/setCustomAttributes',
-            message.customAttributes
-          );
+          this.$store.dispatch('conversation/setCustomAttributes', message.customAttributes);
         } else if (message.event === 'delete-conversation-custom-attribute') {
-          this.$store.dispatch(
-            'conversation/deleteCustomAttribute',
-            message.customAttribute
-          );
+          this.$store.dispatch('conversation/deleteCustomAttribute', message.customAttribute);
         } else if (message.event === 'set-locale') {
           this.setLocale(message.locale);
           this.setBubbleLabel();
@@ -306,13 +276,8 @@ export default {
         } else if (message.event === 'toggle-open') {
           this.$store.dispatch('appConfig/toggleWidgetOpen', message.isOpen);
 
-          const shouldShowMessageView =
-            ['home'].includes(this.$route.name) &&
-            message.isOpen &&
-            this.messageCount;
-          const shouldShowHomeView =
-            !message.isOpen &&
-            ['unread-messages', 'campaigns'].includes(this.$route.name);
+          const shouldShowMessageView = ['home'].includes(this.$route.name) && message.isOpen && this.messageCount;
+          const shouldShowHomeView = !message.isOpen && ['unread-messages', 'campaigns'].includes(this.$route.name);
 
           if (shouldShowMessageView) {
             this.replaceRoute('messages');

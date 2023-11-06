@@ -1,8 +1,4 @@
-import {
-  SET_CONVERSATION_ATTRIBUTES,
-  UPDATE_CONVERSATION_ATTRIBUTES,
-  CLEAR_CONVERSATION_ATTRIBUTES,
-} from '../types';
+import { SET_CONVERSATION_ATTRIBUTES, UPDATE_CONVERSATION_ATTRIBUTES, CLEAR_CONVERSATION_ATTRIBUTES } from '../types';
 import { getConversationAPI } from '../../api/conversation';
 
 const state = {

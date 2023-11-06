@@ -47,8 +47,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LabelDropdown },
-  template:
-    '<label-dropdown v-bind="$props" @add="onAdd" @remove="onRemove"></label-dropdown>',
+  template: '<label-dropdown v-bind="$props" @add="onAdd" @remove="onRemove"></label-dropdown>',
 });
 
 export const Dropdown = Template.bind({});

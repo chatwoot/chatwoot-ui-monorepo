@@ -34,13 +34,7 @@ export const getters = {
 export const actions = {
   setAppConfig(
     { commit },
-    {
-      showPopoutButton,
-      position,
-      hideMessageBubble,
-      widgetStyle = 'rounded',
-      darkMode = 'light',
-    },
+    { showPopoutButton, position, hideMessageBubble, widgetStyle = 'rounded', darkMode = 'light' }
   ) {
     commit(SET_WIDGET_APP_CONFIG, {
       hideMessageBubble: !!hideMessageBubble,

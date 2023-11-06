@@ -1,10 +1,5 @@
 import Cookies from 'js-cookie';
-import {
-  getUserCookieName,
-  getUserString,
-  hasUserKeys,
-  setCookieWithDomain,
-} from '../cookieHelpers';
+import { getUserCookieName, getUserString, hasUserKeys, setCookieWithDomain } from '../cookieHelpers';
 
 describe('#getUserCookieName', () => {
   it('returns correct cookie name', () => {
@@ -24,9 +19,9 @@ describe('#getUserString', () => {
           identifier_hash: '12345',
         },
         identifier: '12345',
-      }),
+      })
     ).toBe(
-      'avatar_urlhttps://images.chatwoot.com/placeholderemailpranav@example.comnamePranavidentifier_hash12345identifier12345',
+      'avatar_urlhttps://images.chatwoot.com/placeholderemailpranav@example.comnamePranavidentifier_hash12345identifier12345'
     );
 
     expect(
@@ -35,10 +30,8 @@ describe('#getUserString', () => {
           email: 'pranav@example.com',
           avatar_url: 'https://images.chatwoot.com/placeholder',
         },
-      }),
-    ).toBe(
-      'avatar_urlhttps://images.chatwoot.com/placeholderemailpranav@example.comnameidentifier_hashidentifier',
-    );
+      })
+    ).toBe('avatar_urlhttps://images.chatwoot.com/placeholderemailpranav@example.comnameidentifier_hashidentifier');
   });
 });
 
@@ -71,7 +64,7 @@ describe('setCookieWithDomain', () => {
         expires: 365,
         sameSite: 'Lax',
         domain: undefined,
-      }),
+      })
     );
   });
 
@@ -87,7 +80,7 @@ describe('setCookieWithDomain', () => {
         expires: 30,
         sameSite: 'Lax',
         domain: undefined,
-      }),
+      })
     );
   });
 
@@ -103,7 +96,7 @@ describe('setCookieWithDomain', () => {
         expires: 365,
         sameSite: 'Lax',
         domain: 'example.com',
-      }),
+      })
     );
   });
 
@@ -120,7 +113,7 @@ describe('setCookieWithDomain', () => {
         expires: 7,
         sameSite: 'Lax',
         domain: 'example.com',
-      }),
+      })
     );
   });
 });

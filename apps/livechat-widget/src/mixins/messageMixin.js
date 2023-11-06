@@ -5,9 +5,7 @@ export default {
       return attribute;
     },
     hasAttachments() {
-      return !!(
-        this.message.attachments && this.message.attachments.length > 0
-      );
+      return !!(this.message.attachments && this.message.attachments.length > 0);
     },
   },
 };

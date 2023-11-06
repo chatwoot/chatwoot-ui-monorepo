@@ -1,9 +1,7 @@
 export default {
   computed: {
     useInboxAvatarForBot() {
-      return this.channelConfig.enabledFeatures.includes(
-        'use_inbox_avatar_for_bot',
-      );
+      return this.channelConfig.enabledFeatures.includes('use_inbox_avatar_for_bot');
     },
     hasAConnectedAgentBot() {
       return !!window.chatwootWebChannel.hasAConnectedAgentBot;

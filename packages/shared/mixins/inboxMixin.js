@@ -80,16 +80,10 @@ export default {
       return this.isATwilioChannel && medium === 'whatsapp';
     },
     isAWhatsAppCloudChannel() {
-      return (
-        this.channelType === INBOX_TYPES.WHATSAPP
-        && this.whatsAppAPIProvider === 'whatsapp_cloud'
-      );
+      return this.channelType === INBOX_TYPES.WHATSAPP && this.whatsAppAPIProvider === 'whatsapp_cloud';
     },
     is360DialogWhatsAppChannel() {
-      return (
-        this.channelType === INBOX_TYPES.WHATSAPP
-        && this.whatsAppAPIProvider === 'default'
-      );
+      return this.channelType === INBOX_TYPES.WHATSAPP && this.whatsAppAPIProvider === 'default';
     },
     chatAdditionalAttributes() {
       const { additional_attributes: additionalAttributes } = this.chat || {};
@@ -121,10 +115,7 @@ export default {
       return badgeKey || this.channelType;
     },
     isAWhatsAppChannel() {
-      return (
-        this.channelType === INBOX_TYPES.WHATSAPP
-        || this.isATwilioWhatsAppChannel
-      );
+      return this.channelType === INBOX_TYPES.WHATSAPP || this.isATwilioWhatsAppChannel;
     },
   },
   methods: {

@@ -14,9 +14,5 @@ export const spacesPattern = /\s+/g;
 export const sanitizeLabel = (label = '') => {
   if (!label) return '';
 
-  return label
-    .trim()
-    .toLowerCase()
-    .replace(spacesPattern, '-')
-    .replace(labelSanitizePattern, '');
+  return label.trim().toLowerCase().replace(spacesPattern, '-').replace(labelSanitizePattern, '');
 };

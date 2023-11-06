@@ -12,8 +12,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ArticleHero },
-  template:
-    '<article-hero v-bind="$props" @view-all-articles="viewAllArticles" />',
+  template: '<article-hero v-bind="$props" @view-all-articles="viewAllArticles" />',
   methods: {
     viewAllArticles: action('view-all-articles'),
   },

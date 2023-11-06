@@ -24,9 +24,8 @@ export const getters = {
     return {};
   },
   getGroupedConversation: _state => {
-    const conversationGroupedByDate = groupBy(
-      Object.values(_state.conversations),
-      message => formatUnixDate(message.created_at),
+    const conversationGroupedByDate = groupBy(Object.values(_state.conversations), message =>
+      formatUnixDate(message.created_at)
     );
     return Object.keys(conversationGroupedByDate).map(date => ({
       date,
@@ -42,9 +41,7 @@ export const getters = {
     return Object.values(_state.conversations).filter(chat => {
       const { created_at: createdAt, message_type: messageType } = chat;
       const isOutGoing = messageType === MESSAGE_TYPE.OUTGOING;
-      const hasNotSeen = userLastSeenAt
-        ? createdAt * 1000 > userLastSeenAt * 1000
-        : true;
+      const hasNotSeen = userLastSeenAt ? createdAt * 1000 > userLastSeenAt * 1000 : true;
       return hasNotSeen && isOutGoing;
     }).length;
   },

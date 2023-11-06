@@ -18,10 +18,7 @@ export const mutations = {
       return;
     }
 
-    const [messageInConversation] = findUndeliveredMessage(
-      messagesInbox,
-      message,
-    );
+    const [messageInConversation] = findUndeliveredMessage(messagesInbox, message);
     if (!messageInConversation) {
       Vue.set(messagesInbox, id, message);
     } else {

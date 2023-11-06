@@ -18,9 +18,7 @@ describe('#actions', () => {
       };
       API.patch.mockResolvedValue({ data: { widget_auth_token: 'token' } });
       await actions.setUser({ commit, dispatch }, { identifier: 1, user });
-      expect(sendMessage.mock.calls).toEqual([
-        [{ data: { widgetAuthToken: 'token' }, event: 'setAuthCookie' }],
-      ]);
+      expect(sendMessage.mock.calls).toEqual([[{ data: { widgetAuthToken: 'token' }, event: 'setAuthCookie' }]]);
       expect(commit.mock.calls).toEqual([]);
       expect(dispatch.mock.calls).toEqual([
         ['get'],

@@ -75,10 +75,7 @@ describe('Vuex Articles Module', () => {
       const commit = jest.fn();
       getMostReadArticles.mockRejectedValueOnce(new Error('Error message'));
 
-      await actions.fetch(
-        { commit },
-        { websiteToken: 'token', slug: 'slug', locale: 'en' },
-      );
+      await actions.fetch({ commit }, { websiteToken: 'token', slug: 'slug', locale: 'en' });
 
       expect(commit).toHaveBeenCalledWith('setIsFetching', true);
       expect(commit).toHaveBeenCalledWith('setError', true);
@@ -101,10 +98,7 @@ describe('Vuex Articles Module', () => {
       const commit = jest.fn();
       getMostReadArticles.mockRejectedValueOnce(new Error('Network error'));
 
-      await actions.fetch(
-        { commit },
-        { websiteToken: 'token', slug: 'slug', locale: 'en' },
-      );
+      await actions.fetch({ commit }, { websiteToken: 'token', slug: 'slug', locale: 'en' });
 
       expect(commit).toHaveBeenCalledWith('setIsFetching', true);
       expect(commit).toHaveBeenCalledWith('setError', true);

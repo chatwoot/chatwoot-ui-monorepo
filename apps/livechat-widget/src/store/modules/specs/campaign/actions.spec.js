@@ -19,7 +19,7 @@ describe('#actions', () => {
           websiteToken: 'XDsafmADasd',
           currentURL: 'https://chatwoot.com',
           isInBusinessHours: true,
-        },
+        }
       );
       expect(commit.mock.calls).toEqual([
         ['setCampaigns', campaigns],
@@ -36,7 +36,7 @@ describe('#actions', () => {
             },
           ],
         },
-        'XDsafmADasd',
+        'XDsafmADasd'
       );
     });
     it('sends correct actions if API is error', async () => {
@@ -47,7 +47,7 @@ describe('#actions', () => {
           websiteToken: 'XDsafmADasd',
           currentURL: 'https://www.chatwoot.com',
           isInBusinessHours: true,
-        },
+        }
       );
       expect(commit.mock.calls).toEqual([['setError', true]]);
     });
@@ -58,18 +58,12 @@ describe('#actions', () => {
       currentURL: 'https://chatwoot.com',
     };
     it('sends correct actions if campaigns are empty', async () => {
-      await actions.initCampaigns(
-        { dispatch, getters: { getCampaigns: [] } },
-        actionParams,
-      );
+      await actions.initCampaigns({ dispatch, getters: { getCampaigns: [] } }, actionParams);
       expect(dispatch.mock.calls).toEqual([['fetchCampaigns', actionParams]]);
       expect(campaignTimer.initTimers).not.toHaveBeenCalled();
     });
     it('resets time if campaigns are available', async () => {
-      await actions.initCampaigns(
-        { dispatch, getters: { getCampaigns: campaigns } },
-        actionParams,
-      );
+      await actions.initCampaigns({ dispatch, getters: { getCampaigns: campaigns } }, actionParams);
       expect(dispatch.mock.calls).toEqual([]);
       expect(campaignTimer.initTimers).toHaveBeenCalledWith(
         {
@@ -82,7 +76,7 @@ describe('#actions', () => {
             },
           ],
         },
-        'XDsafmADasd',
+        'XDsafmADasd'
       );
     });
   });
@@ -98,7 +92,7 @@ describe('#actions', () => {
             appConfig: { isWidgetOpen: true },
           },
         },
-        { campaignId: 32 },
+        { campaignId: 32 }
       );
     });
     it('start campaign if campaign id passed', async () => {
@@ -112,7 +106,7 @@ describe('#actions', () => {
             appConfig: { isWidgetOpen: false },
           },
         },
-        { campaignId: 1 },
+        { campaignId: 1 }
       );
       expect(commit.mock.calls).toEqual([['setActiveCampaign', campaigns[0]]]);
     });

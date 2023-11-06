@@ -94,7 +94,7 @@ describe('#getters', () => {
             created_at: 1576340626,
           },
         },
-      }),
+      })
     ).toEqual([
       {
         date: 'Nov 18, 2019',
@@ -195,7 +195,7 @@ describe('#getters', () => {
             },
           },
         },
-      }),
+      })
     ).toEqual([
       {
         date: 'Nov 18, 2019',
@@ -350,9 +350,7 @@ describe('#getters', () => {
           userLastSeenAt: undefined,
         },
       };
-      expect(
-        getters.getUnreadTextMessages(state, { getUnreadMessageCount: 0 }),
-      ).toEqual([]);
+      expect(getters.getUnreadTextMessages(state, { getUnreadMessageCount: 0 })).toEqual([]);
     });
 
     it('0 if there are no messages and last seen is present', () => {
@@ -362,9 +360,7 @@ describe('#getters', () => {
           userLastSeenAt: Date.now(),
         },
       };
-      expect(
-        getters.getUnreadTextMessages(state, { getUnreadMessageCount: 0 }),
-      ).toEqual([]);
+      expect(getters.getUnreadTextMessages(state, { getUnreadMessageCount: 0 })).toEqual([]);
     });
 
     it('only unread text messages from agent if there are messages and last seen is before messages created-at', () => {
@@ -384,9 +380,7 @@ describe('#getters', () => {
           },
         },
       };
-      expect(
-        getters.getUnreadTextMessages(state, { getUnreadMessageCount: 1 }),
-      ).toEqual([
+      expect(getters.getUnreadTextMessages(state, { getUnreadMessageCount: 1 })).toEqual([
         {
           id: 1,
           content: 'Thanks for the help',
@@ -422,9 +416,7 @@ describe('#getters', () => {
           userLastSeenAt: 1674075964,
         },
       };
-      expect(
-        getters.getUnreadTextMessages(state, { getUnreadMessageCount: 1 }),
-      ).toEqual([
+      expect(getters.getUnreadTextMessages(state, { getUnreadMessageCount: 1 })).toEqual([
         {
           id: 2,
           content: 'Yes, It makes sense',

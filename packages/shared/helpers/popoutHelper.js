@@ -1,11 +1,6 @@
 import { buildPopoutURL } from './urlParamsHelper';
 
-export const popoutChatWindow = (
-  origin,
-  websiteToken,
-  locale,
-  conversationCookie,
-) => {
+export const popoutChatWindow = (origin, websiteToken, locale, conversationCookie) => {
   try {
     const windowUrl = buildPopoutURL({
       origin,
@@ -16,7 +11,7 @@ export const popoutChatWindow = (
     const popoutWindow = window.open(
       windowUrl,
       `webwidget_session_${websiteToken}`,
-      'resizable=off,width=400,height=600',
+      'resizable=off,width=400,height=600'
     );
     popoutWindow.focus();
   } catch (err) {

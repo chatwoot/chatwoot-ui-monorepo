@@ -17,24 +17,14 @@ import { AUTOMATIONS } from 'dashboard/routes/dashboard/settings/automation/cons
 describe('automationMethodsMixin', () => {
   it('getCustomAttributeInputType returns the attribute input type', () => {
     expect(helpers.getCustomAttributeInputType('date')).toEqual('date');
-    expect(helpers.getCustomAttributeInputType('date')).not.toEqual(
-      'some_random_value',
-    );
+    expect(helpers.getCustomAttributeInputType('date')).not.toEqual('some_random_value');
     expect(helpers.getCustomAttributeInputType('text')).toEqual('plain_text');
-    expect(helpers.getCustomAttributeInputType('list')).toEqual(
-      'search_select',
-    );
-    expect(helpers.getCustomAttributeInputType('checkbox')).toEqual(
-      'search_select',
-    );
-    expect(helpers.getCustomAttributeInputType('some_random_text')).toEqual(
-      'plain_text',
-    );
+    expect(helpers.getCustomAttributeInputType('list')).toEqual('search_select');
+    expect(helpers.getCustomAttributeInputType('checkbox')).toEqual('search_select');
+    expect(helpers.getCustomAttributeInputType('some_random_text')).toEqual('plain_text');
   });
   it('isACustomAttribute returns the custom attribute value if true', () => {
-    expect(
-      helpers.isACustomAttribute(customAttributes, 'signed_up_at'),
-    ).toBeTruthy();
+    expect(helpers.isACustomAttribute(customAttributes, 'signed_up_at')).toBeTruthy();
     expect(helpers.isACustomAttribute(customAttributes, 'status')).toBeFalsy();
   });
   it('getCustomAttributeListDropdownValues returns the attribute dropdown values', () => {
@@ -52,29 +42,18 @@ describe('automationMethodsMixin', () => {
         name: 'item3',
       },
     ];
-    expect(
-      helpers.getCustomAttributeListDropdownValues(customAttributes, 'my_list'),
-    ).toEqual(myListValues);
+    expect(helpers.getCustomAttributeListDropdownValues(customAttributes, 'my_list')).toEqual(myListValues);
   });
 
   it('isCustomAttributeCheckbox checks if attribute is a checkbox', () => {
-    expect(
-      helpers.isCustomAttributeCheckbox(customAttributes, 'prime_user')
-        .attribute_display_type,
-    ).toEqual('checkbox');
-    expect(
-      helpers.isCustomAttributeCheckbox(customAttributes, 'my_check')
-        .attribute_display_type,
-    ).toEqual('checkbox');
-    expect(
-      helpers.isCustomAttributeCheckbox(customAttributes, 'my_list'),
-    ).not.toEqual('checkbox');
+    expect(helpers.isCustomAttributeCheckbox(customAttributes, 'prime_user').attribute_display_type).toEqual(
+      'checkbox'
+    );
+    expect(helpers.isCustomAttributeCheckbox(customAttributes, 'my_check').attribute_display_type).toEqual('checkbox');
+    expect(helpers.isCustomAttributeCheckbox(customAttributes, 'my_list')).not.toEqual('checkbox');
   });
   it('isCustomAttributeList checks if attribute is a list', () => {
-    expect(
-      helpers.isCustomAttributeList(customAttributes, 'my_list')
-        .attribute_display_type,
-    ).toEqual('list');
+    expect(helpers.isCustomAttributeList(customAttributes, 'my_list').attribute_display_type).toEqual('list');
   });
   it('getOperatorTypes returns the correct custom attribute operators', () => {
     expect(helpers.getOperatorTypes('list')).toEqual(OPERATOR_TYPES_1);
@@ -109,9 +88,7 @@ describe('automationMethodsMixin', () => {
         name: 'John',
       },
     ];
-    expect(helpers.generateConditionOptions(testConditions)).toEqual(
-      expectedConditions,
-    );
+    expect(helpers.generateConditionOptions(testConditions)).toEqual(expectedConditions);
   });
   it('getActionOptions returns expected actions options array', () => {
     const expectedOptions = [
@@ -124,9 +101,7 @@ describe('automationMethodsMixin', () => {
         name: 'snoozes',
       },
     ];
-    expect(helpers.getActionOptions({ labels, type: 'add_label' })).toEqual(
-      expectedOptions,
-    );
+    expect(helpers.getActionOptions({ labels, type: 'add_label' })).toEqual(expectedOptions);
   });
   it('getConditionOptions returns expected conditions options', () => {
     const testOptions = [
@@ -179,13 +154,11 @@ describe('automationMethodsMixin', () => {
         campaigns: [],
         statusFilterOptions: testOptions,
         type: 'status',
-      }),
+      })
     ).toEqual(expectedOptions);
   });
   it('getFileName returns the correct file name', () => {
-    expect(
-      helpers.getFileName(automation.actions[0], automation.files),
-    ).toEqual('pfp.jpeg');
+    expect(helpers.getFileName(automation.actions[0], automation.files)).toEqual('pfp.jpeg');
   });
   it('getDefaultConditions returns the resp default condition model', () => {
     const messageCreatedModel = [
@@ -206,9 +179,7 @@ describe('automationMethodsMixin', () => {
         custom_attribute_type: '',
       },
     ];
-    expect(helpers.getDefaultConditions('message_created')).toEqual(
-      messageCreatedModel,
-    );
+    expect(helpers.getDefaultConditions('message_created')).toEqual(messageCreatedModel);
     expect(helpers.getDefaultConditions()).toEqual(genericConditionModel);
   });
   it('getDefaultActions returns the resp default action model', () => {
@@ -231,32 +202,16 @@ describe('automationMethodsMixin', () => {
       { key: 'conlist', name: 'ConList', type: 'list' },
       { key: 'asdf', name: 'asdf', type: 'link' },
     ];
-    expect(helpers.filterCustomAttributes(customAttributes)).toEqual(
-      filteredAttributes,
-    );
+    expect(helpers.filterCustomAttributes(customAttributes)).toEqual(filteredAttributes);
   });
   it('getStandardAttributeInputType returns the resp default action model', () => {
-    expect(
-      helpers.getStandardAttributeInputType(
-        AUTOMATIONS,
-        'message_created',
-        'message_type',
-      ),
-    ).toEqual('search_select');
-    expect(
-      helpers.getStandardAttributeInputType(
-        AUTOMATIONS,
-        'conversation_created',
-        'status',
-      ),
-    ).toEqual('multi_select');
-    expect(
-      helpers.getStandardAttributeInputType(
-        AUTOMATIONS,
-        'conversation_updated',
-        'referer',
-      ),
-    ).toEqual('plain_text');
+    expect(helpers.getStandardAttributeInputType(AUTOMATIONS, 'message_created', 'message_type')).toEqual(
+      'search_select'
+    );
+    expect(helpers.getStandardAttributeInputType(AUTOMATIONS, 'conversation_created', 'status')).toEqual(
+      'multi_select'
+    );
+    expect(helpers.getStandardAttributeInputType(AUTOMATIONS, 'conversation_updated', 'referer')).toEqual('plain_text');
   });
   it('generateAutomationPayload returns the resp default action model', () => {
     const testPayload = {
@@ -296,9 +251,7 @@ describe('automationMethodsMixin', () => {
         },
       ],
     };
-    expect(helpers.generateAutomationPayload(testPayload)).toEqual(
-      expectedPayload,
-    );
+    expect(helpers.generateAutomationPayload(testPayload)).toEqual(expectedPayload);
   });
   it('isCustomAttribute returns the resp default action model', () => {
     const attrs = helpers.filterCustomAttributes(customAttributes);
@@ -316,8 +269,8 @@ describe('automationMethodsMixin', () => {
         conversationAttrs,
         contactAttrs,
         'Conversation Custom Attributes',
-        'Contact Custom Attributes',
-      ),
+        'Contact Custom Attributes'
+      )
     ).toEqual(expectedOutputForCustomAttributeGenerator);
   });
 });

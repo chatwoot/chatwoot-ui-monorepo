@@ -152,10 +152,10 @@ export const isActiveElementTypeable = e => {
   const activeElement = e.target || document.activeElement;
 
   return !!(
-    activeElement?.tagName === 'INPUT'
-    || activeElement?.tagName === 'NINJA-KEYS'
-    || activeElement?.tagName === 'TEXTAREA'
-    || activeElement?.contentEditable === 'true'
-    || activeElement?.className?.includes('ProseMirror')
+    activeElement?.tagName === 'INPUT' ||
+    activeElement?.tagName === 'NINJA-KEYS' ||
+    activeElement?.tagName === 'TEXTAREA' ||
+    activeElement?.contentEditable === 'true' ||
+    activeElement?.className?.includes('ProseMirror')
   );
 };

@@ -41,8 +41,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { wootTextArea },
-  template:
-    '<woot-text-area v-bind="$props" @input="onClick"></woot-text-area>',
+  template: '<woot-text-area v-bind="$props" @input="onClick"></woot-text-area>',
 });
 
 export const TextArea = Template.bind({});

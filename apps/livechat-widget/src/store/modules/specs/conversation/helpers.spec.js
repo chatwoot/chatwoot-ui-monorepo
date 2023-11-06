@@ -1,8 +1,4 @@
-import {
-  findUndeliveredMessage,
-  createTemporaryMessage,
-  getNonDeletedMessages,
-} from '../../conversation/helpers';
+import { findUndeliveredMessage, createTemporaryMessage, getNonDeletedMessages } from '../../conversation/helpers';
 
 describe('#findUndeliveredMessage', () => {
   it('returns message objects if exist', () => {
@@ -23,9 +19,9 @@ describe('#findUndeliveredMessage', () => {
         status: 'sent',
       },
     };
-    expect(
-      findUndeliveredMessage(conversation, { content: 'Hello' }),
-    ).toStrictEqual([{ id: 1, content: 'Hello', status: 'in_progress' }]);
+    expect(findUndeliveredMessage(conversation, { content: 'Hello' })).toStrictEqual([
+      { id: 1, content: 'Hello', status: 'in_progress' },
+    ]);
   });
 });
 

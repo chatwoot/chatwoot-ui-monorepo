@@ -33,9 +33,7 @@ export const actions = {
     dispatch('sendMessageWithData', message);
   },
   sendMessageWithData: async ({ commit }, message) => {
-    const {
-      id, content, replyTo, meta = {},
-    } = message;
+    const { id, content, replyTo, meta = {} } = message;
 
     commit('pushMessageToConversation', message);
     commit('updateMessageMeta', { id, meta: { ...meta, error: '' } });
@@ -115,18 +113,14 @@ export const actions = {
 
       const { contact_last_seen_at: lastSeen } = meta;
       const formattedMessages = getNonDeletedMessages({ messages: payload });
-      const missingMessages = formattedMessages.filter(
-        message => conversations?.[message.id] === undefined,
-      );
+      const missingMessages = formattedMessages.filter(message => conversations?.[message.id] === undefined);
       if (!missingMessages.length) return;
       missingMessages.forEach(message => {
         conversations[message.id] = message;
       });
       // Sort conversation messages by created_at
       const updatedConversation = Object.fromEntries(
-        Object.entries(conversations).sort(
-          (a, b) => a[1].created_at - b[1].created_at,
-        ),
+        Object.entries(conversations).sort((a, b) => a[1].created_at - b[1].created_at)
       );
       commit('conversation/setMetaUserLastSeenAt', lastSeen, { root: true });
       commit('setMissingMessagesInConversation', updatedConversation);

@@ -186,9 +186,7 @@ describe('clampDataBetweenTimeline', () => {
   });
 
   it('should return all data if all data is within the timeline', () => {
-    expect(clampDataBetweenTimeline(data, 1646054300, 1646054900)).toEqual(
-      data,
-    );
+    expect(clampDataBetweenTimeline(data, 1646054300, 1646054900)).toEqual(data);
   });
 
   it('should return only data within the timeline', () => {

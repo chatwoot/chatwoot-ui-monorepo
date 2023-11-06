@@ -7,7 +7,7 @@ const state = {
 };
 
 const SET_CURRENT_USER = 'SET_CURRENT_USER';
-const parseErrorData = error => error && error.response && error.response.data ? error.response.data : error;
+const parseErrorData = error => (error && error.response && error.response.data ? error.response.data : error);
 export const updateWidgetAuthToken = widgetAuthToken => {
   if (widgetAuthToken) {
     setHeader(widgetAuthToken);

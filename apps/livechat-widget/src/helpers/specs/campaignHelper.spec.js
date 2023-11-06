@@ -1,8 +1,4 @@
-import {
-  formatCampaigns,
-  filterCampaigns,
-  isPatternMatchingWithURL,
-} from '../campaignHelper';
+import { formatCampaigns, filterCampaigns, isPatternMatchingWithURL } from '../campaignHelper';
 import campaigns from './campaignFixtures';
 
 global.chatwootWebChannel = {
@@ -11,32 +7,21 @@ global.chatwootWebChannel = {
 describe('#Campaigns Helper', () => {
   describe('#isPatternMatchingWithURL', () => {
     it('returns correct value if a valid URL is passed', () => {
-      expect(
-        isPatternMatchingWithURL(
-          'https://chatwoot.com/pricing*',
-          'https://chatwoot.com/pricing/',
-        ),
-      ).toBe(true);
+      expect(isPatternMatchingWithURL('https://chatwoot.com/pricing*', 'https://chatwoot.com/pricing/')).toBe(true);
 
-      expect(
-        isPatternMatchingWithURL(
-          'https://*.chatwoot.com/pricing/',
-          'https://app.chatwoot.com/pricing/',
-        ),
-      ).toBe(true);
+      expect(isPatternMatchingWithURL('https://*.chatwoot.com/pricing/', 'https://app.chatwoot.com/pricing/')).toBe(
+        true
+      );
 
       expect(
         isPatternMatchingWithURL(
           'https://{*.}?chatwoot.com/pricing?test=true',
-          'https://app.chatwoot.com/pricing/?test=true',
-        ),
+          'https://app.chatwoot.com/pricing/?test=true'
+        )
       ).toBe(true);
 
       expect(
-        isPatternMatchingWithURL(
-          'https://{*.}?chatwoot.com/pricing*\\?*',
-          'https://chatwoot.com/pricing/?test=true',
-        ),
+        isPatternMatchingWithURL('https://{*.}?chatwoot.com/pricing*\\?*', 'https://chatwoot.com/pricing/?test=true')
       ).toBe(true);
     });
   });
@@ -78,7 +63,7 @@ describe('#Campaigns Helper', () => {
             },
           ],
           currentURL: 'https://www.chatwoot.com/about/',
-        }),
+        })
       ).toStrictEqual([
         {
           id: 2,
@@ -107,7 +92,7 @@ describe('#Campaigns Helper', () => {
           ],
           currentURL: 'https://www.chatwoot.com/about/',
           isInBusinessHours: true,
-        }),
+        })
       ).toStrictEqual([
         {
           id: 2,
@@ -136,7 +121,7 @@ describe('#Campaigns Helper', () => {
           ],
           currentURL: 'https://www.chatwoot.com/about/',
           isInBusinessHours: false,
-        }),
+        })
       ).toStrictEqual([]);
     });
   });

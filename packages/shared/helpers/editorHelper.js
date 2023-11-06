@@ -1,8 +1,4 @@
-import {
-  messageSchema,
-  MessageMarkdownTransformer,
-  MessageMarkdownSerializer,
-} from '@chatwoot/prosemirror-schema';
+import { messageSchema, MessageMarkdownTransformer, MessageMarkdownSerializer } from '@chatwoot/prosemirror-schema';
 import * as Sentry from '@sentry/browser';
 
 /**
@@ -22,9 +18,7 @@ export function cleanSignature(signature) {
       .replace(/^( *- *){3,} *$/gm, '')
       .replace(/^( *_ *){3,} *$/gm, '');
 
-    const nodes = new MessageMarkdownTransformer(messageSchema).parse(
-      signature,
-    );
+    const nodes = new MessageMarkdownTransformer(messageSchema).parse(signature);
     return MessageMarkdownSerializer.serialize(nodes);
   } catch (e) {
     // eslint-disable-next-line no-console
@@ -109,8 +103,8 @@ export function removeSignature(body, signature) {
   // let's find the delimiter and remove it
   const delimiterIndex = newBody.lastIndexOf(SIGNATURE_DELIMITER);
   if (
-    delimiterIndex !== -1
-    && delimiterIndex === newBody.length - SIGNATURE_DELIMITER.length // this will ensure the delimiter is at the end
+    delimiterIndex !== -1 &&
+    delimiterIndex === newBody.length - SIGNATURE_DELIMITER.length // this will ensure the delimiter is at the end
   ) {
     // if the delimiter is at the end, remove it
     newBody = newBody.substring(0, delimiterIndex);
@@ -194,9 +188,8 @@ export function insertAtCursor(editorView, node, from, to) {
   // This is a workaround to prevent inserting content into new line rather than on the exiting line
   // If the node is of type 'doc' and has only one child which is a paragraph,
   // then extract its inline content to be inserted as inline.
-  const isWrappedInParagraph = node.type.name === 'doc'
-    && node.childCount === 1
-    && node.firstChild.type.name === 'paragraph';
+  const isWrappedInParagraph =
+    node.type.name === 'doc' && node.childCount === 1 && node.firstChild.type.name === 'paragraph';
 
   if (isWrappedInParagraph) {
     node = node.firstChild.content;
@@ -265,14 +258,10 @@ export const findNodeToInsertImage = (editorState, fileUrl) => {
 export function setURLWithQueryAndSize(selectedImageNode, size, editorView) {
   if (selectedImageNode) {
     // Create and apply the transaction
-    const tr = editorView.state.tr.setNodeMarkup(
-      editorView.state.selection.from,
-      null,
-      {
-        src: selectedImageNode.src,
-        height: size.height,
-      },
-    );
+    const tr = editorView.state.tr.setNodeMarkup(editorView.state.selection.from, null, {
+      src: selectedImageNode.src,
+      height: size.height,
+    });
 
     if (tr.docChanged) {
       editorView.dispatch(tr);

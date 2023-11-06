@@ -24,26 +24,15 @@ export default {
     replyWaitMessage() {
       const { workingHoursEnabled } = this.channelConfig;
       if (workingHoursEnabled) {
-        return this.isOnline
-          ? this.replyTimeStatus
-          : `${this.$t('REPLY_TIME.BACK_IN')} ${this.timeLeftToBackInOnline}`;
+        return this.isOnline ? this.replyTimeStatus : `${this.$t('REPLY_TIME.BACK_IN')} ${this.timeLeftToBackInOnline}`;
       }
-      return this.isOnline
-        ? this.replyTimeStatus
-        : this.$t('TEAM_AVAILABILITY.OFFLINE');
+      return this.isOnline ? this.replyTimeStatus : this.$t('TEAM_AVAILABILITY.OFFLINE');
     },
     outOfOfficeMessage() {
       return this.channelConfig.outOfOfficeMessage;
     },
     isInBetweenTheWorkingHours() {
-      const {
-        openHour,
-        openMinute,
-        closeHour,
-        closeMinute,
-        closedAllDay,
-        openAllDay,
-      } = this.currentDayAvailability;
+      const { openHour, openMinute, closeHour, closeMinute, closedAllDay, openAllDay } = this.currentDayAvailability;
 
       if (openAllDay) {
         return true;
@@ -57,25 +46,15 @@ export default {
       const today = this.getDateWithOffset(utcOffset);
       const currentHours = today.getHours();
       const currentMinutes = today.getMinutes();
-      const isAfterStartTime = isTimeAfter(
-        currentHours,
-        currentMinutes,
-        openHour,
-        openMinute,
-      );
-      const isBeforeEndTime = isTimeAfter(
-        closeHour,
-        closeMinute,
-        currentHours,
-        currentMinutes,
-      );
+      const isAfterStartTime = isTimeAfter(currentHours, currentMinutes, openHour, openMinute);
+      const isBeforeEndTime = isTimeAfter(closeHour, closeMinute, currentHours, currentMinutes);
       return isAfterStartTime && isBeforeEndTime;
     },
     currentDayAvailability() {
       const { utcOffset } = this.channelConfig;
       const dayOfTheWeek = this.getDateWithOffset(utcOffset).getDay();
       const [workingHourConfig = {}] = this.channelConfig.workingHours.filter(
-        workingHour => workingHour.day_of_week === dayOfTheWeek,
+        workingHour => workingHour.day_of_week === dayOfTheWeek
       );
       return {
         closedAllDay: workingHourConfig.closed_all_day,

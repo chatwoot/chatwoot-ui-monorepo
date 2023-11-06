@@ -6,11 +6,7 @@ const getCampaigns = async websiteToken => {
   return API.get(urlData.url, { params: urlData.params });
 };
 
-const triggerCampaign = async ({
-  campaignId,
-  websiteToken,
-  customAttributes,
-}) => {
+const triggerCampaign = async ({ campaignId, websiteToken, customAttributes }) => {
   const urlData = endPoints.triggerCampaign({
     websiteToken,
     campaignId,
@@ -21,7 +17,7 @@ const triggerCampaign = async ({
     { ...urlData.data },
     {
       params: urlData.params,
-    },
+    }
   );
 };
 export { getCampaigns, triggerCampaign };

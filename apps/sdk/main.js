@@ -1,16 +1,8 @@
 import Cookies from 'js-cookie';
 import './style.css';
 import { IFrameHelper } from './src/IFrameHelper';
-import {
-  getBubbleView,
-  getDarkMode,
-  getWidgetStyle,
-} from './src/settingsHelper';
-import {
-  computeHashForUserData,
-  getUserCookieName,
-  hasUserKeys,
-} from './src/cookieHelpers';
+import { getBubbleView, getDarkMode, getWidgetStyle } from './src/settingsHelper';
+import { computeHashForUserData, getUserCookieName, hasUserKeys } from './src/cookieHelpers';
 import { addClasses, removeClasses } from './src/DOMHelpers';
 import { setCookieWithDomain } from './src/cookieHelpers';
 import { SDK_SET_BUBBLE_VISIBILITY } from '@chatwoot/shared/constants/sharedFrameEvents';
@@ -80,9 +72,7 @@ const runSDK = ({ baseUrl, websiteToken }) => {
       }
 
       if (!hasUserKeys(user)) {
-        throw new Error(
-          'User object should have one of the keys [avatar_url, email, name]',
-        );
+        throw new Error('User object should have one of the keys [avatar_url, email, name]');
       }
 
       const userCookieName = getUserCookieName();

@@ -30,16 +30,10 @@ describe('#actions', () => {
           search: '?param=1',
         },
       }));
-      await actions.createConversation(
-        { commit },
-        { contact: {}, message: 'This is a test message' },
-      );
+      await actions.createConversation({ commit }, { contact: {}, message: 'This is a test message' });
       expect(commit.mock.calls).toEqual([
         ['setConversationUIFlag', { isCreating: true }],
-        [
-          'pushMessageToConversation',
-          { id: 1, content: 'This is a test message' },
-        ],
+        ['pushMessageToConversation', { id: 1, content: 'This is a test message' }],
         ['setConversationUIFlag', { isCreating: false }],
       ]);
       windowSpy.mockRestore();
@@ -54,7 +48,7 @@ describe('#actions', () => {
           id: 1,
           content: 'Hey',
           content_attributes: {},
-        },
+        }
       );
       expect(commit).toBeCalledWith('pushMessageToConversation', {
         id: 1,
@@ -69,7 +63,7 @@ describe('#actions', () => {
           id: 1,
           content: 'Hey',
           content_attributes: { deleted: true },
-        },
+        }
       );
       expect(commit).toBeCalledWith('deleteMessage', 1);
     });
@@ -110,10 +104,7 @@ describe('#actions', () => {
           search: '?param=1',
         },
       }));
-      await actions.sendMessage(
-        { commit, dispatch },
-        { content: 'hello', replyTo: 124 },
-      );
+      await actions.sendMessage({ commit, dispatch }, { content: 'hello', replyTo: 124 });
       spy.mockRestore();
       windowSpy.mockRestore();
       expect(dispatch).toBeCalledWith('sendMessageWithData', {
@@ -136,10 +127,7 @@ describe('#actions', () => {
       const thumbUrl = '';
       const attachment = { thumbUrl, fileType: 'file' };
 
-      actions.sendAttachment(
-        { commit, dispatch },
-        { attachment, replyTo: 135 },
-      );
+      actions.sendAttachment({ commit, dispatch }, { attachment, replyTo: 135 });
       spy.mockRestore();
       expect(commit).toBeCalledWith('pushMessageToConversation', {
         id: '1111',

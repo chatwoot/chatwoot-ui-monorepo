@@ -7,8 +7,7 @@ import { CHATWOOT_ON_MESSAGE } from '../constants/sdkEvents';
 
 const isMessageInActiveConversation = (getters, message) => {
   const { conversation_id: conversationId } = message;
-  const activeConversationId =
-    getters['conversationAttributes/getConversationParams'].id;
+  const activeConversationId = getters['conversationAttributes/getConversationParams'].id;
   return activeConversationId && conversationId !== activeConversationId;
 };
 
@@ -100,11 +99,8 @@ class ActionCableConnector extends BaseActionCableConnector {
   };
 
   onTypingOn = data => {
-    const activeConversationId =
-      this.app.$store.getters['conversationAttributes/getConversationParams']
-        .id;
-    const isUserTypingOnAnotherConversation =
-      data.conversation && data.conversation.id !== activeConversationId;
+    const activeConversationId = this.app.$store.getters['conversationAttributes/getConversationParams'].id;
+    const isUserTypingOnAnotherConversation = data.conversation && data.conversation.id !== activeConversationId;
 
     if (isUserTypingOnAnotherConversation || data.is_private) {
       return;
