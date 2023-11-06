@@ -1,10 +1,7 @@
-export const loadedEventConfig = () => {
+export const loadedEventConfig = ({ authToken, ...channelConfig }) => {
   return {
     event: 'loaded',
-    config: {
-      authToken: window.authToken,
-      channelConfig: window.chatwootWebChannel,
-    },
+    config: { authToken, channelConfig },
   };
 };
 

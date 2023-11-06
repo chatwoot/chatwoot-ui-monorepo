@@ -1,31 +1,15 @@
 <template>
   <div v-if="showHeaderActions" class="actions flex items-center">
     <button
-      v-if="
-        canLeaveConversation &&
-        hasEndConversationEnabled &&
-        showEndConversationButton
-      "
+      v-if="canLeaveConversation && hasEndConversationEnabled && showEndConversationButton"
       class="button transparent compact"
       :title="$t('END_CONVERSATION')"
       @click="resolveConversation"
     >
-      <fluent-icon
-        icon="sign-out"
-        size="22"
-        :class="$dm('text-black-900', 'dark:text-slate-50')"
-      />
+      <fluent-icon icon="sign-out" size="22" :class="$dm('text-black-900', 'dark:text-slate-50')" />
     </button>
-    <button
-      v-if="showPopoutButton"
-      class="button transparent compact new-window--button"
-      @click="popoutWindow"
-    >
-      <fluent-icon
-        icon="open"
-        size="22"
-        :class="$dm('text-black-900', 'dark:text-slate-50')"
-      />
+    <button v-if="showPopoutButton" class="button transparent compact new-window--button" @click="popoutWindow">
+      <fluent-icon icon="open" size="22" :class="$dm('text-black-900', 'dark:text-slate-50')" />
     </button>
     <button
       class="button transparent compact close-button"
@@ -34,11 +18,7 @@
       }"
       @click="closeWindow"
     >
-      <fluent-icon
-        icon="dismiss"
-        size="24"
-        :class="$dm('text-black-900', 'dark:text-slate-50')"
-      />
+      <fluent-icon icon="dismiss" size="24" :class="$dm('text-black-900', 'dark:text-slate-50')" />
     </button>
   </div>
 </template>
@@ -70,11 +50,9 @@ export default {
       conversationAttributes: 'conversationAttributes/getConversationParams',
     }),
     canLeaveConversation() {
-      return [
-        CONVERSATION_STATUS.OPEN,
-        CONVERSATION_STATUS.SNOOZED,
-        CONVERSATION_STATUS.PENDING,
-      ].includes(this.conversationStatus);
+      return [CONVERSATION_STATUS.OPEN, CONVERSATION_STATUS.SNOOZED, CONVERSATION_STATUS.PENDING].includes(
+        this.conversationStatus
+      );
     },
     isIframe() {
       return IFrameHelper.isIFrame();
@@ -97,15 +75,10 @@ export default {
       this.closeWindow();
       const {
         location: { origin },
-        chatwootWebChannel: { websiteToken },
-        authToken,
       } = window;
-      popoutChatWindow(
-        origin,
-        websiteToken,
-        this.$root.$i18n.locale,
-        authToken
-      );
+
+      const { websiteToken, authToken } = this.channelConfig;
+      popoutChatWindow(origin, websiteToken, this.$root.$i18n.locale, authToken);
     },
     closeWindow() {
       if (IFrameHelper.isIFrame()) {

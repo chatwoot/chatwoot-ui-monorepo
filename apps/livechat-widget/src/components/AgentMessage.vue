@@ -19,12 +19,7 @@
           <reply-to-chip :reply-to="replyTo" />
         </div>
         <div class="flex gap-1">
-          <drag-wrapper
-            class="space-y-2"
-            direction="right"
-            :disabled="!allowReplyTo"
-            @dragged="toggleReply"
-          >
+          <drag-wrapper class="space-y-2" direction="right" :disabled="!allowReplyTo" @dragged="toggleReply">
             <AgentMessageBubble
               v-if="shouldDisplayAgentMessage"
               :content-type="contentType"
@@ -38,10 +33,7 @@
               class="chat-bubble has-attachment agent"
               :class="(wrapClass, $dm('bg-white', 'dark:bg-slate-700'))"
             >
-              <div
-                v-for="attachment in message.attachments"
-                :key="attachment.id"
-              >
+              <div v-for="attachment in message.attachments" :key="attachment.id">
                 <image-bubble
                   v-if="attachment.file_type === 'image' && !hasImageError"
                   :url="attachment.data_url"
@@ -75,11 +67,7 @@
 
     <UserMessage v-if="hasRecordedResponse" :message="responseMessage" />
     <div v-if="isASubmittedForm">
-      <UserMessage
-        v-for="submittedValue in submittedFormValues"
-        :key="submittedValue.id"
-        :message="submittedValue"
-      />
+      <UserMessage v-for="submittedValue in submittedFormValues" :key="submittedValue.id" :message="submittedValue" />
     </div>
   </div>
 </template>
@@ -127,7 +115,6 @@ export default {
   data() {
     return {
       hasImageError: false,
-      allowReplyTo: window.chatwootWebChannel.allowReplyTo || false,
     };
   },
   computed: {
@@ -140,6 +127,9 @@ export default {
         return false;
       }
       return this.message.content;
+    },
+    allowReplyTo() {
+      return this.channelConfig.allowReplyTo;
     },
     readableTime() {
       const { created_at: createdAt = '' } = this.message;
@@ -165,23 +155,18 @@ export default {
       return this.$t('UNREAD_VIEW.BOT');
     },
     avatarUrl() {
-      const displayImage = this.useInboxAvatarForBot
-        ? this.inboxAvatarUrl
-        : '/chatwoot_bot.png';
+      const displayImage = this.useInboxAvatarForBot ? this.inboxAvatarUrl : '/chatwoot_bot.png';
 
       if (this.message.message_type === MESSAGE_TYPE.TEMPLATE) {
         return displayImage;
       }
 
-      return this.message.sender
-        ? this.message.sender.avatar_url
-        : displayImage;
+      return this.message.sender ? this.message.sender.avatar_url : displayImage;
     },
     hasRecordedResponse() {
       return (
         this.messageContentAttributes.submitted_email ||
-        (this.messageContentAttributes.submitted_values &&
-          !['form', 'input_csat'].includes(this.contentType))
+        (this.messageContentAttributes.submitted_values && !['form', 'input_csat'].includes(this.contentType))
       );
     },
     responseMessage() {
@@ -191,8 +176,7 @@ export default {
 
       if (this.messageContentAttributes.submitted_values) {
         if (this.contentType === 'input_select') {
-          const [selectionOption = {}] =
-            this.messageContentAttributes.submitted_values;
+          const [selectionOption = {}] = this.messageContentAttributes.submitted_values;
           return { content: selectionOption.title || selectionOption.value };
         }
       }
@@ -202,12 +186,10 @@ export default {
       return isASubmittedFormMessage(this.message);
     },
     submittedFormValues() {
-      return this.messageContentAttributes.submitted_values.map(
-        submittedValue => ({
-          id: submittedValue.name,
-          content: submittedValue.value,
-        })
-      );
+      return this.messageContentAttributes.submitted_values.map(submittedValue => ({
+        id: submittedValue.name,
+        content: submittedValue.value,
+      }));
     },
     wrapClass() {
       return {

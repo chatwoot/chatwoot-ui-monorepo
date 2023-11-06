@@ -8,11 +8,7 @@
         hasReplyTo,
     }"
   >
-    <footer-reply-to
-      v-if="hasReplyTo"
-      :in-reply-to="inReplyTo"
-      @dismiss="inReplyTo = null"
-    />
+    <footer-reply-to v-if="hasReplyTo" :in-reply-to="inReplyTo" @dismiss="inReplyTo = null" />
     <chat-input-wrap
       class="shadow-sm"
       :on-send-message="handleSendMessage"
@@ -29,12 +25,7 @@
     >
       {{ $t('START_NEW_CONVERSATION') }}
     </custom-button>
-    <custom-button
-      v-if="showEmailTranscriptButton"
-      type="clear"
-      class="font-normal"
-      @click="sendTranscript"
-    >
+    <custom-button v-if="showEmailTranscriptButton" type="clear" class="font-normal" @click="sendTranscript">
       {{ $t('EMAIL_TRANSCRIPT.BUTTON_TEXT') }}
     </custom-button>
   </div>
@@ -68,11 +59,11 @@ export default {
   data() {
     return {
       inReplyTo: null,
-      allowReplyTo: window.chatwootWebChannel.allowReplyTo || false,
     };
   },
   computed: {
     ...mapGetters({
+      channelConfig: 'appConfig/getChannelConfig',
       conversationAttributes: 'conversationAttributes/getConversationParams',
       widgetColor: 'appConfig/getWidgetColor',
       conversationSize: 'conversation/getConversationSize',
@@ -83,7 +74,7 @@ export default {
       return getContrastingTextColor(this.widgetColor);
     },
     hideReplyBox() {
-      const { allowMessagesAfterResolved } = window.chatwootWebChannel;
+      const { allowMessagesAfterResolved } = this.channelConfig;
       const { status } = this.conversationAttributes;
       return !allowMessagesAfterResolved && status === 'resolved';
     },
@@ -91,26 +82,17 @@ export default {
       return this.currentUser && this.currentUser.email;
     },
     hasReplyTo() {
-      if (!this.allowReplyTo) return false;
+      if (!this.channelConfig.allowReplyTo) return false;
 
-      return (
-        this.inReplyTo && (this.inReplyTo.content || this.inReplyTo.attachments)
-      );
+      return this.inReplyTo && (this.inReplyTo.content || this.inReplyTo.attachments);
     },
   },
   mounted() {
     bus.$on(BUS_EVENTS.TOGGLE_REPLY_TO_MESSAGE, this.toggleReplyTo);
   },
   methods: {
-    ...mapActions('conversation', [
-      'sendMessage',
-      'sendAttachment',
-      'clearConversations',
-    ]),
-    ...mapActions('conversationAttributes', [
-      'getAttributes',
-      'clearConversationAttributes',
-    ]),
+    ...mapActions('conversation', ['sendMessage', 'sendAttachment', 'clearConversations']),
+    ...mapActions('conversationAttributes', ['getAttributes', 'clearConversationAttributes']),
     async handleSendMessage(content) {
       await this.sendMessage({
         content,

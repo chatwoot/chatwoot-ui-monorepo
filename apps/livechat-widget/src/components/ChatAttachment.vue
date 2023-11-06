@@ -20,10 +20,7 @@
 import FileUpload from 'vue-upload-component';
 import Spinner from '@chatwoot/shared/components/Spinner.vue';
 import { checkFileSizeLimit } from '@chatwoot/shared/helpers/FileHelper';
-import {
-  MAXIMUM_FILE_UPLOAD_SIZE,
-  ALLOWED_FILE_TYPES,
-} from '@chatwoot/shared/constants/messages';
+import { MAXIMUM_FILE_UPLOAD_SIZE, ALLOWED_FILE_TYPES } from '@chatwoot/shared/constants/messages';
 import { BUS_EVENTS } from '@chatwoot/shared/constants/busEvents';
 import FluentIcon from '@chatwoot/shared/components/FluentIcon/Index.vue';
 import { DirectUpload } from 'activestorage';
@@ -41,7 +38,7 @@ export default {
     return { isUploading: false };
   },
   computed: {
-    ...mapGetters({ globalConfig: 'globalConfig/get' }),
+    ...mapGetters({ globalConfig: 'globalConfig/get', channelConfig: 'appConfig/getChannelConfig' }),
     fileUploadSizeLimit() {
       return MAXIMUM_FILE_UPLOAD_SIZE;
     },
@@ -83,16 +80,12 @@ export default {
       this.isUploading = true;
       try {
         if (checkFileSizeLimit(file, MAXIMUM_FILE_UPLOAD_SIZE)) {
-          const { websiteToken } = window.chatwootWebChannel;
-          const upload = new DirectUpload(
-            file.file,
-            `/api/v1/widget/direct_uploads?website_token=${websiteToken}`,
-            {
-              directUploadWillCreateBlobWithXHR: xhr => {
-                xhr.setRequestHeader('X-Auth-Token', window.authToken);
-              },
-            }
-          );
+          const { websiteToken, authToken } = this.channelConfig;
+          const upload = new DirectUpload(file.file, `/api/v1/widget/direct_uploads?website_token=${websiteToken}`, {
+            directUploadWillCreateBlobWithXHR: xhr => {
+              xhr.setRequestHeader('X-Auth-Token', authToken);
+            },
+          });
 
           upload.create((error, blob) => {
             if (error) {

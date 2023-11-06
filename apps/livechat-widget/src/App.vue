@@ -56,6 +56,7 @@ export default {
   computed: {
     ...mapGetters({
       activeCampaign: 'campaign/getActiveCampaign',
+      channelConfig: 'appConfig/getChannelConfig',
       campaigns: 'campaign/getCampaigns',
       conversationSize: 'conversation/getConversationSize',
       currentUser: 'contacts/getCurrentUser',
@@ -81,10 +82,9 @@ export default {
     },
   },
   mounted() {
-    const { websiteToken, locale, widgetColor } = window.chatwootWebChannel;
+    const { websiteToken, locale, authToken } = this.channelConfig;
     this.setLocale(locale);
-    this.setWidgetColor(widgetColor);
-    setHeader(window.authToken);
+    setHeader(authToken);
     if (this.isIFrame) {
       this.registerListeners();
       this.sendLoadedEvent();
@@ -102,13 +102,7 @@ export default {
     this.registerCampaignEvents();
   },
   methods: {
-    ...mapActions('appConfig', [
-      'setAppConfig',
-      'setReferrerHost',
-      'setWidgetColor',
-      'setBubbleVisibility',
-      'setColorScheme',
-    ]),
+    ...mapActions('appConfig', ['setAppConfig', 'setReferrerHost', 'setBubbleVisibility', 'setColorScheme']),
     ...mapActions('conversation', ['fetchOldConversations', 'setUserLastSeen']),
     ...mapActions('campaign', ['initCampaigns', 'executeCampaign', 'resetCampaign']),
     ...mapActions('agent', ['fetchAvailableAgents']),
@@ -134,7 +128,7 @@ export default {
     },
     setLocale(localeWithVariation) {
       if (!localeWithVariation) return;
-      const { enabledLanguages } = window.chatwootWebChannel;
+      const { enabledLanguages } = this.channelConfig;
       const localeWithoutVariation = localeWithVariation.split('_')[0];
       const hasLocaleWithoutVariation = enabledLanguages.some(lang => lang.iso_639_1_code === localeWithoutVariation);
       const hasLocaleWithVariation = enabledLanguages.some(lang => lang.iso_639_1_code === localeWithVariation);
@@ -169,7 +163,7 @@ export default {
       });
       bus.$on('execute-campaign', campaignDetails => {
         const { customAttributes, campaignId } = campaignDetails;
-        const { websiteToken } = window.chatwootWebChannel;
+        const { websiteToken } = this.channelConfig;
         this.executeCampaign({ campaignId, websiteToken, customAttributes });
         this.replaceRoute('messages');
       });
@@ -225,7 +219,7 @@ export default {
       this.$store.dispatch('events/create', { name: eventName });
     },
     registerListeners() {
-      const { websiteToken } = window.chatwootWebChannel;
+      const { websiteToken } = this.channelConfig;
       window.addEventListener('message', e => {
         if (!IFrameHelper.isAValidEvent(e)) {
           return;
@@ -237,7 +231,6 @@ export default {
           this.fetchOldConversations().then(() => this.setUnreadView());
           this.fetchAvailableAgents(websiteToken);
           this.setAppConfig(message);
-          this.$store.dispatch('contacts/get');
           this.setCampaignReadData(message.campaignsSnoozedTill);
         } else if (message.event === 'widget-visible') {
           this.scrollConversationToBottom();
@@ -296,10 +289,10 @@ export default {
       });
     },
     sendLoadedEvent() {
-      IFrameHelper.sendMessage(loadedEventConfig());
+      IFrameHelper.sendMessage(loadedEventConfig(this.channelConfig));
     },
     sendRNWebViewLoadedEvent() {
-      RNHelper.sendMessage(loadedEventConfig());
+      RNHelper.sendMessage(loadedEventConfig(this.channelConfig));
     },
     setCampaignReadData(snoozedTill) {
       if (snoozedTill) {

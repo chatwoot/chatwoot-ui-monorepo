@@ -14,11 +14,7 @@
     <div v-if="showArticles" class="px-4 py-2 w-full">
       <div class="p-4 rounded-md bg-white dark:bg-slate-700 shadow-sm w-full">
         <article-hero
-          v-if="
-            !articleUiFlags.isFetching &&
-            !articleUiFlags.isError &&
-            popularArticles.length
-          "
+          v-if="!articleUiFlags.isFetching && !articleUiFlags.isError && popularArticles.length"
           :articles="popularArticles"
           @view="openArticleInArticleViewer"
           @view-all="viewAllArticles"
@@ -63,6 +59,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      channelConfig: 'appConfig/getChannelConfig',
       availableAgents: 'agent/availableAgents',
       activeCampaign: 'campaign/getActiveCampaign',
       conversationSize: 'conversation/getConversationSize',
@@ -74,19 +71,14 @@ export default {
       return this.$i18n.locale || 'en';
     },
     portal() {
-      return window.chatwootWebChannel.portal;
+      return this.channelConfig.portal;
     },
     showArticles() {
-      return (
-        this.portal &&
-        !this.articleUiFlags.isFetching &&
-        this.popularArticles.length
-      );
+      return this.portal && !this.articleUiFlags.isFetching && this.popularArticles.length;
     },
     defaultLocale() {
       const widgetLocale = this.widgetLocale;
-      const { allowed_locales: allowedLocales, default_locale: defaultLocale } =
-        this.portal.config;
+      const { allowed_locales: allowedLocales, default_locale: defaultLocale } = this.portal.config;
 
       // IMPORTANT: Variation strict locale matching, Follow iso_639_1_code
       // If the exact match of a locale is available in the list of portal locales, return it
@@ -125,11 +117,7 @@ export default {
       });
     },
     viewAllArticles() {
-      const locale = this.defaultLocale;
-      const {
-        portal: { slug },
-      } = window.chatwootWebChannel;
-      this.openArticleInArticleViewer(`/hc/${slug}/${locale}`);
+      this.openArticleInArticleViewer(`/hc/${this.portal.slug}/${this.defaultLocale}`);
     },
   },
 };

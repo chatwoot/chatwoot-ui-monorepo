@@ -4,17 +4,9 @@
       <div v-if="isFetchingList" class="message--loader">
         <spinner />
       </div>
-      <div
-        v-for="groupedMessage in groupedMessages"
-        :key="groupedMessage.date"
-        class="messages-wrap"
-      >
+      <div v-for="groupedMessage in groupedMessages" :key="groupedMessage.date" class="messages-wrap">
         <date-separator :date="groupedMessage.date" />
-        <chat-message
-          v-for="message in groupedMessage.messages"
-          :key="message.id"
-          :message="message"
-        />
+        <chat-message v-for="message in groupedMessage.messages" :key="message.id" :message="message" />
       </div>
       <agent-typing-bubble v-if="showStatusIndicator" />
     </div>
@@ -67,12 +59,8 @@ export default {
     showStatusIndicator() {
       const { status } = this.conversationAttributes;
       const isConversationInPendingStatus = status === 'pending';
-      const isLastMessageIncoming =
-        this.lastMessage.message_type === MESSAGE_TYPE.INCOMING;
-      return (
-        this.isAgentTyping ||
-        (isConversationInPendingStatus && isLastMessageIncoming)
-      );
+      const isLastMessageIncoming = this.lastMessage.message_type === MESSAGE_TYPE.INCOMING;
+      return this.isAgentTyping || (isConversationInPendingStatus && isLastMessageIncoming);
     },
   },
   watch: {
@@ -101,11 +89,7 @@ export default {
       this.previousScrollHeight = 0;
     },
     handleScroll() {
-      if (
-        this.isFetchingList ||
-        this.allMessagesLoaded ||
-        !this.conversationSize
-      ) {
+      if (this.isFetchingList || this.allMessagesLoaded || !this.conversationSize) {
         return;
       }
 

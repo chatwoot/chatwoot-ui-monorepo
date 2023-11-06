@@ -32,8 +32,7 @@
       </div>
       <banner />
       <router-view />
-
-      <branding v-if="!isOnArticleViewer" :disable-branding="disableBranding" />
+      <branding v-if="!isOnArticleViewer" :disable-branding="channelConfig.disableBranding" />
     </div>
   </div>
 </template>
@@ -59,7 +58,6 @@ export default {
       showPopoutButton: false,
       scrollPosition: 0,
       ticking: true,
-      disableBranding: window.chatwootWebChannel.disableBranding || false,
     };
   },
   computed: {
@@ -69,7 +67,7 @@ export default {
       widgetColor: 'appConfig/getWidgetColor',
     }),
     portal() {
-      return window.chatwootWebChannel.portal;
+      return this.channelConfig.portal;
     },
     isHeaderCollapsed() {
       if (!this.hasIntroText) {
@@ -78,14 +76,10 @@ export default {
       return !this.isOnHomeView;
     },
     hasIntroText() {
-      return (
-        this.channelConfig.welcomeTitle || this.channelConfig.welcomeTagline
-      );
+      return this.channelConfig.welcomeTitle || this.channelConfig.welcomeTagline;
     },
     showBackButton() {
-      return ['article-viewer', 'messages', 'prechat-form'].includes(
-        this.$route.name
-      );
+      return ['article-viewer', 'messages', 'prechat-form'].includes(this.$route.name);
     },
     isOnArticleViewer() {
       return ['article-viewer'].includes(this.$route.name);

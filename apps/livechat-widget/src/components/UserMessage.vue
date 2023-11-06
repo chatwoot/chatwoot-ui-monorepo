@@ -1,10 +1,7 @@
 <template>
   <div class="user-message-wrap group">
     <div class="flex gap-1 user-message">
-      <div
-        class="message-wrap"
-        :class="{ 'in-progress': isInProgress, 'is-failed': isFailed }"
-      >
+      <div class="message-wrap" :class="{ 'in-progress': isInProgress, 'is-failed': isFailed }">
         <div v-if="hasReplyTo" class="flex justify-end mt-2 mb-1 text-xs">
           <reply-to-chip :reply-to="replyTo" />
         </div>
@@ -16,11 +13,7 @@
               @click="toggleReply"
             />
           </div>
-          <drag-wrapper
-            direction="left"
-            :disabled="!allowReplyTo"
-            @dragged="toggleReply"
-          >
+          <drag-wrapper direction="left" :disabled="!allowReplyTo" @dragged="toggleReply">
             <user-message-bubble
               v-if="showTextBubble"
               :message="message.content"
@@ -32,10 +25,7 @@
               class="chat-bubble has-attachment user"
               :style="{ backgroundColor: widgetColor }"
             >
-              <div
-                v-for="attachment in message.attachments"
-                :key="attachment.id"
-              >
+              <div v-for="attachment in message.attachments" :key="attachment.id">
                 <image-bubble
                   v-if="attachment.file_type === 'image' && !hasImageError"
                   :url="attachment.data_url"
@@ -54,10 +44,7 @@
             </div>
           </drag-wrapper>
         </div>
-        <div
-          v-if="isFailed"
-          class="flex justify-end px-4 py-2 text-red-700 align-middle"
-        >
+        <div v-if="isFailed" class="flex justify-end px-4 py-2 text-red-700 align-middle">
           <button
             v-if="!hasAttachments"
             :title="$t('COMPONENTS.MESSAGE_BUBBLE.RETRY')"
@@ -111,14 +98,16 @@ export default {
   data() {
     return {
       hasImageError: false,
-      allowReplyTo: window.chatwootWebChannel.allowReplyTo || false,
     };
   },
   computed: {
     ...mapGetters({
+      channelConfig: 'appConfig/getChannelConfig',
       widgetColor: 'appConfig/getWidgetColor',
     }),
-
+    allowReplyTo() {
+      return this.channelConfig.allowReplyTo;
+    },
     isInProgress() {
       const { status = '' } = this.message;
       return status === 'in_progress';
@@ -137,9 +126,7 @@ export default {
     },
     errorMessage() {
       const { meta } = this.message;
-      return meta
-        ? meta.error
-        : this.$t('COMPONENTS.MESSAGE_BUBBLE.ERROR_MESSAGE');
+      return meta ? meta.error : this.$t('COMPONENTS.MESSAGE_BUBBLE.ERROR_MESSAGE');
     },
     hasReplyTo() {
       if (!this.allowReplyTo) return false;
@@ -156,10 +143,7 @@ export default {
   },
   methods: {
     async retrySendMessage() {
-      await this.$store.dispatch(
-        'conversation/sendMessageWithData',
-        this.message
-      );
+      await this.$store.dispatch('conversation/sendMessageWithData', this.message);
     },
     onImageLoadError() {
       this.hasImageError = true;

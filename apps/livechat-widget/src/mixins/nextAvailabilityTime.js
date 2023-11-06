@@ -1,7 +1,7 @@
 import { timeSlotParse, defaultTimeSlot } from '@chatwoot/shared/helpers/BusinessHourHelper';
 import { utcToZonedTime } from 'date-fns-tz';
 import { generateRelativeTime } from '@chatwoot/shared/helpers/DateHelper';
-
+import { mapGetters } from 'vuex';
 const MINUTE_ROUNDING_FACTOR = 5;
 
 export default {
@@ -13,9 +13,7 @@ export default {
     };
   },
   computed: {
-    channelConfig() {
-      return window.chatwootWebChannel;
-    },
+    ...mapGetters({ channelConfig: 'appConfig/getChannelConfig' }),
     workingHours() {
       return this.channelConfig.workingHours;
     },
@@ -38,7 +36,7 @@ export default {
       return this.channelConfig.timezone;
     },
     languageCode() {
-      return window.chatwootWebChannel.locale;
+      return this.channelConfig.locale;
     },
     currentDayWorkingHours() {
       return this.workingHours.find(slot => slot.day_of_week === this.currentDay);

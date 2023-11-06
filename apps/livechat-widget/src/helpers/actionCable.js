@@ -12,8 +12,8 @@ const isMessageInActiveConversation = (getters, message) => {
 };
 
 class ActionCableConnector extends BaseActionCableConnector {
-  constructor(app, pubsubToken) {
-    super(app, pubsubToken);
+  constructor(app, pubsubToken, websocketHost) {
+    super(app, pubsubToken, websocketHost);
     this.events = {
       'message.created': this.onMessageCreated,
       'message.updated': this.onMessageUpdated,

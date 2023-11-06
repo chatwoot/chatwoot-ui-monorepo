@@ -1,13 +1,11 @@
 import { utcToZonedTime } from 'date-fns-tz';
 import { isTimeAfter } from '@chatwoot/shared/helpers/DateHelper';
-
+import { mapGetters } from 'vuex';
 export default {
   computed: {
-    channelConfig() {
-      return window.chatwootWebChannel;
-    },
+    ...mapGetters({ channelConfig: 'appConfig/getChannelConfig' }),
     replyTime() {
-      return window.chatwootWebChannel.replyTime;
+      return this.channelConfig.replyTime;
     },
     replyTimeStatus() {
       switch (this.replyTime) {

@@ -46,15 +46,25 @@ const state = {
   widgetBrandURL,
 };
 
+export const SET_GLOBAL_CONFIG = 'SET_GLOBAL_CONFIG';
+
 export const getters = {
   get: $state => $state,
   isOnChatwootCloud: $state => $state.deploymentEnv === 'cloud',
   isACustomBrandedInstance: $state => $state.installationName !== 'Chatwoot',
 };
 
-export const actions = {};
+export const actions = {
+  setGlobalConfig({ commit }, data) {
+    commit(SET_GLOBAL_CONFIG, data);
+  },
+};
 
-export const mutations = {};
+export const mutations = {
+  [SET_GLOBAL_CONFIG]($state, data) {
+    $state = data;
+  },
+};
 
 export default {
   namespaced: true,

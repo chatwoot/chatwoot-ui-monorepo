@@ -1,9 +1,5 @@
 <template>
-  <FormulateForm
-    v-model="formValues"
-    class="flex flex-1 flex-col p-6 overflow-y-auto"
-    @submit="onSubmit"
-  >
+  <FormulateForm v-model="formValues" class="flex flex-1 flex-col p-6 overflow-y-auto" @submit="onSubmit">
     <div
       v-if="shouldShowHeaderMessage"
       v-dompurify-html="formatMessage(headerMessage, false)"
@@ -22,9 +18,7 @@
       :label-class="context => labelClass(context)"
       :input-class="context => inputClass(context)"
       :validation-messages="{
-        startsWithPlus: $t(
-          'PRE_CHAT_FORM.FIELDS.PHONE_NUMBER.DIAL_CODE_VALID_ERROR'
-        ),
+        startsWithPlus: $t('PRE_CHAT_FORM.FIELDS.PHONE_NUMBER.DIAL_CODE_VALID_ERROR'),
         isValidPhoneNumber: $t('PRE_CHAT_FORM.FIELDS.PHONE_NUMBER.VALID_ERROR'),
         email: $t('PRE_CHAT_FORM.FIELDS.EMAIL_ADDRESS.VALID_ERROR'),
         required: $t('PRE_CHAT_FORM.REQUIRED'),
@@ -126,11 +120,7 @@ export default {
       const isUserEmailAvailable = !!this.currentUser.email;
       const isUserPhoneNumberAvailable = !!this.currentUser.phone_number;
       const isUserIdentifierAvailable = !!this.currentUser.identifier;
-      const isUserNameAvailable = !!(
-        isUserIdentifierAvailable ||
-        isUserEmailAvailable ||
-        isUserPhoneNumberAvailable
-      );
+      const isUserNameAvailable = !!(isUserIdentifierAvailable || isUserEmailAvailable || isUserPhoneNumberAvailable);
       return this.preChatFields.filter(field => {
         if (isUserEmailAvailable && field.name === 'emailAddress') {
           return false;
@@ -149,10 +139,7 @@ export default {
         .filter(field => field.enabled)
         .map(field => ({
           ...field,
-          type:
-            field.name === 'phoneNumber'
-              ? 'phoneInput'
-              : this.findFieldType(field.type),
+          type: field.name === 'phoneNumber' ? 'phoneInput' : this.findFieldType(field.type),
         }));
     },
     conversationCustomAttributes() {
@@ -183,10 +170,7 @@ export default {
       return `mt-1 border rounded w-full py-2 px-3 text-slate-700 outline-none`;
     },
     isInputDarkOrLightMode() {
-      return `${this.$dm('bg-white', 'dark:bg-slate-600')} ${this.$dm(
-        'text-slate-700',
-        'dark:text-slate-50'
-      )}`;
+      return `${this.$dm('bg-white', 'dark:bg-slate-600')} ${this.$dm('text-slate-700', 'dark:text-slate-50')}`;
     },
     inputBorderColor() {
       return `${this.$dm('border-black-200', 'dark:border-black-500')}`;
@@ -196,15 +180,9 @@ export default {
     labelClass(context) {
       const { hasErrors } = context;
       if (!hasErrors) {
-        return `text-xs font-medium ${this.$dm(
-          'text-black-800',
-          'dark:text-slate-50'
-        )}`;
+        return `text-xs font-medium ${this.$dm('text-black-800', 'dark:text-slate-50')}`;
       }
-      return `text-xs font-medium ${this.$dm(
-        'text-red-400',
-        'dark:text-red-400'
-      )}`;
+      return `text-xs font-medium ${this.$dm('text-red-400', 'dark:text-red-400')}`;
     },
     inputClass(context) {
       const { hasErrors, classification, type } = context;
@@ -230,8 +208,7 @@ export default {
     },
     getValue({ name, type }) {
       if (type === 'select') {
-        return this.enabledPreChatFields.find(option => option.name === name)
-          .values[this.formValues[name]];
+        return this.enabledPreChatFields.find(option => option.name === name).values[this.formValues[name]];
       }
       return this.formValues[name] || null;
     },
@@ -252,9 +229,7 @@ export default {
 
       if (validationKeys.includes(name) || validationKeys.includes(type)) {
         const validationType = validations[type] || validations[name];
-        const validationString = validationType
-          ? `${validation}|${validationType}`
-          : validation;
+        const validationString = validationType ? `${validation}|${validationType}` : validation;
         return validationString;
       }
 

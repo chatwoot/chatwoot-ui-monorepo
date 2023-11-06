@@ -1,13 +1,20 @@
+import { fetchAppConfigAPI } from '../../api/appConfig';
+import * as changeKeys from 'change-case/keys';
+
 import {
+  SET_APP_CONFIG_UI_FLAGS,
   SET_BUBBLE_VISIBILITY,
+  SET_CHANNEL_CONFIG,
   SET_COLOR_SCHEME,
   SET_REFERRER_HOST,
   SET_WIDGET_APP_CONFIG,
-  SET_WIDGET_COLOR,
   TOGGLE_WIDGET_OPEN,
 } from '../types';
+import Vue from 'vue';
+import { BUS_EVENTS } from '@chatwoot/shared/constants/busEvents';
 
 const state = {
+  channelConfig: {},
   hideMessageBubble: false,
   isCampaignViewClicked: false,
   isWebWidgetTriggered: false,
@@ -15,9 +22,11 @@ const state = {
   position: 'right',
   referrerHost: '',
   showPopoutButton: false,
-  widgetColor: '',
   widgetStyle: 'standard',
   darkMode: 'light',
+  uiFlags: {
+    isFetching: true,
+  },
 };
 
 export const getters = {
@@ -25,10 +34,12 @@ export const getters = {
   isRightAligned: $state => $state.position === 'right',
   getHideMessageBubble: $state => $state.hideMessageBubble,
   getIsWidgetOpen: $state => $state.isWidgetOpen,
-  getWidgetColor: $state => $state.widgetColor,
+  getWidgetColor: $state => $state.channelConfig.widgetColor,
   getReferrerHost: $state => $state.referrerHost,
   isWidgetStyleFlat: $state => $state.widgetStyle === 'flat',
   darkMode: $state => $state.darkMode,
+  getChannelConfig: $state => $state.channelConfig,
+  getUIFlags: $state => $state.uiFlags,
 };
 
 export const actions = {
@@ -44,11 +55,21 @@ export const actions = {
       darkMode,
     });
   },
+  async fetchAppConfig({ commit }, params) {
+    commit(SET_APP_CONFIG_UI_FLAGS, { isFetching: true });
+    try {
+      const { data } = await fetchAppConfigAPI(params);
+      const { websiteChannelConfig, contact } = changeKeys.camelCase(data || {}, 2);
+      commit(SET_CHANNEL_CONFIG, websiteChannelConfig);
+      bus.$emit(BUS_EVENTS.INITIALIZE_WEBSOCKET_EVENTS, { channelConfig: websiteChannelConfig, contact });
+    } catch (error) {
+      // Ignore error
+    } finally {
+      commit(SET_APP_CONFIG_UI_FLAGS, { isFetching: false });
+    }
+  },
   toggleWidgetOpen({ commit }, isWidgetOpen) {
     commit(TOGGLE_WIDGET_OPEN, isWidgetOpen);
-  },
-  setWidgetColor({ commit }, widgetColor) {
-    commit(SET_WIDGET_COLOR, widgetColor);
   },
   setColorScheme({ commit }, darkMode) {
     commit(SET_COLOR_SCHEME, darkMode);
@@ -73,8 +94,8 @@ export const mutations = {
   [TOGGLE_WIDGET_OPEN]($state, isWidgetOpen) {
     $state.isWidgetOpen = isWidgetOpen;
   },
-  [SET_WIDGET_COLOR]($state, widgetColor) {
-    $state.widgetColor = widgetColor;
+  [SET_CHANNEL_CONFIG]($state, channelConfig) {
+    Vue.set($state, 'channelConfig', channelConfig);
   },
   [SET_REFERRER_HOST]($state, referrerHost) {
     $state.referrerHost = referrerHost;
@@ -84,6 +105,9 @@ export const mutations = {
   },
   [SET_COLOR_SCHEME]($state, darkMode) {
     $state.darkMode = darkMode;
+  },
+  [SET_APP_CONFIG_UI_FLAGS]($state, uiFlags) {
+    $state.uiFlags = { ...$state.uiFlags, ...uiFlags };
   },
 };
 

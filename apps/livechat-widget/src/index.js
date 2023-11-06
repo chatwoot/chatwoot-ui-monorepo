@@ -3,13 +3,9 @@ import VueI18n from 'vue-i18n';
 import VueDOMPurifyHTML from 'vue-dompurify-html';
 import VueFormulate from '@braid/vue-formulate';
 import store from './store';
-import App from './App.vue';
-import ActionCableConnector from './helpers/actionCable';
+import Initializer from './Initializer.vue';
 import i18n from './i18n';
-import {
-  startsWithPlus,
-  isPhoneNumberValidWithDialCode,
-} from '@chatwoot/shared/helpers/Validators';
+import { startsWithPlus, isPhoneNumberValidWithDialCode } from '@chatwoot/shared/helpers/Validators';
 import router from './router';
 import { domPurifyConfig } from '@chatwoot/shared/helpers/HTMLSanitizer';
 const PhoneInput = () => import('./components/Form/PhoneInput.vue');
@@ -50,11 +46,6 @@ window.onload = () => {
     router,
     store,
     i18n: i18nConfig,
-    render: h => h(App),
+    render: h => h(Initializer),
   }).$mount('#app');
-
-  window.actionCable = new ActionCableConnector(
-    window.WOOT_WIDGET,
-    window.chatwootPubsubToken,
-  );
 };
