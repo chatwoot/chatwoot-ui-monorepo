@@ -2,7 +2,7 @@ export default {
   computed: {
     useInboxAvatarForBot() {
       return this.channelConfig.enabledFeatures.includes(
-        'use_inbox_avatar_for_bot'
+        'use_inbox_avatar_for_bot',
       );
     },
     hasAConnectedAgentBot() {
@@ -39,8 +39,7 @@ export default {
     shouldShowPreChatForm() {
       const { preChatFields } = this.preChatFormOptions;
       // Check if at least one enabled field in pre-chat fields
-      const hasEnabledFields =
-        preChatFields.filter(field => field.enabled).length > 0;
+      const hasEnabledFields = preChatFields.filter(field => field.enabled).length > 0;
       return this.preChatFormEnabled && hasEnabledFields;
     },
   },

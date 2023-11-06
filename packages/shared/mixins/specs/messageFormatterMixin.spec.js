@@ -8,10 +8,9 @@ describe('messageFormatterMixin', () => {
       mixins: [messageFormatterMixin],
     };
     const wrapper = shallowMount(Component);
-    const message =
-      '<b>Chatwoot is an opensource tool. https://www.chatwoot.com</b>';
+    const message = '<b>Chatwoot is an opensource tool. https://www.chatwoot.com</b>';
     expect(wrapper.vm.getPlainText(message)).toMatch(
-      'Chatwoot is an opensource tool. https://www.chatwoot.com'
+      'Chatwoot is an opensource tool. https://www.chatwoot.com',
     );
   });
 });

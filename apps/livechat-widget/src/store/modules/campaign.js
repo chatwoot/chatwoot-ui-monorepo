@@ -17,7 +17,7 @@ const resetCampaignTimers = (
   campaigns,
   currentURL,
   websiteToken,
-  isInBusinessHours
+  isInBusinessHours,
 ) => {
   const formattedCampaigns = formatCampaigns({ campaigns });
   // Find all campaigns that matches the current URL
@@ -37,7 +37,7 @@ export const getters = {
 export const actions = {
   fetchCampaigns: async (
     { commit },
-    { websiteToken, currentURL, isInBusinessHours }
+    { websiteToken, currentURL, isInBusinessHours },
   ) => {
     try {
       const { data: campaigns } = await getCampaigns(websiteToken);
@@ -47,7 +47,7 @@ export const actions = {
         campaigns,
         currentURL,
         websiteToken,
-        isInBusinessHours
+        isInBusinessHours,
       );
     } catch (error) {
       commit('setError', true);
@@ -55,7 +55,7 @@ export const actions = {
   },
   initCampaigns: async (
     { getters: { getCampaigns: campaigns }, dispatch },
-    { currentURL, websiteToken, isInBusinessHours }
+    { currentURL, websiteToken, isInBusinessHours },
   ) => {
     if (!campaigns.length) {
       dispatch('fetchCampaigns', {
@@ -68,7 +68,7 @@ export const actions = {
         campaigns,
         currentURL,
         websiteToken,
-        isInBusinessHours
+        isInBusinessHours,
       );
     }
   },
@@ -79,7 +79,7 @@ export const actions = {
         appConfig: { isWidgetOpen },
       },
     },
-    { websiteToken, campaignId }
+    { websiteToken, campaignId },
   ) => {
     // Disable campaign execution if widget is opened
     if (!isWidgetOpen) {
@@ -94,13 +94,13 @@ export const actions = {
 
   executeCampaign: async (
     { commit },
-    { campaignId, websiteToken, customAttributes }
+    { campaignId, websiteToken, customAttributes },
   ) => {
     try {
       commit(
         'conversation/setConversationUIFlag',
         { isCreating: true },
-        { root: true }
+        { root: true },
       );
       await triggerCampaign({ campaignId, websiteToken, customAttributes });
       commit('setCampaignExecuted', true);
@@ -111,7 +111,7 @@ export const actions = {
       commit(
         'conversation/setConversationUIFlag',
         { isCreating: false },
-        { root: true }
+        { root: true },
       );
     }
   },

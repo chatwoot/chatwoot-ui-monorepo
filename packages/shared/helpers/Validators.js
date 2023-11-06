@@ -14,21 +14,20 @@ export const isPhoneNumberValidWithDialCode = value => {
 
 export const startsWithPlus = value => value.startsWith('+');
 
-export const shouldBeUrl = (value = '') =>
-  value ? value.startsWith('http') : true;
+export const shouldBeUrl = (value = '') => value ? value.startsWith('http') : true;
 
 export const isValidPassword = value => {
   const containsUppercase = /[A-Z]/.test(value);
   const containsLowercase = /[a-z]/.test(value);
   const containsNumber = /[0-9]/.test(value);
   const containsSpecialCharacter = /[!@#$%^&*()_+\-=[\]{}|'"/\\.,`<>:;?~]/.test(
-    value
+    value,
   );
   return (
-    containsUppercase &&
-    containsLowercase &&
-    containsNumber &&
-    containsSpecialCharacter
+    containsUppercase
+    && containsLowercase
+    && containsNumber
+    && containsSpecialCharacter
   );
 };
 

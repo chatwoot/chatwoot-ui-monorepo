@@ -4,7 +4,7 @@ export const popoutChatWindow = (
   origin,
   websiteToken,
   locale,
-  conversationCookie
+  conversationCookie,
 ) => {
   try {
     const windowUrl = buildPopoutURL({
@@ -16,7 +16,7 @@ export const popoutChatWindow = (
     const popoutWindow = window.open(
       windowUrl,
       `webwidget_session_${websiteToken}`,
-      'resizable=off,width=400,height=600'
+      'resizable=off,width=400,height=600',
     );
     popoutWindow.focus();
   } catch (err) {

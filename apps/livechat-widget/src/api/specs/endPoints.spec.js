@@ -20,7 +20,7 @@ describe('#sendMessage', () => {
     }));
 
     expect(endPoints.sendMessage('hello')).toEqual({
-      url: `/api/v1/widget/messages?param=1&locale=ar`,
+      url: '/api/v1/widget/messages?param=1&locale=ar',
       params: {
         message: {
           content: 'hello',
@@ -37,7 +37,7 @@ describe('#sendMessage', () => {
 describe('#getConversation', () => {
   it('returns correct payload', () => {
     expect(endPoints.getConversation({ before: 123 })).toEqual({
-      url: `/api/v1/widget/messages`,
+      url: '/api/v1/widget/messages',
       params: {
         before: 123,
       },
@@ -57,9 +57,9 @@ describe('#triggerCampaign', () => {
       endPoints.triggerCampaign({
         websiteToken,
         campaignId,
-      })
+      }),
     ).toEqual({
-      url: `/api/v1/widget/events`,
+      url: '/api/v1/widget/events',
       data: {
         name: 'campaign.triggered',
         event_info: {
@@ -89,9 +89,9 @@ describe('#getConversation', () => {
     expect(
       endPoints.getConversation({
         after: 123,
-      })
+      }),
     ).toEqual({
-      url: `/api/v1/widget/messages`,
+      url: '/api/v1/widget/messages',
       params: {
         after: 123,
         before: undefined,

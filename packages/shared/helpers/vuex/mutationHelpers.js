@@ -40,14 +40,14 @@ export const updatePresence = (state, data) => {
     Vue.set(
       state.records[index],
       'availability_status',
-      availabilityStatus || 'offline'
+      availabilityStatus || 'offline',
     );
   });
 };
 
 export const updateSingleRecordPresence = (
   records,
-  { id, availabilityStatus }
+  { id, availabilityStatus },
 ) => {
   const [selectedRecord] = records.filter(record => record.id === Number(id));
   if (selectedRecord) {

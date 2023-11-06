@@ -127,7 +127,7 @@ describe('nextAvailabilityTimeMixin', () => {
     };
     const currentDay = new Date().getDay();
     const expectedWorkingHours = chatwootWebChannel.workingHours.find(
-      slot => slot.day_of_week === currentDay
+      slot => slot.day_of_week === currentDay,
     );
     const Constructor = Vue.extend(Component);
     const vm = new Constructor().$mount();
@@ -152,7 +152,7 @@ describe('nextAvailabilityTimeMixin', () => {
     const currentDay = new Date().getDay();
     const nextDay = currentDay === 6 ? 0 : currentDay + 1;
     const expectedWorkingHours = chatwootWebChannel.workingHours.find(
-      slot => slot.day_of_week === nextDay
+      slot => slot.day_of_week === nextDay,
     );
     const Constructor = Vue.extend(Component);
     const vm = new Constructor().$mount();
@@ -220,7 +220,7 @@ describe('nextAvailabilityTimeMixin', () => {
     const date = new Date();
     const day = date.getDay();
     const currentDay = Object.keys(wrapper.vm.dayNames).find(
-      key => wrapper.vm.dayNames[key] === wrapper.vm.dayNames[day]
+      key => wrapper.vm.dayNames[key] === wrapper.vm.dayNames[day],
     );
     expect(wrapper.vm.currentDay).toBe(Number(currentDay));
   });
@@ -271,8 +271,7 @@ describe('nextAvailabilityTimeMixin', () => {
       'Friday',
       'Saturday',
     ];
-    const { open_hour: openHour, open_minutes: openMinute } =
-      wrapper.vm.nextDayWorkingHours;
+    const { open_hour: openHour, open_minutes: openMinute } = wrapper.vm.nextDayWorkingHours;
 
     expect(wrapper.vm.nextDayTimings).toEqual({
       openHour,
@@ -300,10 +299,9 @@ describe('nextAvailabilityTimeMixin', () => {
     const currentDay = wrapper.vm.currentDay;
     const nextDay = wrapper.vm.nextDayWorkingHours.day_of_week;
     const totalDays = 6;
-    const expectedDayDiff =
-      nextDay > currentDay
-        ? nextDay - currentDay - 1
-        : totalDays - currentDay + nextDay;
+    const expectedDayDiff = nextDay > currentDay
+      ? nextDay - currentDay - 1
+      : totalDays - currentDay + nextDay;
 
     expect(wrapper.vm.dayDiff).toEqual(expectedDayDiff);
   });
@@ -347,24 +345,20 @@ describe('nextAvailabilityTimeMixin', () => {
       'Friday',
       'Saturday',
     ];
-    const currentDayCloseHour =
-      chatwootWebChannel.workingHours[wrapper.vm.currentDay].close_hour;
-    const nextDayOpenHour =
-      chatwootWebChannel.workingHours[
-        wrapper.vm.currentDay === 6 ? 0 : wrapper.vm.currentDay + 1
-      ].open_hour;
-    const nextDayOpenMinute =
-      chatwootWebChannel.workingHours[
-        wrapper.vm.currentDay === 6 ? 0 : wrapper.vm.currentDay + 1
-      ].open_minutes;
-    const expectedHoursAndMinutes =
-      wrapper.vm.getHoursAndMinutesUntilNextDayOpen(
-        nextDayOpenHour,
-        nextDayOpenMinute,
-        currentDayCloseHour
-      );
+    const currentDayCloseHour = chatwootWebChannel.workingHours[wrapper.vm.currentDay].close_hour;
+    const nextDayOpenHour = chatwootWebChannel.workingHours[
+      wrapper.vm.currentDay === 6 ? 0 : wrapper.vm.currentDay + 1
+    ].open_hour;
+    const nextDayOpenMinute = chatwootWebChannel.workingHours[
+      wrapper.vm.currentDay === 6 ? 0 : wrapper.vm.currentDay + 1
+    ].open_minutes;
+    const expectedHoursAndMinutes = wrapper.vm.getHoursAndMinutesUntilNextDayOpen(
+      nextDayOpenHour,
+      nextDayOpenMinute,
+      currentDayCloseHour,
+    );
     expect(wrapper.vm.hoursAndMinutesBackInOnline).toEqual(
-      expectedHoursAndMinutes
+      expectedHoursAndMinutes,
     );
   });
 

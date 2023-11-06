@@ -30,7 +30,7 @@ class BaseActionCableConnector {
           // TODO: Remove this after completing the conversation list refetching
           window.bus.$emit(BUS_EVENTS.WEBSOCKET_DISCONNECT);
         },
-      }
+      },
     );
     this.app = app;
     this.events = {};

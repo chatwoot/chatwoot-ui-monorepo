@@ -42,7 +42,7 @@ describe('#WhatsAppTemplates', () => {
       propsData: { template: templates[1] },
     });
     const expectedOutput = templates[1].components.find(
-      i => i.type === 'BODY'
+      i => i.type === 'BODY',
     ).text;
     expect(wrapper.vm.templateString).toEqual(expectedOutput);
   });
@@ -59,8 +59,7 @@ describe('#WhatsAppTemplates', () => {
       processedParams: { 1: 'abc', 2: 'xyz', 3: 'qwerty' },
     });
     await wrapper.vm.$nextTick();
-    const expectedOutput =
-      'Esta é a sua confirmação de voo para abc-xyz em qwerty.';
+    const expectedOutput = 'Esta é a sua confirmação de voo para abc-xyz em qwerty.';
     expect(wrapper.vm.processedString).toEqual(expectedOutput);
   });
 });

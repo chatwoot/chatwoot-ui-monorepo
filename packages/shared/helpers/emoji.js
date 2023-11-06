@@ -17,9 +17,9 @@ export const hasEmojiSupport = () => {
 
   // canvastext support
   if (
-    !node.getContext ||
-    !node.getContext('2d') ||
-    typeof node.getContext('2d').fillText !== 'function'
+    !node.getContext
+    || !node.getContext('2d')
+    || typeof node.getContext('2d').fillText !== 'function'
   ) {
     return false;
   }
@@ -38,7 +38,7 @@ export const removeEmoji = text => {
     return text
       .replace(
         /([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g,
-        ''
+        '',
       )
       .replace(/\s+/g, ' ')
       .trim();

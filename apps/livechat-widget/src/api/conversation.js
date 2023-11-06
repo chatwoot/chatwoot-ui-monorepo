@@ -28,25 +28,25 @@ const getConversationAPI = async () => {
 const toggleTyping = async ({ typingStatus }) => {
   return API.post(
     `/api/v1/widget/conversations/toggle_typing${window.location.search}`,
-    { typing_status: typingStatus }
+    { typing_status: typingStatus },
   );
 };
 
 const setUserLastSeenAt = async ({ lastSeen }) => {
   return API.post(
     `/api/v1/widget/conversations/update_last_seen${window.location.search}`,
-    { contact_last_seen_at: lastSeen }
+    { contact_last_seen_at: lastSeen },
   );
 };
 const sendEmailTranscript = async ({ email }) => {
   return API.post(
     `/api/v1/widget/conversations/transcript${window.location.search}`,
-    { email }
+    { email },
   );
 };
 const toggleStatus = async () => {
   return API.get(
-    `/api/v1/widget/conversations/toggle_status${window.location.search}`
+    `/api/v1/widget/conversations/toggle_status${window.location.search}`,
   );
 };
 
@@ -55,7 +55,7 @@ const setCustomAttributes = async customAttributes => {
     `/api/v1/widget/conversations/set_custom_attributes${window.location.search}`,
     {
       custom_attributes: customAttributes,
-    }
+    },
   );
 };
 
@@ -64,7 +64,7 @@ const deleteCustomAttribute = async customAttribute => {
     `/api/v1/widget/conversations/destroy_custom_attributes${window.location.search}`,
     {
       custom_attribute: [customAttribute],
-    }
+    },
   );
 };
 

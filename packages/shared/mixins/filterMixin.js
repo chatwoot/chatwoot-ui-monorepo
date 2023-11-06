@@ -22,7 +22,7 @@ export default {
             return {
               key: attribute.key,
               name: this.$t(
-                `${this.filtersFori18n}.ATTRIBUTES.${attribute.i18nKey}`
+                `${this.filtersFori18n}.ATTRIBUTES.${attribute.i18nKey}`,
               ),
             };
           }),
@@ -55,7 +55,7 @@ export default {
             {
               id: this.activeStatus,
               name: this.$t(
-                `CHAT_LIST.CHAT_STATUS_FILTER_ITEMS.${this.activeStatus}.TEXT`
+                `CHAT_LIST.CHAT_STATUS_FILTER_ITEMS.${this.activeStatus}.TEXT`,
               ),
             },
           ],

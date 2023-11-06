@@ -6,7 +6,7 @@ export const isEmptyObject = obj =>
 export const sendMessage = msg => {
   window.parent.postMessage(
     `chatwoot-widget:${JSON.stringify({ ...msg })}`,
-    '*'
+    '*',
   );
 };
 
@@ -23,7 +23,7 @@ export const RNHelper = {
   isRNWebView: () => window.ReactNativeWebView,
   sendMessage: msg => {
     window.ReactNativeWebView.postMessage(
-      `chatwoot-widget:${JSON.stringify({ ...msg })}`
+      `chatwoot-widget:${JSON.stringify({ ...msg })}`,
     );
   },
 };

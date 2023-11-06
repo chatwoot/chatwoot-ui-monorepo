@@ -32,7 +32,7 @@ describe('#actions', () => {
       }));
       await actions.createConversation(
         { commit },
-        { contact: {}, message: 'This is a test message' }
+        { contact: {}, message: 'This is a test message' },
       );
       expect(commit.mock.calls).toEqual([
         ['setConversationUIFlag', { isCreating: true }],
@@ -54,7 +54,7 @@ describe('#actions', () => {
           id: 1,
           content: 'Hey',
           content_attributes: {},
-        }
+        },
       );
       expect(commit).toBeCalledWith('pushMessageToConversation', {
         id: 1,
@@ -69,7 +69,7 @@ describe('#actions', () => {
           id: 1,
           content: 'Hey',
           content_attributes: { deleted: true },
-        }
+        },
       );
       expect(commit).toBeCalledWith('deleteMessage', 1);
     });
@@ -112,7 +112,7 @@ describe('#actions', () => {
       }));
       await actions.sendMessage(
         { commit, dispatch },
-        { content: 'hello', replyTo: 124 }
+        { content: 'hello', replyTo: 124 },
       );
       spy.mockRestore();
       windowSpy.mockRestore();
@@ -138,7 +138,7 @@ describe('#actions', () => {
 
       actions.sendAttachment(
         { commit, dispatch },
-        { attachment, replyTo: 135 }
+        { attachment, replyTo: 135 },
       );
       spy.mockRestore();
       expect(commit).toBeCalledWith('pushMessageToConversation', {

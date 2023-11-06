@@ -77,7 +77,7 @@ describe('Vuex Articles Module', () => {
 
       await actions.fetch(
         { commit },
-        { websiteToken: 'token', slug: 'slug', locale: 'en' }
+        { websiteToken: 'token', slug: 'slug', locale: 'en' },
       );
 
       expect(commit).toHaveBeenCalledWith('setIsFetching', true);
@@ -103,7 +103,7 @@ describe('Vuex Articles Module', () => {
 
       await actions.fetch(
         { commit },
-        { websiteToken: 'token', slug: 'slug', locale: 'en' }
+        { websiteToken: 'token', slug: 'slug', locale: 'en' },
       );
 
       expect(commit).toHaveBeenCalledWith('setIsFetching', true);

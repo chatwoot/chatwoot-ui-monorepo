@@ -43,7 +43,7 @@ describe('LocalStorage utility', () => {
   it('getFromJsonStore method', () => {
     LocalStorage.set('testStore', { testKey: 'testValue' });
     expect(LocalStorage.getFromJsonStore('testStore', 'testKey')).toBe(
-      'testValue'
+      'testValue',
     );
   });
 

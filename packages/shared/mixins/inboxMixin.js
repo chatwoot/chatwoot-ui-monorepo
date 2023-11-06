@@ -81,14 +81,14 @@ export default {
     },
     isAWhatsAppCloudChannel() {
       return (
-        this.channelType === INBOX_TYPES.WHATSAPP &&
-        this.whatsAppAPIProvider === 'whatsapp_cloud'
+        this.channelType === INBOX_TYPES.WHATSAPP
+        && this.whatsAppAPIProvider === 'whatsapp_cloud'
       );
     },
     is360DialogWhatsAppChannel() {
       return (
-        this.channelType === INBOX_TYPES.WHATSAPP &&
-        this.whatsAppAPIProvider === 'default'
+        this.channelType === INBOX_TYPES.WHATSAPP
+        && this.whatsAppAPIProvider === 'default'
       );
     },
     chatAdditionalAttributes() {
@@ -122,8 +122,8 @@ export default {
     },
     isAWhatsAppChannel() {
       return (
-        this.channelType === INBOX_TYPES.WHATSAPP ||
-        this.isATwilioWhatsAppChannel
+        this.channelType === INBOX_TYPES.WHATSAPP
+        || this.isATwilioWhatsAppChannel
       );
     },
   },

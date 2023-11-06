@@ -39,7 +39,7 @@ const createComponent = (
   computed = {},
   // eslint-disable-next-line default-param-last
   methods = {},
-  validations
+  validations,
 ) => {
   const Component = {
     render() {},
@@ -102,7 +102,7 @@ describe('automationMethodsMixin', () => {
     };
     const wrapper = createComponent([methodsMixin], data);
     expect(
-      wrapper.vm.getFileName(automation.actions[0], automation.files)
+      wrapper.vm.getFileName(automation.actions[0], automation.files),
     ).toEqual(automation.files[0].filename);
   });
 
@@ -114,7 +114,7 @@ describe('automationMethodsMixin', () => {
     };
     const wrapper = createComponent([methodsMixin], data);
     expect(wrapper.vm.getAttributes('conversation_created')).toEqual(
-      AUTOMATIONS.conversation_created.conditions
+      AUTOMATIONS.conversation_created.conditions,
     );
   });
 
@@ -141,7 +141,7 @@ describe('automationMethodsMixin', () => {
     };
     const wrapper = createComponent([methodsMixin], data);
     expect(wrapper.vm.getOperators('status')).toEqual(
-      AUTOMATIONS.conversation_created.conditions[0].filterOperators
+      AUTOMATIONS.conversation_created.conditions[0].filterOperators,
     );
   });
 
@@ -154,7 +154,7 @@ describe('automationMethodsMixin', () => {
     };
     const wrapper = createComponent([methodsMixin], data);
     expect(wrapper.vm.getAutomationType('status')).toEqual(
-      AUTOMATIONS[automation.event_name].conditions[0]
+      AUTOMATIONS[automation.event_name].conditions[0],
     );
   });
 
@@ -167,25 +167,25 @@ describe('automationMethodsMixin', () => {
     };
     const wrapper = createComponent([methodsMixin], data, computed);
     expect(wrapper.vm.getConditionDropdownValues('status')).toEqual(
-      statusFilterOptions
+      statusFilterOptions,
     );
     expect(wrapper.vm.getConditionDropdownValues('team_id')).toEqual(teams);
     expect(wrapper.vm.getConditionDropdownValues('assignee_id')).toEqual(
-      agents
+      agents,
     );
     expect(wrapper.vm.getConditionDropdownValues('contact')).toEqual(contacts);
     expect(wrapper.vm.getConditionDropdownValues('inbox_id')).toEqual(inboxes);
     expect(wrapper.vm.getConditionDropdownValues('campaigns')).toEqual(
-      campaigns
+      campaigns,
     );
     expect(wrapper.vm.getConditionDropdownValues('browser_language')).toEqual(
-      languages
+      languages,
     );
     expect(wrapper.vm.getConditionDropdownValues('country_code')).toEqual(
-      countries
+      countries,
     );
     expect(wrapper.vm.getConditionDropdownValues('message_type')).toEqual(
-      MESSAGE_CONDITION_VALUES
+      MESSAGE_CONDITION_VALUES,
     );
   });
 
@@ -205,7 +205,7 @@ describe('automationMethodsMixin', () => {
     const wrapper = createComponent([methodsMixin], data);
     wrapper.vm.appendNewCondition();
     expect(automation.conditions[automation.conditions.length - 1]).toEqual(
-      condition
+      condition,
     );
   });
 
@@ -330,7 +330,7 @@ describe('automationMethodsMixin', () => {
     ];
     const wrapper = createComponent([methodsMixin], data, {}, methods);
     expect(wrapper.vm.manifestConditions(savedAutomation)).toEqual(
-      manifestedConditions
+      manifestedConditions,
     );
   });
 
@@ -380,7 +380,7 @@ describe('automationMethodsMixin', () => {
 
     const wrapper = createComponent([methodsMixin], data, computed, methods);
     expect(wrapper.vm.generateActionsArray(testAction)).toEqual(
-      expectedActionArray
+      expectedActionArray,
     );
   });
 
@@ -415,7 +415,7 @@ describe('automationMethodsMixin', () => {
     ];
     const wrapper = createComponent([methodsMixin], data, {}, methods);
     expect(wrapper.vm.manifestActions(savedAutomation)).toEqual(
-      expectedActions
+      expectedActions,
     );
   });
 
@@ -440,7 +440,7 @@ describe('automationMethodsMixin', () => {
     ];
     const wrapper = createComponent([methodsMixin], data, computed);
     expect(wrapper.vm.getActionDropdownValues('add_label')).toEqual(
-      expectedActionDropdownValues
+      expectedActionDropdownValues,
     );
   });
 });

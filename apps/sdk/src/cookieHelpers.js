@@ -13,20 +13,19 @@ export const getUserCookieName = () => {
 export const getUserString = ({ identifier = '', user }) => {
   const userStringWithSortedKeys = ALLOWED_USER_ATTRIBUTES.reduce(
     (acc, key) => `${acc}${key}${user[key] || ''}`,
-    ''
+    '',
   );
   return `${userStringWithSortedKeys}identifier${identifier}`;
 };
 
 export const computeHashForUserData = (...args) => md5(getUserString(...args));
 
-export const hasUserKeys = user =>
-  REQUIRED_USER_KEYS.reduce((acc, key) => acc || !!user[key], false);
+export const hasUserKeys = user => REQUIRED_USER_KEYS.reduce((acc, key) => acc || !!user[key], false);
 
 export const setCookieWithDomain = (
   name,
   value,
-  { expires = 365, baseDomain = undefined } = {}
+  { expires = 365, baseDomain = undefined } = {},
 ) => {
   const cookieOptions = {
     expires,

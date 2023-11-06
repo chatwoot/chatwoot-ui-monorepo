@@ -21,7 +21,7 @@ const triggerCampaign = async ({
     { ...urlData.data },
     {
       params: urlData.params,
-    }
+    },
   );
 };
 export { getCampaigns, triggerCampaign };

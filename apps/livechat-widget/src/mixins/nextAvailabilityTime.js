@@ -35,7 +35,7 @@ export default {
       const date = this.newDateWithTimeZone;
       const day = date.getDay();
       const currentDay = Object.keys(this.dayNames).find(
-        key => this.dayNames[key] === this.dayNames[day]
+        key => this.dayNames[key] === this.dayNames[day],
       );
       return Number(currentDay);
     },
@@ -47,7 +47,7 @@ export default {
     },
     currentDayWorkingHours() {
       return this.workingHours.find(
-        slot => slot.day_of_week === this.currentDay
+        slot => slot.day_of_week === this.currentDay,
       );
     },
     nextDayWorkingHours() {
@@ -75,8 +75,7 @@ export default {
       };
     },
     nextDayTimings() {
-      const { open_hour: openHour, open_minutes: openMinute } =
-        this.nextDayWorkingHours ?? {};
+      const { open_hour: openHour, open_minutes: openMinute } = this.nextDayWorkingHours ?? {};
       return {
         openHour,
         openMinute,
@@ -100,18 +99,18 @@ export default {
             ? 0
             : this.nextDayTimings.openHour,
           this.nextDayTimings.openMinute,
-          this.currentDayTimings.closeHour
+          this.currentDayTimings.closeHour,
         );
       }
       return this.getHoursAndMinutesUntilNextDayOpen(
         this.currentDayTimings.openHour,
         this.currentDayTimings.openMinute,
-        this.currentDayTimings.closeHour
+        this.currentDayTimings.closeHour,
       );
     },
     exactTimeInAmPm() {
       return `${this.timeSlot.day === this.currentDay ? `at ${this.timeSlot.from}` : ''
-        }`;
+      }`;
     },
     hoursAndMinutesLeft() {
       const { hoursLeft, minutesLeft } = this.hoursAndMinutesBackInOnline;
@@ -123,19 +122,18 @@ export default {
         const hourRelative = generateRelativeTime(
           roundedUpHoursLeft,
           'hour',
-          this.languageCode
+          this.languageCode,
         );
         timeLeftChars.push(`${hourRelative}`);
       }
 
       if (minutesLeft > 0 && hoursLeft === 0) {
-        const roundedUpMinLeft =
-          Math.ceil(minutesLeft / MINUTE_ROUNDING_FACTOR) *
-          MINUTE_ROUNDING_FACTOR;
+        const roundedUpMinLeft = Math.ceil(minutesLeft / MINUTE_ROUNDING_FACTOR)
+          * MINUTE_ROUNDING_FACTOR;
         const minRelative = generateRelativeTime(
           roundedUpMinLeft,
           'minutes',
-          this.languageCode
+          this.languageCode,
         );
         timeLeftChars.push(`${minRelative}`);
       }
@@ -154,19 +152,19 @@ export default {
     },
     timeLeftToBackInOnline() {
       if (
-        this.hoursAndMinutesBackInOnline.hoursLeft >= 24 ||
-        (this.timeSlot.day !== this.currentDay && this.dayDiff === 0)
+        this.hoursAndMinutesBackInOnline.hoursLeft >= 24
+        || (this.timeSlot.day !== this.currentDay && this.dayDiff === 0)
       ) {
         const hourRelative = generateRelativeTime(
           this.dayDiff + 1,
           'days',
-          this.languageCode
+          this.languageCode,
         );
         return `${hourRelative}`;
       }
       if (
-        this.dayDiff >= 1 &&
-        this.presentHour >= this.currentDayTimings.closeHour
+        this.dayDiff >= 1
+        && this.presentHour >= this.currentDayTimings.closeHour
       ) {
         return `on ${this.dayNameOfNextWorkingDay}`;
       }
@@ -183,7 +181,7 @@ export default {
     },
     getNextWorkingHour(day) {
       const workingHour = this.workingHours.find(
-        slot => slot.day_of_week === day
+        slot => slot.day_of_week === day,
       );
       if (workingHour && !workingHour.closed_all_day) {
         return workingHour;
@@ -193,17 +191,16 @@ export default {
     getHoursAndMinutesUntilNextDayOpen(
       openHour, // If the present time is after the closing time of the current day, then the openHour will be the opening hour of the next day else it will be the opening hour of the current day.
       openMinutes, // If the present time is after the closing time of the current day, then the openMinutes will be the opening minutes of the next day else it will be the opening minutes of the current day.
-      closeHour // The closeHour will be the closing hour of the current day. It will be used to calculate the time remaining until the next day's opening hours.
+      closeHour, // The closeHour will be the closing hour of the current day. It will be used to calculate the time remaining until the next day's opening hours.
     ) {
       // This code calculates the time remaining until the next day's opening hours,
       // given the current time, the opening hours, and the closing hours of the current day.
       if (closeHour < openHour) {
         openHour += 24;
       }
-      let diffMinutes =
-        openHour * 60 +
-        openMinutes -
-        (this.presentHour * 60 + this.presentMinute);
+      let diffMinutes = openHour * 60
+        + openMinutes
+        - (this.presentHour * 60 + this.presentMinute);
       diffMinutes = diffMinutes < 0 ? diffMinutes + 24 * 60 : diffMinutes;
       const [hoursLeft, minutesLeft] = [
         Math.floor(diffMinutes / 60),
@@ -221,10 +218,9 @@ export default {
       // If the present hour is after the closing hour of the current day,
       // then the next day's working hours will be used to calculate the time remaining until the next day's opening hours,
       // else the current day's working hours will be used
-      const currentSlot =
-        this.presentHour >= this.currentDayTimings.closeHour
-          ? this.nextDayWorkingHours
-          : this.currentDayWorkingHours;
+      const currentSlot = this.presentHour >= this.currentDayTimings.closeHour
+        ? this.nextDayWorkingHours
+        : this.currentDayWorkingHours;
 
       // It parses the working hours to get the time slots in AM/PM format.
       const slots = timeSlotParse(timeSlots).length
@@ -234,7 +230,7 @@ export default {
 
       // It finds the time slot for the current slot.
       this.timeSlot = this.timeSlots.find(
-        slot => slot.day === currentSlot.day_of_week
+        slot => slot.day === currentSlot.day_of_week,
       );
     },
   },

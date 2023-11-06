@@ -94,7 +94,7 @@ describe('#getters', () => {
             created_at: 1576340626,
           },
         },
-      })
+      }),
     ).toEqual([
       {
         date: 'Nov 18, 2019',
@@ -195,7 +195,7 @@ describe('#getters', () => {
             },
           },
         },
-      })
+      }),
     ).toEqual([
       {
         date: 'Nov 18, 2019',
@@ -351,7 +351,7 @@ describe('#getters', () => {
         },
       };
       expect(
-        getters.getUnreadTextMessages(state, { getUnreadMessageCount: 0 })
+        getters.getUnreadTextMessages(state, { getUnreadMessageCount: 0 }),
       ).toEqual([]);
     });
 
@@ -363,7 +363,7 @@ describe('#getters', () => {
         },
       };
       expect(
-        getters.getUnreadTextMessages(state, { getUnreadMessageCount: 0 })
+        getters.getUnreadTextMessages(state, { getUnreadMessageCount: 0 }),
       ).toEqual([]);
     });
 
@@ -385,7 +385,7 @@ describe('#getters', () => {
         },
       };
       expect(
-        getters.getUnreadTextMessages(state, { getUnreadMessageCount: 1 })
+        getters.getUnreadTextMessages(state, { getUnreadMessageCount: 1 }),
       ).toEqual([
         {
           id: 1,
@@ -423,7 +423,7 @@ describe('#getters', () => {
         },
       };
       expect(
-        getters.getUnreadTextMessages(state, { getUnreadMessageCount: 1 })
+        getters.getUnreadTextMessages(state, { getUnreadMessageCount: 1 }),
       ).toEqual([
         {
           id: 2,

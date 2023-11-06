@@ -24,7 +24,7 @@ describe('#findUndeliveredMessage', () => {
       },
     };
     expect(
-      findUndeliveredMessage(conversation, { content: 'Hello' })
+      findUndeliveredMessage(conversation, { content: 'Hello' }),
     ).toStrictEqual([{ id: 1, content: 'Hello', status: 'in_progress' }]);
   });
 });

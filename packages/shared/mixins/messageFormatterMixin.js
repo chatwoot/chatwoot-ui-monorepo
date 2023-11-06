@@ -6,7 +6,7 @@ export default {
       const messageFormatter = new MessageFormatter(
         message,
         isATweet,
-        isAPrivateNote
+        isAPrivateNote,
       );
       return messageFormatter.formattedMessage;
     },
@@ -28,12 +28,12 @@ export default {
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping
       const escapedSearchTerm = searchTerm.replace(
         /[.*+?^${}()|[\]\\]/g,
-        '\\$&'
+        '\\$&',
       );
 
       return plainTextContent.replace(
         new RegExp(`(${escapedSearchTerm})`, 'ig'),
-        `<span class="${highlightClass}">$1</span>`
+        `<span class="${highlightClass}">$1</span>`,
       );
     },
   },

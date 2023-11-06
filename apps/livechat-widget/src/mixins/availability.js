@@ -61,13 +61,13 @@ export default {
         currentHours,
         currentMinutes,
         openHour,
-        openMinute
+        openMinute,
       );
       const isBeforeEndTime = isTimeAfter(
         closeHour,
         closeMinute,
         currentHours,
-        currentMinutes
+        currentMinutes,
       );
       return isAfterStartTime && isBeforeEndTime;
     },
@@ -75,7 +75,7 @@ export default {
       const { utcOffset } = this.channelConfig;
       const dayOfTheWeek = this.getDateWithOffset(utcOffset).getDay();
       const [workingHourConfig = {}] = this.channelConfig.workingHours.filter(
-        workingHour => workingHour.day_of_week === dayOfTheWeek
+        workingHour => workingHour.day_of_week === dayOfTheWeek,
       );
       return {
         closedAllDay: workingHourConfig.closed_all_day,

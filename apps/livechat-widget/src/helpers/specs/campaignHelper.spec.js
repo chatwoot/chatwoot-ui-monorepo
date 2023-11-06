@@ -14,29 +14,29 @@ describe('#Campaigns Helper', () => {
       expect(
         isPatternMatchingWithURL(
           'https://chatwoot.com/pricing*',
-          'https://chatwoot.com/pricing/'
-        )
+          'https://chatwoot.com/pricing/',
+        ),
       ).toBe(true);
 
       expect(
         isPatternMatchingWithURL(
           'https://*.chatwoot.com/pricing/',
-          'https://app.chatwoot.com/pricing/'
-        )
+          'https://app.chatwoot.com/pricing/',
+        ),
       ).toBe(true);
 
       expect(
         isPatternMatchingWithURL(
           'https://{*.}?chatwoot.com/pricing?test=true',
-          'https://app.chatwoot.com/pricing/?test=true'
-        )
+          'https://app.chatwoot.com/pricing/?test=true',
+        ),
       ).toBe(true);
 
       expect(
         isPatternMatchingWithURL(
           'https://{*.}?chatwoot.com/pricing*\\?*',
-          'https://chatwoot.com/pricing/?test=true'
-        )
+          'https://chatwoot.com/pricing/?test=true',
+        ),
       ).toBe(true);
     });
   });
@@ -78,7 +78,7 @@ describe('#Campaigns Helper', () => {
             },
           ],
           currentURL: 'https://www.chatwoot.com/about/',
-        })
+        }),
       ).toStrictEqual([
         {
           id: 2,
@@ -107,7 +107,7 @@ describe('#Campaigns Helper', () => {
           ],
           currentURL: 'https://www.chatwoot.com/about/',
           isInBusinessHours: true,
-        })
+        }),
       ).toStrictEqual([
         {
           id: 2,
@@ -136,7 +136,7 @@ describe('#Campaigns Helper', () => {
           ],
           currentURL: 'https://www.chatwoot.com/about/',
           isInBusinessHours: false,
-        })
+        }),
       ).toStrictEqual([]);
     });
   });

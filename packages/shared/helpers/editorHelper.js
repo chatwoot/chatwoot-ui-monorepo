@@ -23,7 +23,7 @@ export function cleanSignature(signature) {
       .replace(/^( *_ *){3,} *$/gm, '');
 
     const nodes = new MessageMarkdownTransformer(messageSchema).parse(
-      signature
+      signature,
     );
     return MessageMarkdownSerializer.serialize(nodes);
   } catch (e) {
@@ -109,8 +109,8 @@ export function removeSignature(body, signature) {
   // let's find the delimiter and remove it
   const delimiterIndex = newBody.lastIndexOf(SIGNATURE_DELIMITER);
   if (
-    delimiterIndex !== -1 &&
-    delimiterIndex === newBody.length - SIGNATURE_DELIMITER.length // this will ensure the delimiter is at the end
+    delimiterIndex !== -1
+    && delimiterIndex === newBody.length - SIGNATURE_DELIMITER.length // this will ensure the delimiter is at the end
   ) {
     // if the delimiter is at the end, remove it
     newBody = newBody.substring(0, delimiterIndex);
@@ -194,10 +194,9 @@ export function insertAtCursor(editorView, node, from, to) {
   // This is a workaround to prevent inserting content into new line rather than on the exiting line
   // If the node is of type 'doc' and has only one child which is a paragraph,
   // then extract its inline content to be inserted as inline.
-  const isWrappedInParagraph =
-    node.type.name === 'doc' &&
-    node.childCount === 1 &&
-    node.firstChild.type.name === 'paragraph';
+  const isWrappedInParagraph = node.type.name === 'doc'
+    && node.childCount === 1
+    && node.firstChild.type.name === 'paragraph';
 
   if (isWrappedInParagraph) {
     node = node.firstChild.content;
@@ -205,7 +204,7 @@ export function insertAtCursor(editorView, node, from, to) {
 
   let tr;
   if (to) {
-    tr = editorView.state.tr.replaceWith(from, to, node).insertText(` `);
+    tr = editorView.state.tr.replaceWith(from, to, node).insertText(' ');
   } else {
     tr = editorView.state.tr.insert(from, node);
   }
@@ -248,8 +247,7 @@ export const findNodeToInsertImage = (editorState, fileUrl) => {
   if (!imageNode) return null;
 
   const isInParagraph = typeName === 'paragraph';
-  const needsNewLine =
-    !content.some(n => n.type.name === 'image') && size !== 0 ? 1 : 0;
+  const needsNewLine = !content.some(n => n.type.name === 'image') && size !== 0 ? 1 : 0;
 
   return {
     node: isInParagraph ? imageNode : nodes.paragraph.create({}, imageNode),
@@ -273,7 +271,7 @@ export function setURLWithQueryAndSize(selectedImageNode, size, editorView) {
       {
         src: selectedImageNode.src,
         height: size.height,
-      }
+      },
     );
 
     if (tr.docChanged) {

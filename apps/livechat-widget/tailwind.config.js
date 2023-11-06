@@ -17,7 +17,7 @@ module.exports = {
   darkMode: 'class',
   content: [
     './src/**/*.vue',
-    '../../packages/shared/**/*.vue'
+    '../../packages/shared/**/*.vue',
   ],
   theme: {
     fontSize: {

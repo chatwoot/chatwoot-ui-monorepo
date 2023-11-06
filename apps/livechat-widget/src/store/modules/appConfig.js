@@ -40,7 +40,7 @@ export const actions = {
       hideMessageBubble,
       widgetStyle = 'rounded',
       darkMode = 'light',
-    }
+    },
   ) {
     commit(SET_WIDGET_APP_CONFIG, {
       hideMessageBubble: !!hideMessageBubble,

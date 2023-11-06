@@ -1,6 +1,6 @@
-import { resolve } from 'path'
-import { defineConfig } from 'vite'
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 export default defineConfig({
   plugins: [cssInjectedByJsPlugin()],
@@ -9,7 +9,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'main.js'),
       name: 'chatwoot-sdk',
       fileName: 'sdk',
-      formats: ['es', 'cjs']
+      formats: ['es', 'cjs'],
     },
   },
   server: {
@@ -29,6 +29,6 @@ export default defineConfig({
      always returning to 6174 with subsequent iterations. This property is often referred to as a "magical"
      property of the number 6174.
     */
-    port: 6174
-  }
-})
+    port: 6174,
+  },
+});

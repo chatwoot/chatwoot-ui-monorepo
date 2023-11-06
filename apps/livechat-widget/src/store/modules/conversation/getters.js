@@ -26,7 +26,7 @@ export const getters = {
   getGroupedConversation: _state => {
     const conversationGroupedByDate = groupBy(
       Object.values(_state.conversations),
-      message => formatUnixDate(message.created_at)
+      message => formatUnixDate(message.created_at),
     );
     return Object.keys(conversationGroupedByDate).map(date => ({
       date,

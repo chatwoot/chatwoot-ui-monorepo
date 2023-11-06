@@ -33,10 +33,9 @@ import { isFlatWidgetStyle } from './settingsHelper';
 import { popoutChatWindow } from '@chatwoot/shared/helpers/popoutHelper';
 import addHours from 'date-fns/addHours';
 
-const updateAuthCookie = (cookieContent, baseDomain = '') =>
-  setCookieWithDomain('cw_conversation', cookieContent, {
-    baseDomain,
-  });
+const updateAuthCookie = (cookieContent, baseDomain = '') => setCookieWithDomain('cw_conversation', cookieContent, {
+  baseDomain,
+});
 
 const updateCampaignReadStatus = baseDomain => {
   const expireBy = addHours(new Date(), 1);
@@ -61,17 +60,16 @@ export const IFrameHelper = {
       widgetUrl = `${widgetUrl}&cw_conversation=${cwCookie}`;
     }
     iframe.src = widgetUrl;
-    iframe.allow =
-      'camera;microphone;fullscreen;display-capture;picture-in-picture;clipboard-write;';
+    iframe.allow = 'camera;microphone;fullscreen;display-capture;picture-in-picture;clipboard-write;';
     iframe.id = 'chatwoot_live_chat_widget';
     iframe.style.visibility = 'hidden';
 
     let holderClassName = `woot-widget-holder woot--hide woot-elements--${window.$chatwoot.position}`;
     if (window.$chatwoot.hideMessageBubble) {
-      holderClassName += ` woot-widget--without-bubble`;
+      holderClassName += ' woot-widget--without-bubble';
     }
     if (isFlatWidgetStyle(window.$chatwoot.widgetStyle)) {
-      holderClassName += ` woot-widget-holder--flat`;
+      holderClassName += ' woot-widget-holder--flat';
     }
 
     addClasses(widgetHolder, holderClassName);
@@ -87,14 +85,14 @@ export const IFrameHelper = {
     const element = IFrameHelper.getAppFrame();
     element.contentWindow.postMessage(
       `chatwoot-widget:${JSON.stringify({ event: key, ...value })}`,
-      '*'
+      '*',
     );
   },
   initPostMessageCommunication: () => {
     window.onmessage = e => {
       if (
-        typeof e.data !== 'string' ||
-        e.data.indexOf('chatwoot-widget:') !== 0
+        typeof e.data !== 'string'
+        || e.data.indexOf('chatwoot-widget:') !== 0
       ) {
         return;
       }
@@ -115,8 +113,8 @@ export const IFrameHelper = {
       const scrollTop = widgetHolder.scrollTop;
 
       if (
-        (scrollTop === 0 && deltaY < 0) ||
-        (visibleHeight + scrollTop === contentHeight && deltaY > 0)
+        (scrollTop === 0 && deltaY < 0)
+        || (visibleHeight + scrollTop === contentHeight && deltaY > 0)
       ) {
         event.preventDefault();
       }
@@ -127,21 +125,18 @@ export const IFrameHelper = {
     const iframe = IFrameHelper.getAppFrame();
     const updatedIframeHeight = isFixedHeight ? `${extraHeight}px` : '100%';
 
-    if (iframe)
-      iframe.setAttribute('style', `height: ${updatedIframeHeight} !important`);
+    if (iframe) iframe.setAttribute('style', `height: ${updatedIframeHeight} !important`);
   },
 
   setupAudioListeners: () => {
     const { baseUrl = '' } = window.$chatwoot;
-    getAlertAudio(baseUrl, { type: 'widget', alertTone: 'ding' }).then(() =>
-      initOnEvents.forEach(event => {
-        document.removeEventListener(
-          event,
-          IFrameHelper.setupAudioListeners,
-          false
-        );
-      })
-    );
+    getAlertAudio(baseUrl, { type: 'widget', alertTone: 'ding' }).then(() => initOnEvents.forEach(event => {
+      document.removeEventListener(
+        event,
+        IFrameHelper.setupAudioListeners,
+        false,
+      );
+    }));
   },
 
   events: {
@@ -252,8 +247,8 @@ export const IFrameHelper = {
 
       const bubbleElement = document.querySelector('.woot-widget-bubble');
       if (
-        event.unreadMessageCount > 0 &&
-        !bubbleElement.classList.contains('unread-notification')
+        event.unreadMessageCount > 0
+        && !bubbleElement.classList.contains('unread-notification')
       ) {
         addClasses(bubbleElement, 'unread-notification');
       } else if (event.unreadMessageCount === 0) {
@@ -276,7 +271,7 @@ export const IFrameHelper = {
   onLoad: ({ widgetColor }) => {
     const iframe = IFrameHelper.getAppFrame();
     iframe.style.visibility = '';
-    iframe.setAttribute('id', `chatwoot_live_chat_widget`);
+    iframe.setAttribute('id', 'chatwoot_live_chat_widget');
 
     if (IFrameHelper.getBubbleHolder().length) {
       return;

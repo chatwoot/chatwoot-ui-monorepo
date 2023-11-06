@@ -8,7 +8,7 @@ describe('#isASubmittedFormMessage', () => {
         content_attributes: {
           submitted_values: [{ name: 'text', value: 'Text ' }],
         },
-      })
+      }),
     ).toEqual(true);
   });
 });
@@ -18,7 +18,7 @@ describe('#isAFormMessage', () => {
     expect(
       isAFormMessage({
         content_type: 'form',
-      })
+      }),
     ).toEqual(true);
   });
 });

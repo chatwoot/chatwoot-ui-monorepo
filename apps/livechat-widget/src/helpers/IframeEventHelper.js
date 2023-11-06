@@ -32,14 +32,13 @@ export const shouldTriggerMessageUpdateEvent = message => {
   if (!previousChanges) {
     return false;
   }
-  const hasNotifiableAttributeChanges =
-    Object.keys(previousChanges).includes('content_attributes');
+  const hasNotifiableAttributeChanges = Object.keys(previousChanges).includes('content_attributes');
   if (!hasNotifiableAttributeChanges) {
     return false;
   }
 
   const hasSubmittedValueChanges = Object.keys(
-    previousChanges.content_attributes[1] || {}
+    previousChanges.content_attributes[1] || {},
   ).includes('submitted_values');
 
   return hasSubmittedValueChanges;

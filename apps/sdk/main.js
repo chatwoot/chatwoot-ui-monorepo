@@ -81,7 +81,7 @@ const runSDK = ({ baseUrl, websiteToken }) => {
 
       if (!hasUserKeys(user)) {
         throw new Error(
-          'User object should have one of the keys [avatar_url, email, name]'
+          'User object should have one of the keys [avatar_url, email, name]',
         );
       }
 
