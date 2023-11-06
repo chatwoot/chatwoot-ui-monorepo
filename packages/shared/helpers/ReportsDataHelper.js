@@ -1,10 +1,8 @@
-import {
-  fromUnixTime,
-  startOfDay,
-  endOfDay,
-  getUnixTime,
-  subDays,
-} from 'date-fns';
+import startOfDay from 'date-fns/startOfDay';
+import getUnixTime from 'date-fns/getUnixTime';
+import subDays from 'date-fns/subDays';
+import endOfDay from 'date-fns/endOfDay';
+import fromUnixTime from 'date-fns/fromUnixTime';
 
 /**
  * Returns a key-value pair of timestamp and value for heatmap data

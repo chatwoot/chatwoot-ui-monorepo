@@ -1,9 +1,7 @@
-import {
-  format,
-  isSameYear,
-  fromUnixTime,
-  formatDistanceToNow,
-} from 'date-fns';
+import format from 'date-fns/format'
+import isSameYear from 'date-fns/isSameYear'
+import fromUnixTime from 'date-fns/fromUnixTime'
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 export default {
   methods: {
