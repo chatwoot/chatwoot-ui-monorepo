@@ -5,7 +5,7 @@ This is the [monorepo](https://turbo.build/repo/docs/handbook) for Chatwoot UI. 
 
 ### Basic concepts
 
-**Folder Structure: **The project is divided into two sections: `apps/` and `packages/`. The `apps/` folder contains the applications that the user interacts with directly, while the `packages/` folder contains libraries that are shared among these applications.
+**Folder Structure:** The project is divided into two sections: `apps/` and `packages/`. The `apps/` folder contains the applications that the user interacts with directly, while the `packages/` folder contains libraries that are shared among these applications.
 
 ```
 root-folder/
