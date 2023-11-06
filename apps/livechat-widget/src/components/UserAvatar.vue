@@ -29,7 +29,7 @@ export default {
 
 <style scoped lang="scss">
 @import 'widget/assets/scss/_variables.scss';
-@import 'widget/assets/scss/_mixins.scss.scss';
+@import 'widget/assets/scss/_mixins.scss';
 
 .user-avatar {
   @include light-shadow;

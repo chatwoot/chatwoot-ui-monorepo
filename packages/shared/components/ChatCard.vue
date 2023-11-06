@@ -54,7 +54,6 @@ export default {
 
 <style scoped lang="scss">
 @import 'widget/assets/scss/_variables.scss';
-@import 'dashboard/assets/scss/_mixins.scss';
 
 .card-message {
   max-width: 220px;
@@ -75,7 +74,7 @@ export default {
   }
 
   .media {
-    @include border-light;
+    @apply border border-slate-25 dark:border-slate-700;
     width: 100%;
     object-fit: contain;
     max-height: 150px;
@@ -84,7 +83,7 @@ export default {
 
   .action-button + .action-button {
     background: $color-white;
-    @include thin-border($color-woot);
+    border: 1px solid $color-woot;
     color: $color-woot;
   }
 }

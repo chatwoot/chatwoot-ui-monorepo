@@ -151,7 +151,7 @@ export default {
 
 <style lang="scss" scoped>
 @import 'widget/assets/scss/_variables.scss';
-@import 'widget/assets/scss/_mixins.scss.scss';
+@import 'widget/assets/scss/_mixins.scss';
 
 .customer-satisfaction {
   @include light-shadow;

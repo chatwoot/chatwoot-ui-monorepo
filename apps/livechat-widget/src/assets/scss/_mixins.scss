@@ -76,3 +76,65 @@ $color-shadow-outline: rgba(66, 153, 225, 0.5);
   min-height: $space-large;
   min-width: $space-large;
 }
+
+
+// --------------------------------------------------------
+// arrows
+// --------------------------------------------------------
+// $direction: top, left, right, bottom, top-left, top-right, bottom-left, bottom-right
+// $color: hex, rgb or rbga
+// $size: px or em
+// @example
+// .element{
+//     @include arrow(top, #000, 50px);
+// }
+@mixin arrow($direction, $color, $size) {
+  display: block;
+  height: 0;
+  width: 0;
+  content: '';
+
+  @if $direction =='top' {
+    border-bottom: $size solid $color;
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+  }
+
+  @else if $direction =='right' {
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+    border-top: $size solid transparent;
+  }
+
+  @else if $direction =='bottom' {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+  }
+
+  @else if $direction =='left' {
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+    border-top: $size solid transparent;
+  }
+
+  @else if $direction =='top-left' {
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+  }
+
+  @else if $direction =='top-right' {
+    border-left: $size solid transparent;
+    border-top: $size solid $color;
+  }
+
+  @else if $direction =='bottom-left' {
+    border-bottom: $size solid $color;
+    border-right: $size solid transparent;
+  }
+
+  @else if $direction =='bottom-right' {
+    border-bottom: $size solid $color;
+    border-left: $size solid transparent;
+  }
+}
