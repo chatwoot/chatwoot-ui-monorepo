@@ -9,6 +9,7 @@ export default defineConfig({
       widget: path.resolve(__dirname, './src'),
     },
   },
+  base: '/widget/',
   server: {
     // 4104 is the second 4-digit Ramanujan-Hardy number. It
     // can be expressed in two unique ways as the sum of cubes:
