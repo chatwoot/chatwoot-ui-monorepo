@@ -19,9 +19,9 @@ import commonHelpers, { isJSONValid } from './helper/commons';
 import router, { initalizeRouter } from './routes';
 import store from './store';
 import constants from 'dashboard/constants/globals';
-import * as Sentry from '@sentry/vue';
+// import * as Sentry from '@sentry/vue';
 import 'vue-easytable/libs/theme-default/index.css';
-import { Integrations } from '@sentry/tracing';
+// import { Integrations } from '@sentry/tracing';
 import { initializeAnalyticsEvents, initializeChatwootEvents } from './helper/scriptHelpers';
 import FluentIcon from '@chatwoot/shared/components/FluentIcon/DashboardIcon.vue';
 import VueDOMPurifyHTML from 'vue-dompurify-html';
@@ -31,24 +31,22 @@ import AnalyticsPlugin from './helper/AnalyticsHelper/plugin';
 Vue.config.env = process.env;
 
 if (window.errorLoggingConfig) {
-  Sentry.init({
-    Vue,
-    dsn: window.errorLoggingConfig,
-    denyUrls: [
-      // Chrome extensions
-      /^chrome:\/\//i,
-      /chrome-extension:/i,
-      /extensions\//i,
-
-      // Locally saved copies
-      /file:\/\//i,
-
-      // Safari extensions.
-      /safari-web-extension:/i,
-      /safari-extension:/i,
-    ],
-    integrations: [new Integrations.BrowserTracing()],
-  });
+  // Sentry.init({
+  //   Vue,
+  //   dsn: window.errorLoggingConfig,
+  //   denyUrls: [
+  //     // Chrome extensions
+  //     /^chrome:\/\//i,
+  //     /chrome-extension:/i,
+  //     /extensions\//i,
+  //     // Locally saved copies
+  //     /file:\/\//i,
+  //     // Safari extensions.
+  //     /safari-web-extension:/i,
+  //     /safari-extension:/i,
+  //   ],
+  //   integrations: [new Integrations.BrowserTracing()],
+  // });
 }
 
 Vue.use(VueDOMPurifyHTML, domPurifyConfig);

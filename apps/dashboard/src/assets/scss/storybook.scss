@@ -15,7 +15,7 @@
 @import 'mixins';
 @import 'foundation-settings';
 @import 'helper-classes';
-@import 'foundation-sites/scss/foundation';
+// @import 'foundation-sites/scss/foundation';
 
 @include foundation-prototype-spacing;
 @include foundation-everything($flex: true);

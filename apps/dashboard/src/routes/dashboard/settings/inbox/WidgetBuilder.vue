@@ -5,9 +5,7 @@
         <div class="settings-content">
           <form @submit.prevent="updateWidget">
             <woot-avatar-uploader
-              :label="
-                $t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.AVATAR.LABEL')
-              "
+              :label="$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.AVATAR.LABEL')"
               :src="avatarUrl"
               delete-avatar
               @change="handleImageUpload"
@@ -16,107 +14,53 @@
             <woot-input
               v-model.trim="websiteName"
               :class="{ error: $v.websiteName.$error }"
-              :label="
-                $t(
-                  'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WEBSITE_NAME.LABEL'
-                )
-              "
-              :placeholder="
-                $t(
-                  'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WEBSITE_NAME.PLACE_HOLDER'
-                )
-              "
+              :label="$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WEBSITE_NAME.LABEL')"
+              :placeholder="$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WEBSITE_NAME.PLACE_HOLDER')"
               :error="websiteNameValidationErrorMsg"
               @blur="$v.websiteName.$touch"
             />
             <woot-input
               v-model.trim="welcomeHeading"
-              :label="
-                $t(
-                  'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WELCOME_HEADING.LABEL'
-                )
-              "
-              :placeholder="
-                $t(
-                  'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WELCOME_HEADING.PLACE_HOLDER'
-                )
-              "
+              :label="$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WELCOME_HEADING.LABEL')"
+              :placeholder="$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WELCOME_HEADING.PLACE_HOLDER')"
             />
             <woot-input
               v-model.trim="welcomeTagline"
-              :label="
-                $t(
-                  'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WELCOME_TAGLINE.LABEL'
-                )
-              "
-              :placeholder="
-                $t(
-                  'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WELCOME_TAGLINE.PLACE_HOLDER'
-                )
-              "
+              :label="$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WELCOME_TAGLINE.LABEL')"
+              :placeholder="$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WELCOME_TAGLINE.PLACE_HOLDER')"
             />
             <label>
-              {{
-                $t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.REPLY_TIME.LABEL')
-              }}
+              {{ $t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.REPLY_TIME.LABEL') }}
               <select v-model="replyTime">
-                <option
-                  v-for="option in getReplyTimeOptions"
-                  :key="option.key"
-                  :value="option.value"
-                >
+                <option v-for="option in getReplyTimeOptions" :key="option.key" :value="option.value">
                   {{ option.text }}
                 </option>
               </select>
             </label>
             <label>
-              {{
-                $t(
-                  'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_COLOR_LABEL'
-                )
-              }}
+              {{ $t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_COLOR_LABEL') }}
               <woot-color-picker v-model="color" />
             </label>
             <input-radio-group
               name="widget-bubble-position"
-              :label="
-                $t(
-                  'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_POSITION_LABEL'
-                )
-              "
+              :label="$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_POSITION_LABEL')"
               :items="widgetBubblePositions"
               :action="handleWidgetBubblePositionChange"
             />
             <input-radio-group
               name="widget-bubble-type"
-              :label="
-                $t(
-                  'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_TYPE_LABEL'
-                )
-              "
+              :label="$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_TYPE_LABEL')"
               :items="widgetBubbleTypes"
               :action="handleWidgetBubbleTypeChange"
             />
             <woot-input
               v-model.trim="widgetBubbleLauncherTitle"
-              :label="
-                $t(
-                  'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_LAUNCHER_TITLE.LABEL'
-                )
-              "
-              :placeholder="
-                $t(
-                  'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_LAUNCHER_TITLE.PLACE_HOLDER'
-                )
-              "
+              :label="$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_LAUNCHER_TITLE.LABEL')"
+              :placeholder="$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_LAUNCHER_TITLE.PLACE_HOLDER')"
             />
             <woot-submit-button
               class="submit-button"
-              :button-text="
-                $t(
-                  'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.UPDATE.BUTTON_TEXT'
-                )
-              "
+              :button-text="$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.UPDATE.BUTTON_TEXT')"
               :loading="uiFlags.isUpdating"
               :disabled="$v.$invalid || uiFlags.isUpdating"
             />
@@ -191,32 +135,24 @@ export default {
       widgetBubblePositions: [
         {
           id: 'left',
-          title: this.$t(
-            'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_POSITION.LEFT'
-          ),
+          title: this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_POSITION.LEFT'),
           checked: false,
         },
         {
           id: 'right',
-          title: this.$t(
-            'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_POSITION.RIGHT'
-          ),
+          title: this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_POSITION.RIGHT'),
           checked: true,
         },
       ],
       widgetBubbleTypes: [
         {
           id: 'standard',
-          title: this.$t(
-            'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_TYPE.STANDARD'
-          ),
+          title: this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_TYPE.STANDARD'),
           checked: true,
         },
         {
           id: 'expanded_bubble',
-          title: this.$t(
-            'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_TYPE.EXPANDED_BUBBLE'
-          ),
+          title: this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_BUBBLE_TYPE.EXPANDED_BUBBLE'),
           checked: false,
         },
       ],
@@ -248,16 +184,12 @@ export default {
       return [
         {
           id: 'preview',
-          title: this.$t(
-            'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_VIEW_OPTION.PREVIEW'
-          ),
+          title: this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_VIEW_OPTION.PREVIEW'),
           checked: true,
         },
         {
           id: 'script',
-          title: this.$t(
-            'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_VIEW_OPTION.SCRIPT'
-          ),
+          title: this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WIDGET_VIEW_OPTION.SCRIPT'),
           checked: false,
         },
       ];
@@ -267,30 +199,22 @@ export default {
         {
           key: 'in_a_few_minutes',
           value: 'in_a_few_minutes',
-          text: this.$t(
-            'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.REPLY_TIME.IN_A_FEW_MINUTES'
-          ),
+          text: this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.REPLY_TIME.IN_A_FEW_MINUTES'),
         },
         {
           key: 'in_a_few_hours',
           value: 'in_a_few_hours',
-          text: this.$t(
-            'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.REPLY_TIME.IN_A_FEW_HOURS'
-          ),
+          text: this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.REPLY_TIME.IN_A_FEW_HOURS'),
         },
         {
           key: 'in_a_day',
           value: 'in_a_day',
-          text: this.$t(
-            'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.REPLY_TIME.IN_A_DAY'
-          ),
+          text: this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.REPLY_TIME.IN_A_DAY'),
         },
       ];
     },
     websiteNameValidationErrorMsg() {
-      return this.$v.websiteName.$error
-        ? this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WEBSITE_NAME.ERROR')
-        : '';
+      return this.$v.websiteName.$error ? this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.WEBSITE_NAME.ERROR') : '';
     },
   },
   mounted() {
@@ -302,14 +226,7 @@ export default {
   methods: {
     setDefaults() {
       // Widget Settings
-      const {
-        name,
-        welcome_title,
-        welcome_tagline,
-        widget_color,
-        reply_time,
-        avatar_url,
-      } = this.inbox;
+      const { name, welcome_title, welcome_tagline, widget_color, reply_time, avatar_url } = this.inbox;
       this.websiteName = name;
       this.welcomeHeading = welcome_title;
       this.welcomeTagline = welcome_tagline;
@@ -333,8 +250,7 @@ export default {
           }
           return item;
         });
-        this.widgetBubbleLauncherTitle =
-          savedInformation.launcherTitle || 'Chat with us';
+        this.widgetBubbleLauncherTitle = savedInformation.launcherTitle || 'Chat with us';
       }
     },
     handleWidgetBubblePositionChange(item) {
@@ -355,18 +271,12 @@ export default {
         await this.$store.dispatch('inboxes/deleteInboxAvatar', this.inbox.id);
         this.avatarFile = null;
         this.avatarUrl = '';
-        this.showAlert(
-          this.$t(
-            'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.AVATAR.DELETE.API.SUCCESS_MESSAGE'
-          )
-        );
+        this.showAlert(this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.AVATAR.DELETE.API.SUCCESS_MESSAGE'));
       } catch (error) {
         this.showAlert(
           error.message
             ? error.message
-            : this.$t(
-                'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.AVATAR.DELETE.API.ERROR_MESSAGE'
-              )
+            : this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.AVATAR.DELETE.API.ERROR_MESSAGE')
         );
       }
     },
@@ -394,18 +304,9 @@ export default {
           payload.avatar = this.avatarFile;
         }
         await this.$store.dispatch('inboxes/updateInbox', payload);
-        this.showAlert(
-          this.$t(
-            'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.UPDATE.API.SUCCESS_MESSAGE'
-          )
-        );
+        this.showAlert(this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.UPDATE.API.SUCCESS_MESSAGE'));
       } catch (error) {
-        this.showAlert(
-          error.message ||
-            this.$t(
-              'INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.UPDATE.API.ERROR_MESSAGE'
-            )
-        );
+        this.showAlert(error.message || this.$t('INBOX_MGMT.WIDGET_BUILDER.WIDGET_OPTIONS.UPDATE.API.ERROR_MESSAGE'));
       }
     },
     getSavedInboxInformation() {
@@ -422,9 +323,9 @@ export default {
   display: flex;
   flex-direction: row;
   padding: var(--space-one);
-  @include breakpoint(900px down) {
-    flex-direction: column;
-  }
+  // @include breakpoint(900px down) {
+  //   flex-direction: column;
+  // }
 }
 
 .settings-container {
@@ -450,9 +351,9 @@ export default {
     padding: var(--space-one) var(--space-one) var(--space-one) var(--space-one);
     @apply bg-slate-50 dark:bg-slate-700;
 
-    @include breakpoint(500px down) {
-      background: none;
-    }
+    // @include breakpoint(500px down) {
+    //   background: none;
+    // }
   }
   .widget-script {
     @apply mx-5 p-2.5 bg-slate-50 dark:bg-slate-700;
