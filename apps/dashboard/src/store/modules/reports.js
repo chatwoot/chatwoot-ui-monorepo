@@ -4,10 +4,7 @@ import Report from '../../api/reports';
 import { downloadCsvFile, generateFileName } from '../../helper/downloadHelper';
 import AnalyticsHelper from '../../helper/AnalyticsHelper';
 import { REPORTS_EVENTS } from '../../helper/AnalyticsHelper/events';
-import {
-  reconcileHeatmapData,
-  clampDataBetweenTimeline,
-} from '@chatwoot/shared/helpers/ReportsDataHelper';
+import { reconcileHeatmapData, clampDataBetweenTimeline } from '@chatwoot/shared/helpers/ReportsDataHelper';
 
 const state = {
   fetchingStatus: false,
@@ -100,10 +97,7 @@ export const actions = {
       let { data } = heatmapData;
       data = clampDataBetweenTimeline(data, reportObj.from, reportObj.to);
 
-      data = reconcileHeatmapData(
-        data,
-        state.overview.accountConversationHeatmap
-      );
+      data = reconcileHeatmapData(data, state.overview.accountConversationHeatmap);
 
       commit(types.default.SET_HEATMAP_DATA, data);
       commit(types.default.TOGGLE_HEATMAP_LOADING, false);
@@ -129,10 +123,7 @@ export const actions = {
     commit(types.default.TOGGLE_ACCOUNT_CONVERSATION_METRIC_LOADING, true);
     Report.getConversationMetric(reportObj.type)
       .then(accountConversationMetric => {
-        commit(
-          types.default.SET_ACCOUNT_CONVERSATION_METRIC,
-          accountConversationMetric.data
-        );
+        commit(types.default.SET_ACCOUNT_CONVERSATION_METRIC, accountConversationMetric.data);
         commit(types.default.TOGGLE_ACCOUNT_CONVERSATION_METRIC_LOADING, false);
       })
       .catch(() => {
@@ -143,10 +134,7 @@ export const actions = {
     commit(types.default.TOGGLE_AGENT_CONVERSATION_METRIC_LOADING, true);
     Report.getConversationMetric(reportObj.type, reportObj.page)
       .then(agentConversationMetric => {
-        commit(
-          types.default.SET_AGENT_CONVERSATION_METRIC,
-          agentConversationMetric.data
-        );
+        commit(types.default.SET_AGENT_CONVERSATION_METRIC, agentConversationMetric.data);
         commit(types.default.TOGGLE_AGENT_CONVERSATION_METRIC_LOADING, false);
       })
       .catch(() => {

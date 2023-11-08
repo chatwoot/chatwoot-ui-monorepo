@@ -1,9 +1,4 @@
-import {
-  OPERATOR_TYPES_1,
-  OPERATOR_TYPES_2,
-  OPERATOR_TYPES_3,
-  OPERATOR_TYPES_6,
-} from './operators';
+import { OPERATOR_TYPES_1, OPERATOR_TYPES_2, OPERATOR_TYPES_3, OPERATOR_TYPES_6 } from './operators';
 
 export const AUTOMATIONS = {
   message_created: {

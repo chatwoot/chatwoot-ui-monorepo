@@ -50,46 +50,32 @@ export const getters = {
     return $state.records;
   },
   getWhatsAppTemplates: $state => inboxId => {
-    const [inbox] = $state.records.filter(
-      record => record.id === Number(inboxId)
-    );
+    const [inbox] = $state.records.filter(record => record.id === Number(inboxId));
 
-    const {
-      message_templates: whatsAppMessageTemplates,
-      additional_attributes: additionalAttributes,
-    } = inbox || {};
+    const { message_templates: whatsAppMessageTemplates, additional_attributes: additionalAttributes } = inbox || {};
 
-    const { message_templates: apiInboxMessageTemplates } =
-      additionalAttributes || {};
-    const messagesTemplates =
-      whatsAppMessageTemplates || apiInboxMessageTemplates;
+    const { message_templates: apiInboxMessageTemplates } = additionalAttributes || {};
+    const messagesTemplates = whatsAppMessageTemplates || apiInboxMessageTemplates;
 
     // filtering out the whatsapp templates with media
     if (messagesTemplates instanceof Array) {
       return messagesTemplates.filter(template => {
-        return !template.components.some(
-          i => i.format === 'IMAGE' || i.format === 'VIDEO'
-        );
+        return !template.components.some(i => i.format === 'IMAGE' || i.format === 'VIDEO');
       });
     }
     return [];
   },
   getNewConversationInboxes($state) {
     return $state.records.filter(inbox => {
-      const { channel_type: channelType, phone_number: phoneNumber = '' } =
-        inbox;
+      const { channel_type: channelType, phone_number: phoneNumber = '' } = inbox;
 
       const isEmailChannel = channelType === INBOX_TYPES.EMAIL;
-      const isSmsChannel =
-        channelType === INBOX_TYPES.TWILIO &&
-        phoneNumber.startsWith('whatsapp');
+      const isSmsChannel = channelType === INBOX_TYPES.TWILIO && phoneNumber.startsWith('whatsapp');
       return isEmailChannel || isSmsChannel;
     });
   },
   getInbox: $state => inboxId => {
-    const [inbox] = $state.records.filter(
-      record => record.id === Number(inboxId)
-    );
+    const [inbox] = $state.records.filter(record => record.id === Number(inboxId));
     return inbox || {};
   },
   getUIFlags($state) {
@@ -99,21 +85,16 @@ export const getters = {
     return $state.records.filter(item => item.channel_type === INBOX_TYPES.WEB);
   },
   getTwilioInboxes($state) {
-    return $state.records.filter(
-      item => item.channel_type === INBOX_TYPES.TWILIO
-    );
+    return $state.records.filter(item => item.channel_type === INBOX_TYPES.TWILIO);
   },
   getSMSInboxes($state) {
     return $state.records.filter(
       item =>
-        item.channel_type === INBOX_TYPES.SMS ||
-        (item.channel_type === INBOX_TYPES.TWILIO && item.medium === 'sms')
+        item.channel_type === INBOX_TYPES.SMS || (item.channel_type === INBOX_TYPES.TWILIO && item.medium === 'sms')
     );
   },
   dialogFlowEnabledInboxes($state) {
-    return $state.records.filter(
-      item => item.channel_type !== INBOX_TYPES.EMAIL
-    );
+    return $state.records.filter(item => item.channel_type !== INBOX_TYPES.EMAIL);
   },
 };
 
@@ -202,10 +183,7 @@ export const actions = {
   updateInbox: async ({ commit }, { id, formData = true, ...inboxParams }) => {
     commit(types.default.SET_INBOXES_UI_FLAG, { isUpdating: true });
     try {
-      const response = await InboxesAPI.update(
-        id,
-        formData ? buildInboxData(inboxParams) : inboxParams
-      );
+      const response = await InboxesAPI.update(id, formData ? buildInboxData(inboxParams) : inboxParams);
       commit(types.default.EDIT_INBOXES, response.data);
       commit(types.default.SET_INBOXES_UI_FLAG, { isUpdating: false });
     } catch (error) {

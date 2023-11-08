@@ -46,8 +46,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { SearchResultContactItem },
-  template:
-    '<search-result-contact-item v-bind="$props"></search-result-contact-item>',
+  template: '<search-result-contact-item v-bind="$props"></search-result-contact-item>',
 });
 
 export const ResultContactItem = Template.bind({});

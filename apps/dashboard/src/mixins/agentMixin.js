@@ -7,9 +7,7 @@ export default {
       currentAccountId: 'getCurrentAccountId',
     }),
     assignableAgents() {
-      return this.$store.getters['inboxAssignableAgents/getAssignableAgents'](
-        this.inboxId
-      );
+      return this.$store.getters['inboxAssignableAgents/getAssignableAgents'](this.inboxId);
     },
     isAgentSelected() {
       return this.currentChat?.meta?.assignee;
@@ -28,13 +26,8 @@ export default {
       const agents = this.assignableAgents || [];
       const agentsByUpdatedPresence = this.getAgentsByUpdatedPresence(agents);
       const none = this.createNoneAgent;
-      const filteredAgentsByAvailability = this.sortedAgentsByAvailability(
-        agentsByUpdatedPresence
-      );
-      const filteredAgents = [
-        ...(this.isAgentSelected ? [none] : []),
-        ...filteredAgentsByAvailability,
-      ];
+      const filteredAgentsByAvailability = this.sortedAgentsByAvailability(agentsByUpdatedPresence);
+      const filteredAgents = [...(this.isAgentSelected ? [none] : []), ...filteredAgentsByAvailability];
       return filteredAgents;
     },
   },
@@ -57,9 +50,8 @@ export default {
         item.id === this.currentUser.id
           ? {
               ...item,
-              availability_status: this.currentUser.accounts.find(
-                account => account.id === this.currentAccountId
-              ).availability_status,
+              availability_status: this.currentUser.accounts.find(account => account.id === this.currentAccountId)
+                .availability_status,
             }
           : item
       );

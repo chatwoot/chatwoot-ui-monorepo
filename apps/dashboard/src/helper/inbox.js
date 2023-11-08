@@ -62,9 +62,7 @@ export const getInboxClassByType = (type, phoneNumber) => {
       return 'brand-twitter';
 
     case INBOX_TYPES.TWILIO:
-      return phoneNumber?.startsWith('whatsapp')
-        ? 'brand-whatsapp'
-        : 'brand-sms';
+      return phoneNumber?.startsWith('whatsapp') ? 'brand-whatsapp' : 'brand-sms';
 
     case INBOX_TYPES.WHATSAPP:
       return 'brand-whatsapp';

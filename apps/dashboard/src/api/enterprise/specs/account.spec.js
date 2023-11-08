@@ -31,16 +31,12 @@ describe('#enterpriseAccountAPI', () => {
 
     it('#checkout', () => {
       accountAPI.checkout();
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/enterprise/api/v1/checkout'
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/enterprise/api/v1/checkout');
     });
 
     it('#subscription', () => {
       accountAPI.subscription();
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/enterprise/api/v1/subscription'
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/enterprise/api/v1/subscription');
     });
   });
 });

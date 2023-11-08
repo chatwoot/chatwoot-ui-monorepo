@@ -7,10 +7,7 @@ class FBChannel extends ApiClient {
   }
 
   create(params) {
-    return axios.post(
-      `${this.url.replace(this.resource, '')}callbacks/register_facebook_page`,
-      params
-    );
+    return axios.post(`${this.url.replace(this.resource, '')}callbacks/register_facebook_page`, params);
   }
 
   reauthorizeFacebookPage({ omniauthToken, inboxId }) {

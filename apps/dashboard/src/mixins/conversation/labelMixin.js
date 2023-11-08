@@ -4,19 +4,13 @@ export default {
   computed: {
     ...mapGetters({ accountLabels: 'labels/getLabels' }),
     savedLabels() {
-      return this.$store.getters['conversationLabels/getConversationLabels'](
-        this.conversationId
-      );
+      return this.$store.getters['conversationLabels/getConversationLabels'](this.conversationId);
     },
     activeLabels() {
-      return this.accountLabels.filter(({ title }) =>
-        this.savedLabels.includes(title)
-      );
+      return this.accountLabels.filter(({ title }) => this.savedLabels.includes(title));
     },
     inactiveLabels() {
-      return this.accountLabels.filter(
-        ({ title }) => !this.savedLabels.includes(title)
-      );
+      return this.accountLabels.filter(({ title }) => !this.savedLabels.includes(title));
     },
   },
   methods: {
@@ -26,9 +20,7 @@ export default {
       this.onUpdateLabels(result);
     },
     removeLabelFromConversation(value) {
-      const result = this.activeLabels
-        .map(label => label.title)
-        .filter(label => label !== value);
+      const result = this.activeLabels.map(label => label.title).filter(label => label !== value);
       this.onUpdateLabels(result);
     },
     async onUpdateLabels(selectedLabels) {

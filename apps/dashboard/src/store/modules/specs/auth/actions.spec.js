@@ -29,9 +29,7 @@ describe('#actions', () => {
       });
       await actions.validityCheck({ commit });
       expect(setUser).toHaveBeenCalledTimes(1);
-      expect(commit.mock.calls).toEqual([
-        [types.default.SET_CURRENT_USER, { id: 1, name: 'John' }],
-      ]);
+      expect(commit.mock.calls).toEqual([[types.default.SET_CURRENT_USER, { id: 1, name: 'John' }]]);
     });
     it('sends correct actions if API is error', async () => {
       axios.get.mockRejectedValue({
@@ -49,9 +47,7 @@ describe('#actions', () => {
         headers: { expiry: 581842904 },
       });
       await actions.updateProfile({ commit }, { name: 'Pranav' });
-      expect(commit.mock.calls).toEqual([
-        [types.default.SET_CURRENT_USER, { id: 1, name: 'John' }],
-      ]);
+      expect(commit.mock.calls).toEqual([[types.default.SET_CURRENT_USER, { id: 1, name: 'John' }]]);
     });
   });
 
@@ -65,10 +61,7 @@ describe('#actions', () => {
         },
         headers: { expiry: 581842904 },
       });
-      await actions.updateAvailability(
-        { commit, dispatch },
-        { availability: 'offline', account_id: 1 }
-      );
+      await actions.updateAvailability({ commit, dispatch }, { availability: 'offline', account_id: 1 });
       expect(commit.mock.calls).toEqual([
         [
           types.default.SET_CURRENT_USER,
@@ -80,10 +73,7 @@ describe('#actions', () => {
         ],
       ]);
       expect(dispatch.mock.calls).toEqual([
-        [
-          'agents/updateSingleAgentPresence',
-          { availabilityStatus: 'offline', id: 1 },
-        ],
+        ['agents/updateSingleAgentPresence', { availabilityStatus: 'offline', id: 1 }],
       ]);
     });
   });
@@ -103,10 +93,7 @@ describe('#actions', () => {
         },
         headers: { expiry: 581842904 },
       });
-      await actions.updateAutoOffline(
-        { commit, dispatch },
-        { autoOffline: false, accountId: 1 }
-      );
+      await actions.updateAutoOffline({ commit, dispatch }, { autoOffline: false, accountId: 1 });
       expect(commit.mock.calls).toEqual([
         [
           types.default.SET_CURRENT_USER,
@@ -131,15 +118,9 @@ describe('#actions', () => {
         },
         headers: { expiry: 581842904 },
       });
-      await actions.updateUISettings(
-        { commit, dispatch },
-        { uiSettings: { is_contact_sidebar_open: false } }
-      );
+      await actions.updateUISettings({ commit, dispatch }, { uiSettings: { is_contact_sidebar_open: false } });
       expect(commit.mock.calls).toEqual([
-        [
-          types.default.SET_CURRENT_USER_UI_SETTINGS,
-          { uiSettings: { is_contact_sidebar_open: false } },
-        ],
+        [types.default.SET_CURRENT_USER_UI_SETTINGS, { uiSettings: { is_contact_sidebar_open: false } }],
         [
           types.default.SET_CURRENT_USER,
           {
@@ -181,9 +162,7 @@ describe('#actions', () => {
         },
         { 1: 'online' }
       );
-      expect(commit.mock.calls).toEqual([
-        [types.default.SET_CURRENT_USER_AVAILABILITY, 'online'],
-      ]);
+      expect(commit.mock.calls).toEqual([[types.default.SET_CURRENT_USER_AVAILABILITY, 'online']]);
     });
 
     it('does not send correct mutations if user id is not available', async () => {

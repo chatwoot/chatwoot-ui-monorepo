@@ -4,11 +4,7 @@ import ConversationApi from '../../../api/inbox/conversation';
 import MessageApi from '../../../api/inbox/message';
 import { MESSAGE_STATUS, MESSAGE_TYPE } from '@chatwoot/shared/constants/messages';
 import { createPendingMessage } from 'dashboard/helper/commons';
-import {
-  buildConversationList,
-  isOnMentionsView,
-  isOnUnattendedView,
-} from './helpers/actionHelpers';
+import { buildConversationList, isOnMentionsView, isOnUnattendedView } from './helpers/actionHelpers';
 import messageReadActions from './actions/messageReadActions';
 import messageTranslateActions from './actions/messageTranslateActions';
 // actions
@@ -29,12 +25,7 @@ const actions = {
       const {
         data: { data },
       } = await ConversationApi.get(params);
-      buildConversationList(
-        { commit, dispatch },
-        params,
-        data,
-        params.assigneeType
-      );
+      buildConversationList({ commit, dispatch }, params, data, params.assigneeType);
     } catch (error) {
       // Handle error
     }
@@ -44,12 +35,7 @@ const actions = {
     commit(types.SET_LIST_LOADING_STATUS);
     try {
       const { data } = await ConversationApi.filter(params);
-      buildConversationList(
-        { commit, dispatch },
-        params,
-        data,
-        'appliedFilters'
-      );
+      buildConversationList({ commit, dispatch }, params, data, 'appliedFilters');
     } catch (error) {
       // Handle error
     }
@@ -96,15 +82,10 @@ const actions = {
     }
   },
 
-  syncActiveConversationMessages: async (
-    { commit, state, dispatch },
-    { conversationId }
-  ) => {
+  syncActiveConversationMessages: async ({ commit, state, dispatch }, { conversationId }) => {
     const { allConversations, syncConversationsMessages } = state;
     const lastMessageId = syncConversationsMessages[conversationId];
-    const selectedChat = allConversations.find(
-      conversation => conversation.id === conversationId
-    );
+    const selectedChat = allConversations.find(conversation => conversation.id === conversationId);
     if (!selectedChat) return;
     try {
       const { messages } = selectedChat;
@@ -120,9 +101,7 @@ const actions = {
         data: meta,
       });
       // Find the messages that are not already present in the store
-      const missingMessages = payload.filter(
-        message => !messages.find(item => item.id === message.id)
-      );
+      const missingMessages = payload.filter(message => !messages.find(item => item.id === message.id));
       selectedChat.messages.push(...missingMessages);
       // Sort the messages by created_at
       const sortedMessages = selectedChat.messages.sort((a, b) => {
@@ -142,14 +121,9 @@ const actions = {
     }
   },
 
-  setConversationLastMessageId: async (
-    { commit, state },
-    { conversationId }
-  ) => {
+  setConversationLastMessageId: async ({ commit, state }, { conversationId }) => {
     const { allConversations } = state;
-    const selectedChat = allConversations.find(
-      conversation => conversation.id === conversationId
-    );
+    const selectedChat = allConversations.find(conversation => conversation.id === conversationId);
     if (!selectedChat) return;
     const { messages } = selectedChat;
     const lastMessage = messages.last();
@@ -209,23 +183,14 @@ const actions = {
     commit(types.ASSIGN_TEAM, { team, conversationId });
   },
 
-  toggleStatus: async (
-    { commit },
-    { conversationId, status, snoozedUntil = null }
-  ) => {
+  toggleStatus: async ({ commit }, { conversationId, status, snoozedUntil = null }) => {
     try {
-      const {
-        data: {
-          payload: {
-            current_status: updatedStatus,
-            snoozed_until: updatedSnoozedUntil,
-          } = {},
-        } = {},
-      } = await ConversationApi.toggleStatus({
-        conversationId,
-        status,
-        snoozedUntil,
-      });
+      const { data: { payload: { current_status: updatedStatus, snoozed_until: updatedSnoozedUntil } = {} } = {} } =
+        await ConversationApi.toggleStatus({
+          conversationId,
+          status,
+          snoozedUntil,
+        });
       commit(types.CHANGE_CONVERSATION_STATUS, {
         conversationId,
         status: updatedStatus,
@@ -257,9 +222,7 @@ const actions = {
         status: MESSAGE_STATUS.SENT,
       });
     } catch (error) {
-      const errorMessage = error.response
-        ? error.response.data.error
-        : undefined;
+      const errorMessage = error.response ? error.response.data.error : undefined;
       commit(types.ADD_MESSAGE, {
         ...pendingMessage,
         meta: {
@@ -286,10 +249,7 @@ const actions = {
     commit(types.ADD_MESSAGE, message);
   },
 
-  deleteMessage: async function deleteLabels(
-    { commit },
-    { conversationId, messageId }
-  ) {
+  deleteMessage: async function deleteLabels({ commit }, { conversationId, messageId }) {
     try {
       const { data } = await MessageApi.delete(conversationId, messageId);
       commit(types.ADD_MESSAGE, data);
@@ -307,14 +267,8 @@ const actions = {
     } = conversation;
 
     const hasAppliedFilters = !!appliedFilters.length;
-    const isMatchingInboxFilter =
-      !currentInbox || Number(currentInbox) === inboxId;
-    if (
-      !hasAppliedFilters &&
-      !isOnMentionsView(rootState) &&
-      !isOnUnattendedView(rootState) &&
-      isMatchingInboxFilter
-    ) {
+    const isMatchingInboxFilter = !currentInbox || Number(currentInbox) === inboxId;
+    if (!hasAppliedFilters && !isOnMentionsView(rootState) && !isOnUnattendedView(rootState) && isMatchingInboxFilter) {
       commit(types.ADD_CONVERSATION, conversation);
       dispatch('contacts/setContact', sender);
     }
@@ -346,10 +300,7 @@ const actions = {
     dispatch('contacts/setContact', sender);
   },
 
-  updateConversationLastActivity(
-    { commit },
-    { conversationId, lastActivityAt }
-  ) {
+  updateConversationLastActivity({ commit }, { conversationId, lastActivityAt }) {
     commit(types.UPDATE_CONVERSATION_LAST_ACTIVITY, {
       lastActivityAt,
       conversationId,
@@ -405,10 +356,7 @@ const actions = {
     }
   },
 
-  updateCustomAttributes: async (
-    { commit },
-    { conversationId, customAttributes }
-  ) => {
+  updateCustomAttributes: async ({ commit }, { conversationId, customAttributes }) => {
     try {
       const response = await ConversationApi.updateCustomAttributes({
         conversationId,

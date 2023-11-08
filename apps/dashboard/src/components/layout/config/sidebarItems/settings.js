@@ -84,9 +84,7 @@ const settings = accountId => ({
       icon: 'code',
       label: 'CUSTOM_ATTRIBUTES',
       hasSubMenu: false,
-      toState: frontendURL(
-        `accounts/${accountId}/settings/custom-attributes/list`
-      ),
+      toState: frontendURL(`accounts/${accountId}/settings/custom-attributes/list`),
       toStateName: 'attributes_list',
       featureFlag: FEATURE_FLAGS.CUSTOM_ATTRIBUTES,
     },
@@ -119,9 +117,7 @@ const settings = accountId => ({
       icon: 'chat-multiple',
       label: 'CANNED_RESPONSES',
       hasSubMenu: false,
-      toState: frontendURL(
-        `accounts/${accountId}/settings/canned-response/list`
-      ),
+      toState: frontendURL(`accounts/${accountId}/settings/canned-response/list`),
       toStateName: 'canned_list',
       featureFlag: FEATURE_FLAGS.CANNED_RESPONSES,
     },

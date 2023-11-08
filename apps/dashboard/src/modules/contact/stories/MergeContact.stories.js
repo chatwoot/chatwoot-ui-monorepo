@@ -17,8 +17,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MergeContact },
-  template:
-    '<merge-contact v-bind="$props" @submit="onSearch" @search="onSubmit"></merge-contact>',
+  template: '<merge-contact v-bind="$props" @submit="onSearch" @search="onSubmit"></merge-contact>',
 });
 
 export const List = Template.bind({});

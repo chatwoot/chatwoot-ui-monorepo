@@ -35,30 +35,22 @@ describe('#integrationAPI', () => {
     it('#connectSlack', () => {
       const code = 'SDNFJNSDFNDSJN';
       integrationAPI.connectSlack(code);
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/api/v1/integrations/slack',
-        {
-          code,
-        }
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/api/v1/integrations/slack', {
+        code,
+      });
     });
 
     it('#updateSlack', () => {
       const updateObj = { referenceId: 'SDFSDGSVE' };
       integrationAPI.updateSlack(updateObj);
-      expect(axiosMock.patch).toHaveBeenCalledWith(
-        '/api/v1/integrations/slack',
-        {
-          reference_id: updateObj.referenceId,
-        }
-      );
+      expect(axiosMock.patch).toHaveBeenCalledWith('/api/v1/integrations/slack', {
+        reference_id: updateObj.referenceId,
+      });
     });
 
     it('#listAllSlackChannels', () => {
       integrationAPI.listAllSlackChannels();
-      expect(axiosMock.get).toHaveBeenCalledWith(
-        '/api/v1/integrations/slack/list_all_channels'
-      );
+      expect(axiosMock.get).toHaveBeenCalledWith('/api/v1/integrations/slack/list_all_channels');
     });
 
     it('#delete', () => {
@@ -72,17 +64,12 @@ describe('#integrationAPI', () => {
         settings: { api_key: 'SDFSDGSVE' },
       };
       integrationAPI.createHook(hookData);
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/api/v1/integrations/hooks',
-        hookData
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/api/v1/integrations/hooks', hookData);
     });
 
     it('#deleteHook', () => {
       integrationAPI.deleteHook(2);
-      expect(axiosMock.delete).toHaveBeenCalledWith(
-        '/api/v1/integrations/hooks/2'
-      );
+      expect(axiosMock.delete).toHaveBeenCalledWith('/api/v1/integrations/hooks/2');
     });
   });
 });

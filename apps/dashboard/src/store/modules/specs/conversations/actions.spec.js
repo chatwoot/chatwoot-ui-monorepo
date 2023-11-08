@@ -26,10 +26,7 @@ describe('#actions', () => {
       });
       await actions.getConversation({ commit }, 1);
       expect(commit.mock.calls).toEqual([
-        [
-          types.UPDATE_CONVERSATION,
-          { id: 1, meta: { sender: { id: 1, name: 'Contact 1' } } },
-        ],
+        [types.UPDATE_CONVERSATION, { id: 1, meta: { sender: { id: 1, name: 'Contact 1' } } }],
         ['contacts/SET_CONTACT_ITEM', { id: 1, name: 'Contact 1' }],
       ]);
     });
@@ -60,18 +57,10 @@ describe('#actions', () => {
         meta: { sender: { id: 1, name: 'john-doe' } },
         labels: ['support'],
       };
-      actions.updateConversation(
-        { commit, rootState: { route: { name: 'home' } }, dispatch },
-        conversation
-      );
-      expect(commit.mock.calls).toEqual([
-        [types.UPDATE_CONVERSATION, conversation],
-      ]);
+      actions.updateConversation({ commit, rootState: { route: { name: 'home' } }, dispatch }, conversation);
+      expect(commit.mock.calls).toEqual([[types.UPDATE_CONVERSATION, conversation]]);
       expect(dispatch.mock.calls).toEqual([
-        [
-          'conversationLabels/setConversationLabel',
-          { id: 1, data: ['support'] },
-        ],
+        ['conversationLabels/setConversationLabel', { id: 1, data: ['support'] }],
         [
           'contacts/setContact',
           {
@@ -160,9 +149,7 @@ describe('#actions', () => {
         },
         conversation
       );
-      expect(commit.mock.calls).toEqual([
-        [types.ADD_CONVERSATION, conversation],
-      ]);
+      expect(commit.mock.calls).toEqual([[types.ADD_CONVERSATION, conversation]]);
       expect(dispatch.mock.calls).toEqual([
         [
           'contacts/setContact',
@@ -190,9 +177,7 @@ describe('#actions', () => {
         },
         conversation
       );
-      expect(commit.mock.calls).toEqual([
-        [types.ADD_CONVERSATION, conversation],
-      ]);
+      expect(commit.mock.calls).toEqual([[types.ADD_CONVERSATION, conversation]]);
       expect(dispatch.mock.calls).toEqual([
         [
           'contacts/setContact',
@@ -215,10 +200,7 @@ describe('#actions', () => {
       actions.addMessage({ commit }, message);
       expect(commit.mock.calls).toEqual([
         [types.ADD_MESSAGE, message],
-        [
-          types.SET_CONVERSATION_CAN_REPLY,
-          { conversationId: 1, canReply: true },
-        ],
+        [types.SET_CONVERSATION_CAN_REPLY, { conversationId: 1, canReply: true }],
         [types.ADD_CONVERSATION_ATTACHMENTS, message],
       ]);
     });
@@ -246,9 +228,7 @@ describe('#actions', () => {
       await actions.markMessagesRead({ commit }, { id: 1 });
       jest.runAllTimers();
       expect(commit).toHaveBeenCalledTimes(1);
-      expect(commit.mock.calls).toEqual([
-        [types.UPDATE_MESSAGE_UNREAD_COUNT, { id: 1, lastSeen }],
-      ]);
+      expect(commit.mock.calls).toEqual([[types.UPDATE_MESSAGE_UNREAD_COUNT, { id: 1, lastSeen }]]);
     });
     it('sends correct mutations if api is unsuccessful', async () => {
       axios.post.mockRejectedValue({ message: 'Incorrect header' });
@@ -266,28 +246,18 @@ describe('#actions', () => {
       await actions.markMessagesUnread({ commit }, { id: 1 });
       jest.runAllTimers();
       expect(commit).toHaveBeenCalledTimes(1);
-      expect(commit.mock.calls).toEqual([
-        [
-          types.UPDATE_MESSAGE_UNREAD_COUNT,
-          { id: 1, lastSeen, unreadCount: 1 },
-        ],
-      ]);
+      expect(commit.mock.calls).toEqual([[types.UPDATE_MESSAGE_UNREAD_COUNT, { id: 1, lastSeen, unreadCount: 1 }]]);
     });
     it('sends correct mutations if API is unsuccessful', async () => {
       axios.post.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.markMessagesUnread({ commit }, { id: 1 })
-      ).rejects.toThrow(Error);
+      await expect(actions.markMessagesUnread({ commit }, { id: 1 })).rejects.toThrow(Error);
     });
   });
 
   describe('#sendEmailTranscript', () => {
     it('sends correct mutations if api is successful', async () => {
       axios.post.mockResolvedValue({});
-      await actions.sendEmailTranscript(
-        { commit },
-        { conversationId: 1, email: 'testemail@example.com' }
-      );
+      await actions.sendEmailTranscript({ commit }, { conversationId: 1, email: 'testemail@example.com' });
       expect(commit).toHaveBeenCalledTimes(0);
       expect(commit.mock.calls).toEqual([]);
     });
@@ -311,9 +281,7 @@ describe('#actions', () => {
       });
       await actions.setCurrentChatAssignee({ commit }, { id: 1, name: 'User' });
       expect(commit).toHaveBeenCalledTimes(1);
-      expect(commit.mock.calls).toEqual([
-        ['ASSIGN_AGENT', { id: 1, name: 'User' }],
-      ]);
+      expect(commit.mock.calls).toEqual([['ASSIGN_AGENT', { id: 1, name: 'User' }]]);
     });
   });
 
@@ -328,16 +296,10 @@ describe('#actions', () => {
           },
         },
       });
-      await actions.toggleStatus(
-        { commit },
-        { conversationId: 1, status: 'snoozed' }
-      );
+      await actions.toggleStatus({ commit }, { conversationId: 1, status: 'snoozed' });
       expect(commit).toHaveBeenCalledTimes(1);
       expect(commit.mock.calls).toEqual([
-        [
-          'CHANGE_CONVERSATION_STATUS',
-          { conversationId: 1, status: 'snoozed', snoozedUntil: null },
-        ],
+        ['CHANGE_CONVERSATION_STATUS', { conversationId: 1, status: 'snoozed', snoozedUntil: null }],
       ]);
     });
   });
@@ -358,14 +320,9 @@ describe('#actions', () => {
       axios.post.mockResolvedValue({
         data: { id: 1, name: 'Team' },
       });
-      await actions.setCurrentChatTeam(
-        { commit },
-        { team: { id: 1, name: 'Team' }, conversationId: 1 }
-      );
+      await actions.setCurrentChatTeam({ commit }, { team: { id: 1, name: 'Team' }, conversationId: 1 });
       expect(commit).toHaveBeenCalledTimes(1);
-      expect(commit.mock.calls).toEqual([
-        ['ASSIGN_TEAM', { team: { id: 1, name: 'Team' }, conversationId: 1 }],
-      ]);
+      expect(commit.mock.calls).toEqual([['ASSIGN_TEAM', { team: { id: 1, name: 'Team' }, conversationId: 1 }]]);
     });
   });
 
@@ -376,10 +333,7 @@ describe('#actions', () => {
       });
       await actions.fetchFilteredConversations({ commit }, dataToSend);
       expect(commit).toHaveBeenCalledTimes(2);
-      expect(commit.mock.calls).toEqual([
-        ['SET_LIST_LOADING_STATUS'],
-        ['SET_ALL_CONVERSATION', dataReceived.payload],
-      ]);
+      expect(commit.mock.calls).toEqual([['SET_LIST_LOADING_STATUS'], ['SET_ALL_CONVERSATION', dataReceived.payload]]);
     });
   });
 
@@ -394,9 +348,7 @@ describe('#actions', () => {
         },
       ];
       actions.setConversationFilters({ commit }, filters);
-      expect(commit.mock.calls).toEqual([
-        [types.SET_CONVERSATION_FILTERS, filters],
-      ]);
+      expect(commit.mock.calls).toEqual([[types.SET_CONVERSATION_FILTERS, filters]]);
     });
   });
 
@@ -409,28 +361,17 @@ describe('#actions', () => {
 
   describe('#updateConversationLastActivity', () => {
     it('sends correct action', async () => {
-      await actions.updateConversationLastActivity(
-        { commit },
-        { conversationId: 1, lastActivityAt: 12121212 }
-      );
+      await actions.updateConversationLastActivity({ commit }, { conversationId: 1, lastActivityAt: 12121212 });
       expect(commit.mock.calls).toEqual([
-        [
-          'UPDATE_CONVERSATION_LAST_ACTIVITY',
-          { conversationId: 1, lastActivityAt: 12121212 },
-        ],
+        ['UPDATE_CONVERSATION_LAST_ACTIVITY', { conversationId: 1, lastActivityAt: 12121212 }],
       ]);
     });
   });
 
   describe('#setChatSortFilter', () => {
     it('sends correct action', async () => {
-      await actions.setChatSortFilter(
-        { commit },
-        { data: 'sort_on_created_at' }
-      );
-      expect(commit.mock.calls).toEqual([
-        ['CHANGE_CHAT_SORT_FILTER', { data: 'sort_on_created_at' }],
-      ]);
+      await actions.setChatSortFilter({ commit }, { data: 'sort_on_created_at' });
+      expect(commit.mock.calls).toEqual([['CHANGE_CHAT_SORT_FILTER', { data: 'sort_on_created_at' }]]);
     });
   });
 });
@@ -450,9 +391,7 @@ describe('#deleteMessage', () => {
   it('sends no actions if API is error', async () => {
     const [conversationId, messageId] = [1, 1];
     axios.delete.mockRejectedValue({ message: 'Incorrect header' });
-    await expect(
-      actions.deleteMessage({ commit }, { conversationId, messageId })
-    ).rejects.toThrow(Error);
+    await expect(actions.deleteMessage({ commit }, { conversationId, messageId })).rejects.toThrow(Error);
     expect(commit.mock.calls).toEqual([]);
   });
 
@@ -468,19 +407,14 @@ describe('#deleteMessage', () => {
           customAttributes: { order_d: '1001' },
         }
       );
-      expect(commit.mock.calls).toEqual([
-        [types.UPDATE_CONVERSATION_CUSTOM_ATTRIBUTES, { order_d: '1001' }],
-      ]);
+      expect(commit.mock.calls).toEqual([[types.UPDATE_CONVERSATION_CUSTOM_ATTRIBUTES, { order_d: '1001' }]]);
     });
   });
 });
 
 describe('#addMentions', () => {
   it('does not send mutations if the view is not mentions', () => {
-    actions.addMentions(
-      { commit, dispatch, rootState: { route: { name: 'home' } } },
-      { id: 1 }
-    );
+    actions.addMentions({ commit, dispatch, rootState: { route: { name: 'home' } } }, { id: 1 });
     expect(commit.mock.calls).toEqual([]);
     expect(dispatch.mock.calls).toEqual([]);
   });
@@ -493,9 +427,7 @@ describe('#addMentions', () => {
       },
       { id: 1, meta: { sender: { id: 1 } } }
     );
-    expect(dispatch.mock.calls).toEqual([
-      ['updateConversation', { id: 1, meta: { sender: { id: 1 } } }],
-    ]);
+    expect(dispatch.mock.calls).toEqual([['updateConversation', { id: 1, meta: { sender: { id: 1 } } }]]);
   });
 
   it('#syncActiveConversationMessages', async () => {
@@ -553,10 +485,7 @@ describe('#addMentions', () => {
           ],
         },
       ],
-      [
-        'SET_LAST_MESSAGE_ID_FOR_SYNC_CONVERSATION',
-        { conversationId: 1, messageId: null },
-      ],
+      ['SET_LAST_MESSAGE_ID_FOR_SYNC_CONVERSATION', { conversationId: 1, messageId: null }],
     ]);
   });
 

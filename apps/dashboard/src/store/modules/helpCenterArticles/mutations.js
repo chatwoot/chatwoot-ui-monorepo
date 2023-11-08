@@ -44,8 +44,7 @@ export const mutations = {
     $state.articles.allIds.push(articleId);
   },
   [types.UPDATE_ARTICLE_FLAG]: ($state, { articleId, uiFlags }) => {
-    const flags =
-      Object.keys($state.articles.uiFlags.byId).includes(articleId) || {};
+    const flags = Object.keys($state.articles.uiFlags.byId).includes(articleId) || {};
 
     Vue.set($state.articles.uiFlags.byId, articleId, {
       ...{
@@ -80,8 +79,6 @@ export const mutations = {
     Vue.set($state.articles, 'byId', newById);
   },
   [types.REMOVE_ARTICLE_ID]($state, articleId) {
-    $state.articles.allIds = $state.articles.allIds.filter(
-      id => id !== articleId
-    );
+    $state.articles.allIds = $state.articles.allIds.filter(id => id !== articleId);
   },
 };

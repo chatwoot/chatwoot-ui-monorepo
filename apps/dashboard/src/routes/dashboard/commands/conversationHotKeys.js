@@ -72,19 +72,13 @@ export default {
     },
 
     statusActions() {
-      const isOpen =
-        this.currentChat?.status === wootConstants.STATUS_TYPE.OPEN;
-      const isSnoozed =
-        this.currentChat?.status === wootConstants.STATUS_TYPE.SNOOZED;
-      const isResolved =
-        this.currentChat?.status === wootConstants.STATUS_TYPE.RESOLVED;
+      const isOpen = this.currentChat?.status === wootConstants.STATUS_TYPE.OPEN;
+      const isSnoozed = this.currentChat?.status === wootConstants.STATUS_TYPE.SNOOZED;
+      const isResolved = this.currentChat?.status === wootConstants.STATUS_TYPE.RESOLVED;
 
       let actions = [];
       if (isOpen) {
-        actions = [
-          ...OPEN_CONVERSATION_ACTIONS,
-          ...SNOOZE_CONVERSATION_ACTIONS,
-        ];
+        actions = [...OPEN_CONVERSATION_ACTIONS, ...SNOOZE_CONVERSATION_ACTIONS];
       } else if (isResolved || isSnoozed) {
         actions = RESOLVED_CONVERSATION_ACTIONS;
       }
@@ -230,19 +224,14 @@ export default {
       return this.addLabelActions;
     },
     conversationAdditionalActions() {
-      return this.prepareActions([
-        this.currentChat.muted ? UNMUTE_ACTION : MUTE_ACTION,
-        SEND_TRANSCRIPT_ACTION,
-      ]);
+      return this.prepareActions([this.currentChat.muted ? UNMUTE_ACTION : MUTE_ACTION, SEND_TRANSCRIPT_ACTION]);
     },
 
     nonDraftMessageAIAssistActions() {
       if (this.replyMode === REPLY_EDITOR_MODES.REPLY) {
         return [
           {
-            label: this.$t(
-              'INTEGRATION_SETTINGS.OPEN_AI.OPTIONS.REPLY_SUGGESTION'
-            ),
+            label: this.$t('INTEGRATION_SETTINGS.OPEN_AI.OPTIONS.REPLY_SUGGESTION'),
             key: 'reply_suggestion',
             icon: ICON_AI_ASSIST,
           },
@@ -265,9 +254,7 @@ export default {
           icon: ICON_AI_ASSIST,
         },
         {
-          label: this.$t(
-            'INTEGRATION_SETTINGS.OPEN_AI.OPTIONS.FIX_SPELLING_GRAMMAR'
-          ),
+          label: this.$t('INTEGRATION_SETTINGS.OPEN_AI.OPTIONS.FIX_SPELLING_GRAMMAR'),
           key: 'fix_spelling_grammar',
           icon: ICON_AI_GRAMMAR,
         },
@@ -300,9 +287,7 @@ export default {
     },
 
     AIAssistActions() {
-      const aiOptions = this.draftMessage
-        ? this.draftMessageAIAssistActions
-        : this.nonDraftMessageAIAssistActions;
+      const aiOptions = this.draftMessage ? this.draftMessageAIAssistActions : this.nonDraftMessageAIAssistActions;
       const options = aiOptions.map(item => ({
         id: `ai-assist-${item.key}`,
         title: item.label,

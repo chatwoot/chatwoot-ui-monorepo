@@ -57,9 +57,7 @@ export function extractChangedAccountUserValues(auditedChanges) {
   // Check availability
   if (auditedChanges.availability && auditedChanges.availability.length) {
     changes.push('availability');
-    values.push(
-      availabilityMapping[extractAttrChange(auditedChanges.availability)]
-    );
+    values.push(availabilityMapping[extractAttrChange(auditedChanges.availability)]);
   }
 
   return { changes, values };
@@ -77,10 +75,7 @@ function getAgentName(userId, agentList) {
 }
 
 function handleAccountUserCreate(auditLogItem, translationPayload, agentList) {
-  translationPayload.invitee = getAgentName(
-    auditLogItem.audited_changes.user_id,
-    agentList
-  );
+  translationPayload.invitee = getAgentName(auditLogItem.audited_changes.user_id, agentList);
 
   const roleKey = auditLogItem.audited_changes.role;
   translationPayload.role = roleMapping[roleKey] || 'unknown'; // 'unknown' as a fallback in case an unrecognized key is provided
@@ -90,15 +85,10 @@ function handleAccountUserCreate(auditLogItem, translationPayload, agentList) {
 
 function handleAccountUserUpdate(auditLogItem, translationPayload, agentList) {
   if (auditLogItem.user_id !== auditLogItem.auditable.user_id) {
-    translationPayload.user = getAgentName(
-      auditLogItem.auditable.user_id,
-      agentList
-    );
+    translationPayload.user = getAgentName(auditLogItem.auditable.user_id, agentList);
   }
 
-  const accountUserChanges = extractChangedAccountUserValues(
-    auditLogItem.audited_changes
-  );
+  const accountUserChanges = extractChangedAccountUserValues(auditLogItem.audited_changes);
   if (accountUserChanges) {
     translationPayload.attributes = accountUserChanges.changes;
     translationPayload.values = accountUserChanges.values;
@@ -130,23 +120,14 @@ function setInboxIdInPayload(auditLogItem, translationPayload) {
 
 function handleInboxTeamMember(auditLogItem, translationPayload, agentList) {
   if (auditLogItem.audited_changes) {
-    translationPayload = setUserInPayload(
-      auditLogItem,
-      translationPayload,
-      agentList
-    );
+    translationPayload = setUserInPayload(auditLogItem, translationPayload, agentList);
     translationPayload = setTeamIdInPayload(auditLogItem, translationPayload);
     translationPayload = setInboxIdInPayload(auditLogItem, translationPayload);
   }
   return translationPayload;
 }
 
-function handleAccountUser(
-  auditLogItem,
-  translationPayload,
-  agentList,
-  action
-) {
+function handleAccountUser(auditLogItem, translationPayload, agentList, action) {
   if (action === 'create') {
     return handleAccountUserCreate(auditLogItem, translationPayload, agentList);
   }
@@ -168,20 +149,11 @@ export function generateTranslationPayload(auditLogItem, agentList) {
   const action = auditLogItem.action.toLowerCase();
 
   if (auditableType === 'accountuser') {
-    translationPayload = handleAccountUser(
-      auditLogItem,
-      translationPayload,
-      agentList,
-      action
-    );
+    translationPayload = handleAccountUser(auditLogItem, translationPayload, agentList, action);
   }
 
   if (auditableType === 'inboxmember' || auditableType === 'teammember') {
-    translationPayload = handleInboxTeamMember(
-      auditLogItem,
-      translationPayload,
-      agentList
-    );
+    translationPayload = handleInboxTeamMember(auditLogItem, translationPayload, agentList);
   }
 
   return translationPayload;
@@ -193,10 +165,7 @@ export const generateLogActionKey = auditLogItem => {
   let logActionKey = `${auditableType}:${action}`;
 
   if (auditableType === 'accountuser' && action === 'update') {
-    logActionKey +=
-      auditLogItem.user_id === auditLogItem.auditable.user_id
-        ? ':self'
-        : ':other';
+    logActionKey += auditLogItem.user_id === auditLogItem.auditable.user_id ? ':self' : ':other';
   }
 
   return translationKeys[logActionKey] || '';

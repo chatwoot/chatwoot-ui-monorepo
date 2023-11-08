@@ -45,12 +45,7 @@ export const createWhatsAppConversationPayload = ({ params }) => {
   return payload;
 };
 
-const setNewConversationPayload = ({
-  isFromWhatsApp,
-  params,
-  contactId,
-  files,
-}) => {
+const setNewConversationPayload = ({ isFromWhatsApp, params, contactId, files }) => {
   if (isFromWhatsApp) {
     return createWhatsAppConversationPayload({ params });
   }
@@ -141,9 +136,7 @@ export const mutations = {
     const conversations = $state.records[id] || [];
 
     const updatedConversations = [...conversations];
-    const index = conversations.findIndex(
-      conversation => conversation.id === data.id
-    );
+    const index = conversations.findIndex(conversation => conversation.id === data.id);
 
     if (index !== -1) {
       updatedConversations[index] = { ...conversations[index], ...data };

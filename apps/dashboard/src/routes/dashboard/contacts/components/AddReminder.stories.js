@@ -16,8 +16,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { AddReminder },
-  template:
-    '<add-reminder v-bind="$props" @add="onAdd" @click="onClick"></add-reminder>',
+  template: '<add-reminder v-bind="$props" @add="onAdd" @click="onClick"></add-reminder>',
 });
 
 export const Add = Template.bind({});

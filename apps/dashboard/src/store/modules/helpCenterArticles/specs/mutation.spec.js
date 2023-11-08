@@ -30,14 +30,12 @@ describe('#mutations', () => {
       mutations[types.ADD_ARTICLE](state, {
         id: 3,
         category_id: 1,
-        title:
-          'How do I change my registered email address and/or phone number?',
+        title: 'How do I change my registered email address and/or phone number?',
       });
       expect(state.articles.byId[3]).toEqual({
         id: 3,
         category_id: 1,
-        title:
-          'How do I change my registered email address and/or phone number?',
+        title: 'How do I change my registered email address and/or phone number?',
       });
     });
     it('does not add article with empty data passed', () => {
@@ -84,9 +82,7 @@ describe('#mutations', () => {
         id: 2,
         title: 'How do I change my registered email address',
       });
-      expect(state.articles.byId[2].title).toEqual(
-        'How do I change my registered email address'
-      );
+      expect(state.articles.byId[2].title).toEqual('How do I change my registered email address');
     });
   });
 

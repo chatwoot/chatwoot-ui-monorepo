@@ -22,10 +22,7 @@ describe('#actions', () => {
         [types.SET_NOTIFICATIONS_UI_FLAG, { isFetching: true }],
         [types.CLEAR_NOTIFICATIONS],
         [types.SET_NOTIFICATIONS, [{ id: 1 }]],
-        [
-          types.SET_NOTIFICATIONS_META,
-          { count: 3, current_page: 1, unread_count: 2 },
-        ],
+        [types.SET_NOTIFICATIONS_META, { count: 3, current_page: 1, unread_count: 2 }],
         [types.SET_NOTIFICATIONS_UI_FLAG, { isFetching: false }],
       ]);
     });
@@ -93,9 +90,7 @@ describe('#actions', () => {
   describe('#addNotification', () => {
     it('sends correct actions if API is success', async () => {
       await actions.addNotification({ commit }, { data: 1 });
-      expect(commit.mock.calls).toEqual([
-        [types.ADD_NOTIFICATION, { data: 1 }],
-      ]);
+      expect(commit.mock.calls).toEqual([[types.ADD_NOTIFICATION, { data: 1 }]]);
     });
   });
 });

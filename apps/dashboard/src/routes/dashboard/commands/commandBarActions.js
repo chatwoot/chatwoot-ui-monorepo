@@ -44,8 +44,7 @@ export const SNOOZE_CONVERSATION_ACTIONS = [
     parent: 'snooze_conversation',
     section: 'COMMAND_BAR.SECTIONS.SNOOZE_CONVERSATION',
     icon: ICON_SNOOZE_CONVERSATION,
-    handler: () =>
-      bus.$emit(CMD_SNOOZE_CONVERSATION, SNOOZE_OPTIONS.UNTIL_NEXT_REPLY),
+    handler: () => bus.$emit(CMD_SNOOZE_CONVERSATION, SNOOZE_OPTIONS.UNTIL_NEXT_REPLY),
   },
   {
     id: SNOOZE_OPTIONS.AN_HOUR_FROM_NOW,
@@ -53,8 +52,7 @@ export const SNOOZE_CONVERSATION_ACTIONS = [
     parent: 'snooze_conversation',
     section: 'COMMAND_BAR.SECTIONS.SNOOZE_CONVERSATION',
     icon: ICON_SNOOZE_CONVERSATION,
-    handler: () =>
-      bus.$emit(CMD_SNOOZE_CONVERSATION, SNOOZE_OPTIONS.AN_HOUR_FROM_NOW),
+    handler: () => bus.$emit(CMD_SNOOZE_CONVERSATION, SNOOZE_OPTIONS.AN_HOUR_FROM_NOW),
   },
   {
     id: SNOOZE_OPTIONS.UNTIL_TOMORROW,
@@ -62,8 +60,7 @@ export const SNOOZE_CONVERSATION_ACTIONS = [
     section: 'COMMAND_BAR.SECTIONS.SNOOZE_CONVERSATION',
     parent: 'snooze_conversation',
     icon: ICON_SNOOZE_CONVERSATION,
-    handler: () =>
-      bus.$emit(CMD_SNOOZE_CONVERSATION, SNOOZE_OPTIONS.UNTIL_TOMORROW),
+    handler: () => bus.$emit(CMD_SNOOZE_CONVERSATION, SNOOZE_OPTIONS.UNTIL_TOMORROW),
   },
   {
     id: SNOOZE_OPTIONS.UNTIL_NEXT_WEEK,
@@ -71,8 +68,7 @@ export const SNOOZE_CONVERSATION_ACTIONS = [
     section: 'COMMAND_BAR.SECTIONS.SNOOZE_CONVERSATION',
     parent: 'snooze_conversation',
     icon: ICON_SNOOZE_CONVERSATION,
-    handler: () =>
-      bus.$emit(CMD_SNOOZE_CONVERSATION, SNOOZE_OPTIONS.UNTIL_NEXT_WEEK),
+    handler: () => bus.$emit(CMD_SNOOZE_CONVERSATION, SNOOZE_OPTIONS.UNTIL_NEXT_WEEK),
   },
   {
     id: SNOOZE_OPTIONS.UNTIL_NEXT_MONTH,
@@ -80,8 +76,7 @@ export const SNOOZE_CONVERSATION_ACTIONS = [
     section: 'COMMAND_BAR.SECTIONS.SNOOZE_CONVERSATION',
     parent: 'snooze_conversation',
     icon: ICON_SNOOZE_CONVERSATION,
-    handler: () =>
-      bus.$emit(CMD_SNOOZE_CONVERSATION, SNOOZE_OPTIONS.UNTIL_NEXT_MONTH),
+    handler: () => bus.$emit(CMD_SNOOZE_CONVERSATION, SNOOZE_OPTIONS.UNTIL_NEXT_MONTH),
   },
   {
     id: SNOOZE_OPTIONS.UNTIL_CUSTOM_TIME,
@@ -89,8 +84,7 @@ export const SNOOZE_CONVERSATION_ACTIONS = [
     section: 'COMMAND_BAR.SECTIONS.SNOOZE_CONVERSATION',
     parent: 'snooze_conversation',
     icon: ICON_SNOOZE_CONVERSATION,
-    handler: () =>
-      bus.$emit(CMD_SNOOZE_CONVERSATION, SNOOZE_OPTIONS.UNTIL_CUSTOM_TIME),
+    handler: () => bus.$emit(CMD_SNOOZE_CONVERSATION, SNOOZE_OPTIONS.UNTIL_CUSTOM_TIME),
   },
 ];
 

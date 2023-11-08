@@ -342,9 +342,7 @@ describe('#getters', () => {
           },
         ],
       };
-      expect(
-        getters.getLastEmailInSelectedChat(state, { getSelectedChat })
-      ).toEqual({
+      expect(getters.getLastEmailInSelectedChat(state, { getSelectedChat })).toEqual({
         message_type: 1,
         content_attributes: {
           email: {
@@ -371,9 +369,7 @@ describe('#getters', () => {
           },
         ],
       };
-      expect(
-        getters.getSelectedChatAttachments(state, { getSelectedChat })
-      ).toEqual([
+      expect(getters.getSelectedChatAttachments(state, { getSelectedChat })).toEqual([
         {
           id: 1,
           file_name: 'test1',

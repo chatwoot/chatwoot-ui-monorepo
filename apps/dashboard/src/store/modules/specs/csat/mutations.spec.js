@@ -13,12 +13,8 @@ describe('#mutations', () => {
   describe('#SET_CSAT_RESPONSE', () => {
     it('set records correctly', () => {
       const state = { records: [] };
-      mutations[types.SET_CSAT_RESPONSE](state, [
-        { id: 1, rating: 1, feedback_text: 'Bad' },
-      ]);
-      expect(state.records).toEqual([
-        { id: 1, rating: 1, feedback_text: 'Bad' },
-      ]);
+      mutations[types.SET_CSAT_RESPONSE](state, [{ id: 1, rating: 1, feedback_text: 'Bad' }]);
+      expect(state.records).toEqual([{ id: 1, rating: 1, feedback_text: 'Bad' }]);
     });
   });
 

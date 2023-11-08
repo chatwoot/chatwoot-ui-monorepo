@@ -180,10 +180,7 @@ export default {
     goToCommandHotKeys() {
       let commands = GO_TO_COMMANDS.filter(cmd => {
         if (cmd.featureFlag) {
-          return this.isFeatureEnabledonAccount(
-            this.accountId,
-            cmd.featureFlag
-          );
+          return this.isFeatureEnabledonAccount(this.accountId, cmd.featureFlag);
         }
         return true;
       });

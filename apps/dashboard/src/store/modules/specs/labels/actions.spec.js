@@ -72,9 +72,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.patch.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(actions.update({ commit }, labelsList[0])).rejects.toThrow(
-        Error
-      );
+      await expect(actions.update({ commit }, labelsList[0])).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_LABEL_UI_FLAG, { isUpdating: true }],
         [types.default.SET_LABEL_UI_FLAG, { isUpdating: false }],
@@ -94,9 +92,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.delete.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.delete({ commit }, labelsList[0].id)
-      ).rejects.toThrow(Error);
+      await expect(actions.delete({ commit }, labelsList[0].id)).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_LABEL_UI_FLAG, { isDeleting: true }],
         [types.default.SET_LABEL_UI_FLAG, { isDeleting: false }],

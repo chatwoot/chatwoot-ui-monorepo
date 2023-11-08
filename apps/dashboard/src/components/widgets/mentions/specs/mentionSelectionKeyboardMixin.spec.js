@@ -16,10 +16,7 @@ describe('mentionSelectionKeyboardMixin', () => {
     const Component = buildComponent({});
     shallowMount(Component);
     // undefined expected as the method is not defined in the component
-    expect(document.addEventListener).toHaveBeenCalledWith(
-      'keydown',
-      undefined
-    );
+    expect(document.addEventListener).toHaveBeenCalledWith('keydown', undefined);
   });
 
   test('processKeyDownEvent updates index on arrow up', () => {

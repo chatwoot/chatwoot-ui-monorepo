@@ -1,7 +1,5 @@
 import i18n from 'widget/i18n/index';
-const defaultTranslations = Object.fromEntries(
-  Object.entries(i18n).filter(([key]) => key.includes('en'))
-).en;
+const defaultTranslations = Object.fromEntries(Object.entries(i18n).filter(([key]) => key.includes('en'))).en;
 
 export const standardFieldKeys = {
   emailAddress: {
@@ -22,9 +20,7 @@ export const standardFieldKeys = {
 };
 
 export const getLabel = ({ key, label }) => {
-  return defaultTranslations.PRE_CHAT_FORM.FIELDS[key]
-    ? defaultTranslations.PRE_CHAT_FORM.FIELDS[key].LABEL
-    : label;
+  return defaultTranslations.PRE_CHAT_FORM.FIELDS[key] ? defaultTranslations.PRE_CHAT_FORM.FIELDS[key].LABEL : label;
 };
 export const getPlaceHolder = ({ key, placeholder }) => {
   return defaultTranslations.PRE_CHAT_FORM.FIELDS[key]
@@ -36,9 +32,7 @@ export const getCustomFields = ({ standardFields, customAttributes }) => {
   let customFields = [];
   const { pre_chat_fields: preChatFields } = standardFields;
   customAttributes.forEach(attribute => {
-    const itemExist = preChatFields.find(
-      item => item.name === attribute.attribute_key
-    );
+    const itemExist = preChatFields.find(item => item.name === attribute.attribute_key);
     if (!itemExist) {
       customFields.push({
         label: attribute.attribute_display_name,
@@ -71,10 +65,7 @@ export const getFormattedPreChatFields = ({ preChatFields }) => {
   });
 };
 
-export const getPreChatFields = ({
-  preChatFormOptions = {},
-  customAttributes = [],
-}) => {
+export const getPreChatFields = ({ preChatFormOptions = {}, customAttributes = [] }) => {
   const { pre_chat_message, pre_chat_fields } = preChatFormOptions;
   let customFields = {};
   let preChatFields = {};

@@ -8,26 +8,17 @@ import {
 
 describe('#getTypingUsersText', () => {
   it('returns the correct text is there is only one typing user', () => {
-    expect(getTypingUsersText([{ name: 'Pranav' }])).toEqual(
-      'Pranav is typing'
-    );
+    expect(getTypingUsersText([{ name: 'Pranav' }])).toEqual('Pranav is typing');
   });
 
   it('returns the correct text is there are two typing users', () => {
-    expect(
-      getTypingUsersText([{ name: 'Pranav' }, { name: 'Nithin' }])
-    ).toEqual('Pranav and Nithin are typing');
+    expect(getTypingUsersText([{ name: 'Pranav' }, { name: 'Nithin' }])).toEqual('Pranav and Nithin are typing');
   });
 
   it('returns the correct text is there are more than two users are typing', () => {
-    expect(
-      getTypingUsersText([
-        { name: 'Pranav' },
-        { name: 'Nithin' },
-        { name: 'Subin' },
-        { name: 'Sojan' },
-      ])
-    ).toEqual('Pranav and 3 others are typing');
+    expect(getTypingUsersText([{ name: 'Pranav' }, { name: 'Nithin' }, { name: 'Subin' }, { name: 'Sojan' }])).toEqual(
+      'Pranav and 3 others are typing'
+    );
   });
 });
 
@@ -92,17 +83,13 @@ describe('#createPendingMessage', () => {
 
 describe('convertToAttributeSlug', () => {
   it('should convert to slug', () => {
-    expect(convertToAttributeSlug('Test@%^&*(){}>.!@`~_ ing')).toBe(
-      'test__ing'
-    );
+    expect(convertToAttributeSlug('Test@%^&*(){}>.!@`~_ ing')).toBe('test__ing');
   });
 });
 
 describe('convertToCategorySlug', () => {
   it('should convert to slug', () => {
-    expect(convertToCategorySlug('User profile guide')).toBe(
-      'user-profile-guide'
-    );
+    expect(convertToCategorySlug('User profile guide')).toBe('user-profile-guide');
   });
 });
 

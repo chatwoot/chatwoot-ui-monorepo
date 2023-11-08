@@ -27,9 +27,7 @@ describe('#generateBotMessageContent', () => {
           },
         },
       })
-    ).toEqual(
-      '<div><strong>Rating</strong></div><p>😍</p><div><strong>Feedback</strong></div><p>Great Service</p>'
-    );
+    ).toEqual('<div><strong>Rating</strong></div><p>😍</p><div><strong>Feedback</strong></div><p>Great Service</p>');
 
     expect(
       generateBotMessageContent(

@@ -2,10 +2,7 @@ import axios from 'axios';
 import Contacts from '../../contacts';
 import types from '../../../mutation-types';
 import contactList from './fixtures';
-import {
-  DuplicateContactException,
-  ExceptionWithMessage,
-} from '../../../../../shared/helpers/CustomErrors';
+import { DuplicateContactException, ExceptionWithMessage } from '../../../../../shared/helpers/CustomErrors';
 import { filterApiResponse } from './filterApiResponse';
 
 const { actions } = Contacts;
@@ -88,9 +85,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.patch.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(actions.update({ commit }, contactList[0])).rejects.toThrow(
-        Error
-      );
+      await expect(actions.update({ commit }, contactList[0])).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_CONTACT_UI_FLAG, { isUpdating: true }],
         [types.SET_CONTACT_UI_FLAG, { isUpdating: false }],
@@ -142,9 +137,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.post.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(actions.create({ commit }, contactList[0])).rejects.toThrow(
-        Error
-      );
+      await expect(actions.create({ commit }, contactList[0])).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_CONTACT_UI_FLAG, { isCreating: true }],
         [types.SET_CONTACT_UI_FLAG, { isCreating: false }],
@@ -185,9 +178,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.delete.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.delete({ commit }, contactList[0].id)
-      ).rejects.toThrow(Error);
+      await expect(actions.delete({ commit }, contactList[0].id)).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_CONTACT_UI_FLAG, { isDeleting: true }],
         [types.SET_CONTACT_UI_FLAG, { isDeleting: false }],
@@ -217,9 +208,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.post.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.merge({ commit }, { childId: 0, parentId: 1 })
-      ).rejects.toThrow(Error);
+      await expect(actions.merge({ commit }, { childId: 0, parentId: 1 })).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_CONTACT_UI_FLAG, { isMerging: true }],
         [types.SET_CONTACT_UI_FLAG, { isMerging: false }],
@@ -233,11 +222,7 @@ describe('#actions', () => {
       expect(commit.mock.calls).toEqual([
         [types.DELETE_CONTACT, contactList[0].id],
         [types.CLEAR_CONTACT_CONVERSATIONS, contactList[0].id, { root: true }],
-        [
-          `contactConversations/${types.DELETE_CONTACT_CONVERSATION}`,
-          contactList[0].id,
-          { root: true },
-        ],
+        [`contactConversations/${types.DELETE_CONTACT_CONVERSATION}`, contactList[0].id, { root: true }],
       ]);
     });
   });
@@ -254,9 +239,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.patch.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(actions.update({ commit }, contactList[0])).rejects.toThrow(
-        Error
-      );
+      await expect(actions.update({ commit }, contactList[0])).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_CONTACT_UI_FLAG, { isUpdating: true }],
         [types.SET_CONTACT_UI_FLAG, { isUpdating: false }],
@@ -266,19 +249,13 @@ describe('#actions', () => {
   describe('#deleteCustomAttributes', () => {
     it('sends correct mutations if API is success', async () => {
       axios.post.mockResolvedValue({ data: { payload: contactList[0] } });
-      await actions.deleteCustomAttributes(
-        { commit },
-        { id: 1, customAttributes: ['cloud-customer'] }
-      );
+      await actions.deleteCustomAttributes({ commit }, { id: 1, customAttributes: ['cloud-customer'] });
       expect(commit.mock.calls).toEqual([[types.EDIT_CONTACT, contactList[0]]]);
     });
     it('sends correct actions if API is error', async () => {
       axios.patch.mockRejectedValue({ message: 'Incorrect header' });
       await expect(
-        actions.deleteCustomAttributes(
-          { commit },
-          { id: 1, customAttributes: ['cloud-customer'] }
-        )
+        actions.deleteCustomAttributes({ commit }, { id: 1, customAttributes: ['cloud-customer'] })
       ).rejects.toThrow(Error);
     });
   });
@@ -330,9 +307,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.delete.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.deleteAvatar({ commit }, contactList[0].id)
-      ).rejects.toThrow(Error);
+      await expect(actions.deleteAvatar({ commit }, contactList[0].id)).rejects.toThrow(Error);
     });
   });
 });

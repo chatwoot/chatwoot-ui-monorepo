@@ -15,13 +15,7 @@ export default {
     {
       path: frontendURL('accounts/:account_id'),
       component: AppContainer,
-      children: [
-        ...conversation.routes,
-        ...settings.routes,
-        ...contactRoutes,
-        ...searchRoutes,
-        ...notificationRoutes,
-      ],
+      children: [...conversation.routes, ...settings.routes, ...contactRoutes, ...searchRoutes, ...notificationRoutes],
     },
     {
       path: frontendURL('accounts/:accountId/suspended'),

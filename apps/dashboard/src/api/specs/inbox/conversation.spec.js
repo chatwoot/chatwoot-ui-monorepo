@@ -65,51 +65,37 @@ describe('#ConversationAPI', () => {
         page: 1,
       });
 
-      expect(axiosMock.get).toHaveBeenCalledWith(
-        '/api/v1/conversations/search',
-        {
-          params: {
-            q: 'leads',
-            page: 1,
-          },
-        }
-      );
+      expect(axiosMock.get).toHaveBeenCalledWith('/api/v1/conversations/search', {
+        params: {
+          q: 'leads',
+          page: 1,
+        },
+      });
     });
 
     it('#toggleStatus', () => {
       conversationAPI.toggleStatus({ conversationId: 12, status: 'online' });
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        `/api/v1/conversations/12/toggle_status`,
-        {
-          status: 'online',
-          snoozed_until: null,
-        }
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith(`/api/v1/conversations/12/toggle_status`, {
+        status: 'online',
+        snoozed_until: null,
+      });
     });
 
     it('#assignAgent', () => {
       conversationAPI.assignAgent({ conversationId: 12, agentId: 34 });
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        `/api/v1/conversations/12/assignments?assignee_id=34`,
-        {}
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith(`/api/v1/conversations/12/assignments?assignee_id=34`, {});
     });
 
     it('#assignTeam', () => {
       conversationAPI.assignTeam({ conversationId: 12, teamId: 1 });
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        `/api/v1/conversations/12/assignments`,
-        {
-          team_id: 1,
-        }
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith(`/api/v1/conversations/12/assignments`, {
+        team_id: 1,
+      });
     });
 
     it('#markMessageRead', () => {
       conversationAPI.markMessageRead({ id: 12 });
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        `/api/v1/conversations/12/update_last_seen`
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith(`/api/v1/conversations/12/update_last_seen`);
     });
 
     it('#toggleTyping', () => {
@@ -117,26 +103,19 @@ describe('#ConversationAPI', () => {
         conversationId: 12,
         status: 'typing_on',
       });
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        `/api/v1/conversations/12/toggle_typing_status`,
-        {
-          typing_status: 'typing_on',
-        }
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith(`/api/v1/conversations/12/toggle_typing_status`, {
+        typing_status: 'typing_on',
+      });
     });
 
     it('#mute', () => {
       conversationAPI.mute(45);
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/api/v1/conversations/45/mute'
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/api/v1/conversations/45/mute');
     });
 
     it('#unmute', () => {
       conversationAPI.unmute(45);
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/api/v1/conversations/45/unmute'
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/api/v1/conversations/45/unmute');
     });
 
     it('#meta', () => {
@@ -163,12 +142,9 @@ describe('#ConversationAPI', () => {
         conversationId: 45,
         email: 'john@acme.inc',
       });
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/api/v1/conversations/45/transcript',
-        {
-          email: 'john@acme.inc',
-        }
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/api/v1/conversations/45/transcript', {
+        email: 'john@acme.inc',
+      });
     });
 
     it('#updateCustomAttributes', () => {
@@ -176,12 +152,9 @@ describe('#ConversationAPI', () => {
         conversationId: 45,
         customAttributes: { order_d: '1001' },
       });
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/api/v1/conversations/45/custom_attributes',
-        {
-          custom_attributes: { order_d: '1001' },
-        }
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/api/v1/conversations/45/custom_attributes', {
+        custom_attributes: { order_d: '1001' },
+      });
     });
 
     it('#filter', () => {
@@ -211,18 +184,14 @@ describe('#ConversationAPI', () => {
         },
       };
       conversationAPI.filter(payload);
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/api/v1/conversations/filter',
-        payload.queryData,
-        { params: { page: payload.page } }
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/api/v1/conversations/filter', payload.queryData, {
+        params: { page: payload.page },
+      });
     });
 
     it('#getAllAttachments', () => {
       conversationAPI.getAllAttachments(1);
-      expect(axiosMock.get).toHaveBeenCalledWith(
-        '/api/v1/conversations/1/attachments'
-      );
+      expect(axiosMock.get).toHaveBeenCalledWith('/api/v1/conversations/1/attachments');
     });
   });
 });

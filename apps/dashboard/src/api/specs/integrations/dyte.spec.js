@@ -27,12 +27,9 @@ describe('#accountAPI', () => {
 
     it('creates a valid request', () => {
       DyteAPIClient.createAMeeting(1);
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/api/v1/integrations/dyte/create_a_meeting',
-        {
-          conversation_id: 1,
-        }
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/api/v1/integrations/dyte/create_a_meeting', {
+        conversation_id: 1,
+      });
     });
   });
 
@@ -55,12 +52,9 @@ describe('#accountAPI', () => {
 
     it('creates a valid request', () => {
       DyteAPIClient.addParticipantToMeeting(1);
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/api/v1/integrations/dyte/add_participant_to_meeting',
-        {
-          message_id: 1,
-        }
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/api/v1/integrations/dyte/add_participant_to_meeting', {
+        message_id: 1,
+      });
     });
   });
 });

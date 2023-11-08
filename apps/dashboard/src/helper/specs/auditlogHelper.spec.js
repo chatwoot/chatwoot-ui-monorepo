@@ -1,8 +1,4 @@
-import {
-  extractChangedAccountUserValues,
-  generateTranslationPayload,
-  generateLogActionKey,
-} from '../auditlogHelper'; // import the functions
+import { extractChangedAccountUserValues, generateTranslationPayload, generateLogActionKey } from '../auditlogHelper'; // import the functions
 
 describe('Helper functions', () => {
   const agentList = [
@@ -16,8 +12,7 @@ describe('Helper functions', () => {
       const changes = {
         role: [0, 1],
       };
-      const { changes: extractedChanges, values } =
-        extractChangedAccountUserValues(changes);
+      const { changes: extractedChanges, values } = extractChangedAccountUserValues(changes);
       expect(extractedChanges).toEqual(['role']);
       expect(values).toEqual(['administrator']);
     });
@@ -26,8 +21,7 @@ describe('Helper functions', () => {
       const changes = {
         availability: [0, 2],
       };
-      const { changes: extractedChanges, values } =
-        extractChangedAccountUserValues(changes);
+      const { changes: extractedChanges, values } = extractChangedAccountUserValues(changes);
       expect(extractedChanges).toEqual(['availability']);
       expect(values).toEqual(['busy']);
     });
@@ -37,8 +31,7 @@ describe('Helper functions', () => {
         role: [1, 0],
         availability: [1, 2],
       };
-      const { changes: extractedChanges, values } =
-        extractChangedAccountUserValues(changes);
+      const { changes: extractedChanges, values } = extractChangedAccountUserValues(changes);
       expect(extractedChanges).toEqual(['role', 'availability']);
       expect(values).toEqual(['agent', 'busy']);
     });
@@ -103,10 +96,7 @@ describe('Helper functions', () => {
         auditable_id: 789,
       };
 
-      const payloadInboxMember = generateTranslationPayload(
-        auditLogItemInboxMember,
-        agentList
-      );
+      const payloadInboxMember = generateTranslationPayload(auditLogItemInboxMember, agentList);
       expect(payloadInboxMember).toEqual({
         agentName: 'Agent 1',
         id: 789,
@@ -123,10 +113,7 @@ describe('Helper functions', () => {
         auditable_id: 789,
       };
 
-      const payloadTeamMember = generateTranslationPayload(
-        auditLogItemTeamMember,
-        agentList
-      );
+      const payloadTeamMember = generateTranslationPayload(auditLogItemTeamMember, agentList);
       expect(payloadTeamMember).toEqual({
         agentName: 'Agent 1',
         id: 789,

@@ -40,16 +40,12 @@ describe('#ContactsAPI', () => {
 
     it('#getConversations', () => {
       contactAPI.getConversations(1);
-      expect(axiosMock.get).toHaveBeenCalledWith(
-        '/api/v1/contacts/1/conversations'
-      );
+      expect(axiosMock.get).toHaveBeenCalledWith('/api/v1/contacts/1/conversations');
     });
 
     it('#getContactableInboxes', () => {
       contactAPI.getContactableInboxes(1);
-      expect(axiosMock.get).toHaveBeenCalledWith(
-        '/api/v1/contacts/1/contactable_inboxes'
-      );
+      expect(axiosMock.get).toHaveBeenCalledWith('/api/v1/contacts/1/contactable_inboxes');
     });
 
     it('#getContactLabels', () => {
@@ -74,24 +70,17 @@ describe('#ContactsAPI', () => {
 
     it('#destroyCustomAttributes', () => {
       contactAPI.destroyCustomAttributes(1, ['cloudCustomer']);
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/api/v1/contacts/1/destroy_custom_attributes',
-        {
-          custom_attributes: ['cloudCustomer'],
-        }
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/api/v1/contacts/1/destroy_custom_attributes', {
+        custom_attributes: ['cloudCustomer'],
+      });
     });
 
     it('#importContacts', () => {
       const file = 'file';
       contactAPI.importContacts(file);
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/api/v1/contacts/import',
-        expect.any(FormData),
-        {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        }
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/api/v1/contacts/import', expect.any(FormData), {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
     });
 
     it('#filter', () => {
@@ -114,24 +103,18 @@ describe('#ContactsAPI', () => {
 
     it('#destroyAvatar', () => {
       contactAPI.destroyAvatar(1);
-      expect(axiosMock.delete).toHaveBeenCalledWith(
-        '/api/v1/contacts/1/avatar'
-      );
+      expect(axiosMock.delete).toHaveBeenCalledWith('/api/v1/contacts/1/avatar');
     });
   });
 });
 
 describe('#buildContactParams', () => {
   it('returns correct string', () => {
-    expect(buildContactParams(1, 'name', '', '')).toBe(
-      'include_contact_inboxes=false&page=1&sort=name'
-    );
+    expect(buildContactParams(1, 'name', '', '')).toBe('include_contact_inboxes=false&page=1&sort=name');
     expect(buildContactParams(1, 'name', 'customer-support', '')).toBe(
       'include_contact_inboxes=false&page=1&sort=name&labels[]=customer-support'
     );
-    expect(
-      buildContactParams(1, 'name', 'customer-support', 'message-content')
-    ).toBe(
+    expect(buildContactParams(1, 'name', 'customer-support', 'message-content')).toBe(
       'include_contact_inboxes=false&page=1&sort=name&q=message-content&labels[]=customer-support'
     );
   });

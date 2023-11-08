@@ -20,14 +20,8 @@ describe('#actions', () => {
       expect(commit.mock.calls).toEqual([
         [types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG, { isFetching: true }],
 
-        [
-          types.default.SET_CONTACT_CONVERSATIONS,
-          { id: 1, data: conversationList },
-        ],
-        [
-          types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG,
-          { isFetching: false },
-        ],
+        [types.default.SET_CONTACT_CONVERSATIONS, { id: 1, data: conversationList }],
+        [types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG, { isFetching: false }],
       ]);
     });
     it('sends correct actions if API is error', async () => {
@@ -35,10 +29,7 @@ describe('#actions', () => {
       await actions.get({ commit });
       expect(commit.mock.calls).toEqual([
         [types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG, { isFetching: true }],
-        [
-          types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG,
-          { isFetching: false },
-        ],
+        [types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG, { isFetching: false }],
       ]);
     });
   });
@@ -63,14 +54,8 @@ describe('#actions', () => {
       );
       expect(commit.mock.calls).toEqual([
         [types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG, { isCreating: true }],
-        [
-          types.default.ADD_CONTACT_CONVERSATION,
-          { id: 4, data: conversationList[0] },
-        ],
-        [
-          types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG,
-          { isCreating: false },
-        ],
+        [types.default.ADD_CONTACT_CONVERSATION, { id: 4, data: conversationList[0] }],
+        [types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG, { isCreating: false }],
       ]);
     });
     it('sends correct actions with files if API is success', async () => {
@@ -92,14 +77,8 @@ describe('#actions', () => {
       );
       expect(commit.mock.calls).toEqual([
         [types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG, { isCreating: true }],
-        [
-          types.default.ADD_CONTACT_CONVERSATION,
-          { id: 4, data: conversationList[0] },
-        ],
-        [
-          types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG,
-          { isCreating: false },
-        ],
+        [types.default.ADD_CONTACT_CONVERSATION, { id: 4, data: conversationList[0] }],
+        [types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG, { isCreating: false }],
       ]);
     });
     it('sends correct actions actions if API is success for whatsapp conversation', async () => {
@@ -127,14 +106,8 @@ describe('#actions', () => {
       );
       expect(commit.mock.calls).toEqual([
         [types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG, { isCreating: true }],
-        [
-          types.default.ADD_CONTACT_CONVERSATION,
-          { id: 4, data: conversationList[0] },
-        ],
-        [
-          types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG,
-          { isCreating: false },
-        ],
+        [types.default.ADD_CONTACT_CONVERSATION, { id: 4, data: conversationList[0] }],
+        [types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG, { isCreating: false }],
       ]);
     });
     it('sends correct actions if API is error', async () => {
@@ -157,10 +130,7 @@ describe('#actions', () => {
       ).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG, { isCreating: true }],
-        [
-          types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG,
-          { isCreating: false },
-        ],
+        [types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG, { isCreating: false }],
       ]);
     });
     it('sends correct actions with files if API is error', async () => {
@@ -184,10 +154,7 @@ describe('#actions', () => {
       ).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG, { isCreating: true }],
-        [
-          types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG,
-          { isCreating: false },
-        ],
+        [types.default.SET_CONTACT_CONVERSATIONS_UI_FLAG, { isCreating: false }],
       ]);
     });
   });
@@ -241,15 +208,11 @@ describe('createConversationPayload', () => {
 
     const payload = createConversationPayload(options);
 
-    expect(payload.get('message[content]')).toBe(
-      options.params.message.content
-    );
+    expect(payload.get('message[content]')).toBe(options.params.message.content);
     expect(payload.get('inbox_id')).toBe(options.params.inboxId);
     expect(payload.get('contact_id')).toBe(options.contactId);
     expect(payload.get('source_id')).toBe(options.params.sourceId);
-    expect(payload.get('additional_attributes[mail_subject]')).toBe(
-      options.params.mailSubject
-    );
+    expect(payload.get('additional_attributes[mail_subject]')).toBe(options.params.mailSubject);
     expect(payload.get('assignee_id')).toBe(options.params.assigneeId);
     expect(payload.getAll('message[attachments][]')).toEqual(options.files);
   });
@@ -270,15 +233,11 @@ describe('createConversationPayload', () => {
 
     const payload = createConversationPayload(options);
 
-    expect(payload.get('message[content]')).toBe(
-      options.params.message.content
-    );
+    expect(payload.get('message[content]')).toBe(options.params.message.content);
     expect(payload.get('inbox_id')).toBe(options.params.inboxId);
     expect(payload.get('contact_id')).toBe(options.contactId);
     expect(payload.get('source_id')).toBe(options.params.sourceId);
-    expect(payload.get('additional_attributes[mail_subject]')).toBe(
-      options.params.mailSubject
-    );
+    expect(payload.get('additional_attributes[mail_subject]')).toBe(options.params.mailSubject);
     expect(payload.get('assignee_id')).toBe(options.params.assigneeId);
     expect(payload.getAll('message[attachments][]')).toEqual([]);
   });

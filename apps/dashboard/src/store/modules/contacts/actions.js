@@ -1,7 +1,4 @@
-import {
-  DuplicateContactException,
-  ExceptionWithMessage,
-} from '@chatwoot/shared/helpers/CustomErrors';
+import { DuplicateContactException, ExceptionWithMessage } from '@chatwoot/shared/helpers/CustomErrors';
 import types from '../../mutation-types';
 import ContactAPI from '../../../api/contacts';
 import AccountActionsAPI from '../../../api/accountActions';
@@ -16,19 +13,12 @@ const buildContactFormData = contactParams => {
       formData.append(key, contactProperties[key]);
     }
   });
-  const { social_profiles, ...additionalAttributesProperties } =
-    additional_attributes;
+  const { social_profiles, ...additionalAttributesProperties } = additional_attributes;
   Object.keys(additionalAttributesProperties).forEach(key => {
-    formData.append(
-      `additional_attributes[${key}]`,
-      additionalAttributesProperties[key]
-    );
+    formData.append(`additional_attributes[${key}]`, additionalAttributesProperties[key]);
   });
   Object.keys(social_profiles).forEach(key => {
-    formData.append(
-      `additional_attributes[social_profiles][${key}]`,
-      social_profiles[key]
-    );
+    formData.append(`additional_attributes[social_profiles][${key}]`, social_profiles[key]);
   });
   return formData;
 };
@@ -92,10 +82,7 @@ export const actions = {
   update: async ({ commit }, { id, isFormData = false, ...contactParams }) => {
     commit(types.SET_CONTACT_UI_FLAG, { isUpdating: true });
     try {
-      const response = await ContactAPI.update(
-        id,
-        isFormData ? buildContactFormData(contactParams) : contactParams
-      );
+      const response = await ContactAPI.update(id, isFormData ? buildContactFormData(contactParams) : contactParams);
       commit(types.EDIT_CONTACT, response.data.payload);
       commit(types.SET_CONTACT_UI_FLAG, { isUpdating: false });
     } catch (error) {
@@ -111,9 +98,7 @@ export const actions = {
   create: async ({ commit }, { isFormData = false, ...contactParams }) => {
     commit(types.SET_CONTACT_UI_FLAG, { isCreating: true });
     try {
-      const response = await ContactAPI.create(
-        isFormData ? buildContactFormData(contactParams) : contactParams
-      );
+      const response = await ContactAPI.create(isFormData ? buildContactFormData(contactParams) : contactParams);
 
       AnalyticsHelper.track(CONTACTS_EVENTS.CREATE_CONTACT);
       commit(types.SET_CONTACT_ITEM, response.data.payload.contact);
@@ -169,10 +154,7 @@ export const actions = {
 
   deleteCustomAttributes: async ({ commit }, { id, customAttributes }) => {
     try {
-      const response = await ContactAPI.destroyCustomAttributes(
-        id,
-        customAttributes
-      );
+      const response = await ContactAPI.destroyCustomAttributes(id, customAttributes);
       commit(types.EDIT_CONTACT, response.data.payload);
     } catch (error) {
       throw new Error(error);
@@ -246,10 +228,7 @@ export const actions = {
     }
   },
 
-  filter: async (
-    { commit },
-    { page = 1, sortAttr, queryPayload, resetState = true } = {}
-  ) => {
+  filter: async ({ commit }, { page = 1, sortAttr, queryPayload, resetState = true } = {}) => {
     commit(types.SET_CONTACT_UI_FLAG, { isFetching: true });
     try {
       const {

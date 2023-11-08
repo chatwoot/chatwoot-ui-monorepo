@@ -34,14 +34,11 @@ describe('#ConversationAPI', () => {
         conversationId: 12,
         before: 4573,
       });
-      expect(axiosMock.get).toHaveBeenCalledWith(
-        `/api/v1/conversations/12/messages`,
-        {
-          params: {
-            before: 4573,
-          },
-        }
-      );
+      expect(axiosMock.get).toHaveBeenCalledWith(`/api/v1/conversations/12/messages`, {
+        params: {
+          before: 4573,
+        },
+      });
     });
   });
   describe('#buildCreatePayload', () => {
@@ -59,9 +56,7 @@ describe('#ConversationAPI', () => {
       expect(formPayload.get('private')).toEqual('true');
       expect(formPayload.get('cc_emails')).toEqual('');
       expect(formPayload.get('bcc_emails')).toEqual('');
-      expect(formPayload.get('content_attributes')).toEqual(
-        '{"in_reply_to":12}'
-      );
+      expect(formPayload.get('content_attributes')).toEqual('{"in_reply_to":12}');
     });
 
     it('builds object payload if file is not available', () => {

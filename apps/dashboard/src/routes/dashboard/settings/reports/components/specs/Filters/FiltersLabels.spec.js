@@ -59,8 +59,6 @@ describe('ReportsFiltersLabels.vue', () => {
     wrapper.vm.handleInput();
 
     expect(wrapper.emitted('labels-filter-selection')).toBeTruthy();
-    expect(wrapper.emitted('labels-filter-selection')[0]).toEqual([
-      selectedLabel,
-    ]);
+    expect(wrapper.emitted('labels-filter-selection')[0]).toEqual([selectedLabel]);
   });
 });

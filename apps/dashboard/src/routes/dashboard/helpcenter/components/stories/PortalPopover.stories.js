@@ -16,8 +16,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { PortalPopover },
-  template:
-    '<PortalPopover v-bind="$props" @click="onClick">{{label}}</PortalPopover>',
+  template: '<PortalPopover v-bind="$props" @click="onClick">{{label}}</PortalPopover>',
 });
 
 export const Primary = Template.bind({});

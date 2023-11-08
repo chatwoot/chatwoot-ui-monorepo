@@ -15,18 +15,13 @@ describe('#actions', () => {
       await actions.fetch({ commit }, [1]);
       expect(commit.mock.calls).toEqual([
         [types.SET_INBOX_ASSIGNABLE_AGENTS_UI_FLAG, { isFetching: true }],
-        [
-          types.SET_INBOX_ASSIGNABLE_AGENTS,
-          { inboxId: '1', members: agentsData },
-        ],
+        [types.SET_INBOX_ASSIGNABLE_AGENTS, { inboxId: '1', members: agentsData }],
         [types.SET_INBOX_ASSIGNABLE_AGENTS_UI_FLAG, { isFetching: false }],
       ]);
     });
     it('sends correct actions if API is error', async () => {
       axios.get.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(actions.fetch({ commit }, { inboxId: 1 })).rejects.toThrow(
-        Error
-      );
+      await expect(actions.fetch({ commit }, { inboxId: 1 })).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_INBOX_ASSIGNABLE_AGENTS_UI_FLAG, { isFetching: true }],
         [types.SET_INBOX_ASSIGNABLE_AGENTS_UI_FLAG, { isFetching: false }],

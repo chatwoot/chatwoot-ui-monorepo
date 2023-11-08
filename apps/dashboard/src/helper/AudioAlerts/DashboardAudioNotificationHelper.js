@@ -1,10 +1,7 @@
 import { MESSAGE_TYPE } from '@chatwoot/shared/constants/messages';
 import { showBadgeOnFavicon } from './faviconHelper';
 import { initFaviconSwitcher } from './faviconHelper';
-import {
-  getAlertAudio,
-  initOnEvents,
-} from '@chatwoot/shared/helpers/AudioNotificationHelper';
+import { getAlertAudio, initOnEvents } from '@chatwoot/shared/helpers/AudioNotificationHelper';
 
 const NOTIFICATION_TIME = 30000;
 
@@ -73,10 +70,7 @@ class DashboardAudioNotificationHelper {
     if (this.recurringNotificationTimer) {
       clearTimeout(this.recurringNotificationTimer);
     }
-    this.recurringNotificationTimer = setTimeout(
-      this.executeRecurringNotification,
-      NOTIFICATION_TIME
-    );
+    this.recurringNotificationTimer = setTimeout(this.executeRecurringNotification, NOTIFICATION_TIME);
   };
 
   playAudioEvery30Seconds = () => {
@@ -99,9 +93,7 @@ class DashboardAudioNotificationHelper {
 
   // eslint-disable-next-line class-methods-use-this
   isMessageFromCurrentConversation = message => {
-    return (
-      window.WOOT.$store.getters.getSelectedChat?.id === message.conversation_id
-    );
+    return window.WOOT.$store.getters.getSelectedChat?.id === message.conversation_id;
   };
 
   isMessageFromCurrentUser = message => {
@@ -118,10 +110,7 @@ class DashboardAudioNotificationHelper {
   onNewMessage = message => {
     // If the message is sent by the current user or the
     // correct notification is not enabled, then dismiss the alert
-    if (
-      this.isMessageFromCurrentUser(message) ||
-      !this.shouldNotifyOnMessage(message)
-    ) {
+    if (this.isMessageFromCurrentUser(message) || !this.shouldNotifyOnMessage(message)) {
       return;
     }
 

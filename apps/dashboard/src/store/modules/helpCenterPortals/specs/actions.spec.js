@@ -55,9 +55,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.post.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.create({ commit, dispatch, state: { portals: {} } }, {})
-      ).rejects.toThrow(Error);
+      await expect(actions.create({ commit, dispatch, state: { portals: {} } }, {})).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_UI_FLAG, { isCreating: true }],
         [types.SET_UI_FLAG, { isCreating: false }],
@@ -85,9 +83,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.post.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.create({ commit, dispatch, state: { portals: {} } }, {})
-      ).rejects.toThrow(Error);
+      await expect(actions.create({ commit, dispatch, state: { portals: {} } }, {})).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_UI_FLAG, { isCreating: true }],
         [types.SET_UI_FLAG, { isCreating: false }],
@@ -98,39 +94,21 @@ describe('#actions', () => {
   describe('#update', () => {
     it('sends correct actions if API is success', async () => {
       axios.patch.mockResolvedValue({ data: apiResponse.payload[1] });
-      await actions.update(
-        { commit },
-        { portalObj: apiResponse.payload[1], portalSlug: 'campaign' }
-      );
+      await actions.update({ commit }, { portalObj: apiResponse.payload[1], portalSlug: 'campaign' });
       expect(commit.mock.calls).toEqual([
-        [
-          types.SET_HELP_PORTAL_UI_FLAG,
-          { uiFlags: { isUpdating: true }, portalSlug: 'campaign' },
-        ],
+        [types.SET_HELP_PORTAL_UI_FLAG, { uiFlags: { isUpdating: true }, portalSlug: 'campaign' }],
         [types.UPDATE_PORTAL_ENTRY, apiResponse.payload[1]],
-        [
-          types.SET_HELP_PORTAL_UI_FLAG,
-          { uiFlags: { isUpdating: false }, portalSlug: 'campaign' },
-        ],
+        [types.SET_HELP_PORTAL_UI_FLAG, { uiFlags: { isUpdating: false }, portalSlug: 'campaign' }],
       ]);
     });
     it('sends correct actions if API is error', async () => {
       axios.patch.mockRejectedValue({ message: 'Incorrect header' });
       await expect(
-        actions.update(
-          { commit },
-          { portalObj: apiResponse.payload[1], portalSlug: 'campaign' }
-        )
+        actions.update({ commit }, { portalObj: apiResponse.payload[1], portalSlug: 'campaign' })
       ).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
-        [
-          types.SET_HELP_PORTAL_UI_FLAG,
-          { uiFlags: { isUpdating: true }, portalSlug: 'campaign' },
-        ],
-        [
-          types.SET_HELP_PORTAL_UI_FLAG,
-          { uiFlags: { isUpdating: false }, portalSlug: 'campaign' },
-        ],
+        [types.SET_HELP_PORTAL_UI_FLAG, { uiFlags: { isUpdating: true }, portalSlug: 'campaign' }],
+        [types.SET_HELP_PORTAL_UI_FLAG, { uiFlags: { isUpdating: false }, portalSlug: 'campaign' }],
       ]);
     });
   });
@@ -140,32 +118,18 @@ describe('#actions', () => {
       axios.delete.mockResolvedValue({});
       await actions.delete({ commit }, { portalSlug: 'campaign' });
       expect(commit.mock.calls).toEqual([
-        [
-          types.SET_HELP_PORTAL_UI_FLAG,
-          { uiFlags: { isDeleting: true }, portalSlug: 'campaign' },
-        ],
+        [types.SET_HELP_PORTAL_UI_FLAG, { uiFlags: { isDeleting: true }, portalSlug: 'campaign' }],
         [types.REMOVE_PORTAL_ENTRY, 'campaign'],
         [types.REMOVE_PORTAL_ID, 'campaign'],
-        [
-          types.SET_HELP_PORTAL_UI_FLAG,
-          { uiFlags: { isDeleting: false }, portalSlug: 'campaign' },
-        ],
+        [types.SET_HELP_PORTAL_UI_FLAG, { uiFlags: { isDeleting: false }, portalSlug: 'campaign' }],
       ]);
     });
     it('sends correct actions if API is error', async () => {
       axios.delete.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.delete({ commit }, { portalSlug: 'campaign' })
-      ).rejects.toThrow(Error);
+      await expect(actions.delete({ commit }, { portalSlug: 'campaign' })).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
-        [
-          types.SET_HELP_PORTAL_UI_FLAG,
-          { uiFlags: { isDeleting: true }, portalSlug: 'campaign' },
-        ],
-        [
-          types.SET_HELP_PORTAL_UI_FLAG,
-          { uiFlags: { isDeleting: false }, portalSlug: 'campaign' },
-        ],
+        [types.SET_HELP_PORTAL_UI_FLAG, { uiFlags: { isDeleting: true }, portalSlug: 'campaign' }],
+        [types.SET_HELP_PORTAL_UI_FLAG, { uiFlags: { isDeleting: false }, portalSlug: 'campaign' }],
       ]);
     });
   });

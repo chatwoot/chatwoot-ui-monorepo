@@ -29,10 +29,7 @@ describe('#actions', () => {
           },
         },
       });
-      await actions.index(
-        { commit },
-        { pageNumber: 1, portalSlug: 'test', locale: 'en' }
-      );
+      await actions.index({ commit }, { pageNumber: 1, portalSlug: 'test', locale: 'en' });
       expect(commit.mock.calls).toEqual([
         [types.default.SET_UI_FLAG, { isFetching: true }],
         [types.default.CLEAR_ARTICLES],
@@ -46,22 +43,16 @@ describe('#actions', () => {
             },
           ],
         ],
-        [
-          types.default.SET_ARTICLES_META,
-          { current_page: '1', articles_count: 5 },
-        ],
+        [types.default.SET_ARTICLES_META, { current_page: '1', articles_count: 5 }],
         [types.default.ADD_MANY_ARTICLES_ID, [1]],
         [types.default.SET_UI_FLAG, { isFetching: false }],
       ]);
     });
     it('sends correct actions if API is error', async () => {
       axios.get.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.index(
-          { commit },
-          { pageNumber: 1, portalSlug: 'test', locale: 'en' }
-        )
-      ).rejects.toThrow(Error);
+      await expect(actions.index({ commit }, { pageNumber: 1, portalSlug: 'test', locale: 'en' })).rejects.toThrow(
+        Error
+      );
       expect(commit.mock.calls).toEqual([
         [types.default.SET_UI_FLAG, { isFetching: true }],
         [types.default.SET_UI_FLAG, { isFetching: false }],
@@ -84,9 +75,7 @@ describe('#actions', () => {
 
     it('sends correct actions if API is error', async () => {
       axios.post.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(actions.create({ commit }, articleList[0])).rejects.toThrow(
-        Error
-      );
+      await expect(actions.create({ commit }, articleList[0])).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_UI_FLAG, { isCreating: true }],
         [types.default.SET_UI_FLAG, { isCreating: false }],
@@ -106,15 +95,9 @@ describe('#actions', () => {
         }
       );
       expect(commit.mock.calls).toEqual([
-        [
-          types.default.UPDATE_ARTICLE_FLAG,
-          { uiFlags: { isUpdating: true }, articleId: 1 },
-        ],
+        [types.default.UPDATE_ARTICLE_FLAG, { uiFlags: { isUpdating: true }, articleId: 1 }],
         [types.default.UPDATE_ARTICLE, articleList[0]],
-        [
-          types.default.UPDATE_ARTICLE_FLAG,
-          { uiFlags: { isUpdating: false }, articleId: 1 },
-        ],
+        [types.default.UPDATE_ARTICLE_FLAG, { uiFlags: { isUpdating: false }, articleId: 1 }],
       ]);
     });
     it('sends correct actions if API is error', async () => {
@@ -131,14 +114,8 @@ describe('#actions', () => {
       ).rejects.toThrow(Error);
 
       expect(commit.mock.calls).toEqual([
-        [
-          types.default.UPDATE_ARTICLE_FLAG,
-          { uiFlags: { isUpdating: true }, articleId: 1 },
-        ],
-        [
-          types.default.UPDATE_ARTICLE_FLAG,
-          { uiFlags: { isUpdating: false }, articleId: 1 },
-        ],
+        [types.default.UPDATE_ARTICLE_FLAG, { uiFlags: { isUpdating: true }, articleId: 1 }],
+        [types.default.UPDATE_ARTICLE_FLAG, { uiFlags: { isUpdating: false }, articleId: 1 }],
       ]);
     });
   });
@@ -146,41 +123,23 @@ describe('#actions', () => {
   describe('#delete', () => {
     it('sends correct actions if API is success', async () => {
       axios.delete.mockResolvedValue({ data: articleList[0] });
-      await actions.delete(
-        { commit },
-        { portalSlug: 'test', articleId: articleList[0].id }
-      );
+      await actions.delete({ commit }, { portalSlug: 'test', articleId: articleList[0].id });
 
       expect(commit.mock.calls).toEqual([
-        [
-          types.default.UPDATE_ARTICLE_FLAG,
-          { uiFlags: { isDeleting: true }, articleId: 1 },
-        ],
+        [types.default.UPDATE_ARTICLE_FLAG, { uiFlags: { isDeleting: true }, articleId: 1 }],
         [types.default.REMOVE_ARTICLE, articleList[0].id],
         [types.default.REMOVE_ARTICLE_ID, articleList[0].id],
-        [
-          types.default.UPDATE_ARTICLE_FLAG,
-          { uiFlags: { isDeleting: false }, articleId: 1 },
-        ],
+        [types.default.UPDATE_ARTICLE_FLAG, { uiFlags: { isDeleting: false }, articleId: 1 }],
       ]);
     });
     it('sends correct actions if API is error', async () => {
       axios.delete.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.delete(
-          { commit },
-          { portalSlug: 'test', articleId: articleList[0].id }
-        )
-      ).rejects.toThrow(Error);
+      await expect(actions.delete({ commit }, { portalSlug: 'test', articleId: articleList[0].id })).rejects.toThrow(
+        Error
+      );
       expect(commit.mock.calls).toEqual([
-        [
-          types.default.UPDATE_ARTICLE_FLAG,
-          { uiFlags: { isDeleting: true }, articleId: 1 },
-        ],
-        [
-          types.default.UPDATE_ARTICLE_FLAG,
-          { uiFlags: { isDeleting: false }, articleId: 1 },
-        ],
+        [types.default.UPDATE_ARTICLE_FLAG, { uiFlags: { isDeleting: true }, articleId: 1 }],
+        [types.default.UPDATE_ARTICLE_FLAG, { uiFlags: { isDeleting: false }, articleId: 1 }],
       ]);
     });
   });
@@ -211,9 +170,7 @@ describe('#actions', () => {
       uploadFile.mockRejectedValueOnce(mockError);
 
       // When & Then
-      await expect(actions.attachImage({}, { file: mockFile })).rejects.toThrow(
-        'Upload failed'
-      );
+      await expect(actions.attachImage({}, { file: mockFile })).rejects.toThrow('Upload failed');
     });
   });
 });

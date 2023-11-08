@@ -1,17 +1,11 @@
-import {
-  getPreChatFields,
-  getFormattedPreChatFields,
-  getCustomFields,
-} from '../preChat';
+import { getPreChatFields, getFormattedPreChatFields, getCustomFields } from '../preChat';
 import inboxFixture from './inboxFixture';
 
 const { customFields, customAttributes } = inboxFixture;
 describe('#Pre chat Helpers', () => {
   describe('getPreChatFields', () => {
     it('should return correct pre-chat fields form options passed', () => {
-      expect(getPreChatFields({ preChatFormOptions: customFields })).toEqual(
-        customFields
-      );
+      expect(getPreChatFields({ preChatFormOptions: customFields })).toEqual(customFields);
     });
   });
   describe('getFormattedPreChatFields', () => {

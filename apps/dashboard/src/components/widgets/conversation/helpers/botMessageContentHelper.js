@@ -36,20 +36,13 @@ const generateFormContent = (contentAttributes, { noResponseText }) => {
   return '';
 };
 
-const generateCSATContent = (
-  contentAttributes,
-  { ratingTitle, feedbackTitle }
-) => {
-  const {
-    submitted_values: { csat_survey_response: surveyResponse = {} } = {},
-  } = contentAttributes;
+const generateCSATContent = (contentAttributes, { ratingTitle, feedbackTitle }) => {
+  const { submitted_values: { csat_survey_response: surveyResponse = {} } = {} } = contentAttributes;
   const { rating, feedback_message } = surveyResponse || {};
 
   let messageContent = '';
   if (rating) {
-    const [ratingObject = {}] = CSAT_RATINGS.filter(
-      csatRating => csatRating.value === rating
-    );
+    const [ratingObject = {}] = CSAT_RATINGS.filter(csatRating => csatRating.value === rating);
     messageContent += `<div><strong>${ratingTitle}</strong></div>`;
     messageContent += `<p>${ratingObject.emoji}</p>`;
   }
@@ -63,10 +56,7 @@ const generateCSATContent = (
 export const generateBotMessageContent = (
   contentType,
   contentAttributes,
-  {
-    noResponseText = 'No response',
-    csat: { ratingTitle = 'Rating', feedbackTitle = 'Feedback' } = {},
-  } = {}
+  { noResponseText = 'No response', csat: { ratingTitle = 'Rating', feedbackTitle = 'Feedback' } = {} } = {}
 ) => {
   const contentTypeMethods = {
     input_select: generateInputSelectContent,

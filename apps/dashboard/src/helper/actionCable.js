@@ -180,10 +180,7 @@ class ActionCableConnector extends BaseActionCableConnector {
   };
 
   onContactDelete = data => {
-    this.app.$store.dispatch(
-      'contacts/deleteContactThroughConversations',
-      data.id
-    );
+    this.app.$store.dispatch('contacts/deleteContactThroughConversations', data.id);
     this.fetchConversationStats();
   };
 

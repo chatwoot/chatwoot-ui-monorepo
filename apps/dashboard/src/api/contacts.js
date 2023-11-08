@@ -18,12 +18,7 @@ class ContactAPI extends ApiClient {
   }
 
   get(page, sortAttr = 'name', label = '') {
-    let requestURL = `${this.url}?${buildContactParams(
-      page,
-      sortAttr,
-      label,
-      ''
-    )}`;
+    let requestURL = `${this.url}?${buildContactParams(page, sortAttr, label, '')}`;
     return axios.get(requestURL);
   }
 
@@ -44,12 +39,7 @@ class ContactAPI extends ApiClient {
   }
 
   search(search = '', page = 1, sortAttr = 'name', label = '') {
-    let requestURL = `${this.url}/search?${buildContactParams(
-      page,
-      sortAttr,
-      label,
-      search
-    )}`;
+    let requestURL = `${this.url}/search?${buildContactParams(page, sortAttr, label, search)}`;
     return axios.get(requestURL);
   }
 

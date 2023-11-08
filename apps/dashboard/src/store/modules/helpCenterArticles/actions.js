@@ -4,10 +4,7 @@ import { throwErrorMessage } from 'dashboard/store/utils/api';
 
 import types from '../../mutation-types';
 export const actions = {
-  index: async (
-    { commit },
-    { pageNumber, portalSlug, locale, status, author_id, category_slug }
-  ) => {
+  index: async ({ commit }, { pageNumber, portalSlug, locale, status, author_id, category_slug }) => {
     try {
       commit(types.SET_UI_FLAG, { isFetching: true });
       const {

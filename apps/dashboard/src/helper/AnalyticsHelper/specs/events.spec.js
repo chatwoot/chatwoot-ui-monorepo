@@ -8,10 +8,7 @@ describe('Analytics Events', () => {
   });
 
   it('event names should be unique across the board', () => {
-    const allValues = Object.values(AnalyticsEvents).reduce(
-      (acc, curr) => acc.concat(Object.values(curr)),
-      []
-    );
+    const allValues = Object.values(AnalyticsEvents).reduce((acc, curr) => acc.concat(Object.values(curr)), []);
     const uniqueValues = new Set(allValues);
     expect(allValues.length).toBe(uniqueValues.size);
   });

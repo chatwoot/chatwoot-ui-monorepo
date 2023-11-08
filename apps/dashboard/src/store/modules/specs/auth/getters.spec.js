@@ -19,28 +19,20 @@ describe('#getters', () => {
 
   describe('#getCurrentUser', () => {
     it('returns current user object', () => {
-      expect(
-        getters.getCurrentUser({ currentUser: { id: 1, name: 'Pranav' } })
-      ).toEqual({ id: 1, name: 'Pranav' });
+      expect(getters.getCurrentUser({ currentUser: { id: 1, name: 'Pranav' } })).toEqual({ id: 1, name: 'Pranav' });
     });
   });
 
   describe('#getCurrentRole', () => {
     it('returns current role if account is available', () => {
       expect(
-        getters.getCurrentRole(
-          { currentUser: { accounts: [{ id: 1, role: 'admin' }] } },
-          { getCurrentAccountId: 1 }
-        )
+        getters.getCurrentRole({ currentUser: { accounts: [{ id: 1, role: 'admin' }] } }, { getCurrentAccountId: 1 })
       ).toEqual('admin');
     });
 
     it('returns undefined if account is not available', () => {
       expect(
-        getters.getCurrentRole(
-          { currentUser: { accounts: [{ id: 1, role: 'admin' }] } },
-          { getCurrentAccountId: 2 }
-        )
+        getters.getCurrentRole({ currentUser: { accounts: [{ id: 1, role: 'admin' }] } }, { getCurrentAccountId: 2 })
       ).toEqual(undefined);
     });
   });

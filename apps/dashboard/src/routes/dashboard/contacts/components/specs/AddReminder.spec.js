@@ -39,8 +39,6 @@ describe('AddReminder', () => {
     wrapper.vm.date = '08/11/2022';
     wrapper.vm.onAdd();
     expect(onAdd).toHaveBeenCalled();
-    expect(wrapper.emitted().add[0]).toEqual([
-      { content: 'content', date: '08/11/2022', label: 'label' },
-    ]);
+    expect(wrapper.emitted().add[0]).toEqual([{ content: 'content', date: '08/11/2022', label: 'label' }]);
   });
 });

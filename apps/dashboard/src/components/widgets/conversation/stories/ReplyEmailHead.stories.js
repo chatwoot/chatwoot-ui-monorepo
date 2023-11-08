@@ -20,8 +20,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ReplyEmailHead },
-  template:
-    '<reply-email-head v-bind="$props" @add="onAdd" @click="onClick"></reply-email-head>',
+  template: '<reply-email-head v-bind="$props" @add="onAdd" @click="onClick"></reply-email-head>',
 });
 
 export const Add = Template.bind({});

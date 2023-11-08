@@ -9,11 +9,7 @@ describe('#getters', () => {
         3: { id: 3 },
       },
     };
-    expect(getters.getNotifications(state)).toEqual([
-      { id: 3 },
-      { id: 2 },
-      { id: 1 },
-    ]);
+    expect(getters.getNotifications(state)).toEqual([{ id: 3 }, { id: 2 }, { id: 1 }]);
   });
 
   it('getUIFlags', () => {

@@ -53,15 +53,12 @@ describe('AnalyticsHelper', () => {
         account_id: '1',
       });
 
-      expect(analyticsHelper.analytics.identify).toHaveBeenCalledWith(
-        'test@example.com',
-        {
-          userId: '123',
-          email: 'test@example.com',
-          name: 'Test User',
-          avatar: 'avatar_url',
-        }
-      );
+      expect(analyticsHelper.analytics.identify).toHaveBeenCalledWith('test@example.com', {
+        userId: '123',
+        email: 'test@example.com',
+        name: 'Test User',
+        avatar: 'avatar_url',
+      });
       expect(analyticsHelper.analytics.group).toHaveBeenCalled();
     });
 

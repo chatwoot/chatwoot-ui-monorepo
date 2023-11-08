@@ -32,11 +32,7 @@ export const actions = {
 export const mutations = {
   [types.SET_CONV_TAB_META](
     $state,
-    {
-      mine_count: mineCount,
-      unassigned_count: unAssignedCount,
-      all_count: allCount,
-    } = {}
+    { mine_count: mineCount, unassigned_count: unAssignedCount, all_count: allCount } = {}
   ) {
     Vue.set($state, 'mineCount', mineCount);
     Vue.set($state, 'allCount', allCount);

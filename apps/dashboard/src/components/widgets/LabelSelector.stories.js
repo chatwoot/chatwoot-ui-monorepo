@@ -16,8 +16,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LabelSelector },
-  template:
-    '<label-selector v-bind="$props" @add="onAdd" @remove="onRemove"></label-selector>',
+  template: '<label-selector v-bind="$props" @add="onAdd" @remove="onRemove"></label-selector>',
 });
 
 export const ContactLabel = Template.bind({});

@@ -1,10 +1,4 @@
-import {
-  CLEAR_TEAMS,
-  SET_TEAMS,
-  SET_TEAM_ITEM,
-  EDIT_TEAM,
-  DELETE_TEAM,
-} from '../../teams/types';
+import { CLEAR_TEAMS, SET_TEAMS, SET_TEAM_ITEM, EDIT_TEAM, DELETE_TEAM } from '../../teams/types';
 import { mutations } from '../../teams/mutations';
 import teams from './fixtures';
 describe('#mutations', () => {

@@ -39,8 +39,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WootButton },
-  template:
-    '<woot-button v-bind="$props" @click="onClick">{{label}}</woot-button>',
+  template: '<woot-button v-bind="$props" @click="onClick">{{label}}</woot-button>',
 });
 
 export const Primary = Template.bind({});

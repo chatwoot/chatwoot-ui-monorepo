@@ -9,14 +9,7 @@ export const MESSAGE_EDITOR_MENU_OPTIONS = [
   'code',
 ];
 
-export const MESSAGE_SIGNATURE_EDITOR_MENU_OPTIONS = [
-  'strong',
-  'em',
-  'link',
-  'undo',
-  'redo',
-  'imageUpload',
-];
+export const MESSAGE_SIGNATURE_EDITOR_MENU_OPTIONS = ['strong', 'em', 'link', 'undo', 'redo', 'imageUpload'];
 
 export const ARTICLE_EDITOR_MENU_OPTIONS = [
   'strong',

@@ -1,9 +1,4 @@
-import {
-  OPERATOR_TYPES_1,
-  OPERATOR_TYPES_2,
-  OPERATOR_TYPES_3,
-  OPERATOR_TYPES_4,
-} from './FilterOperatorTypes';
+import { OPERATOR_TYPES_1, OPERATOR_TYPES_2, OPERATOR_TYPES_3, OPERATOR_TYPES_4 } from './FilterOperatorTypes';
 
 describe('#filterOperators', () => {
   it('Matches the correct Operators', () => {

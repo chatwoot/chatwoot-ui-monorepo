@@ -1,13 +1,6 @@
 import axios from 'axios';
 import { actions } from '../../teams/actions';
-import {
-  SET_TEAM_UI_FLAG,
-  CLEAR_TEAMS,
-  SET_TEAMS,
-  SET_TEAM_ITEM,
-  EDIT_TEAM,
-  DELETE_TEAM,
-} from '../../teams/types';
+import { SET_TEAM_UI_FLAG, CLEAR_TEAMS, SET_TEAMS, SET_TEAM_ITEM, EDIT_TEAM, DELETE_TEAM } from '../../teams/types';
 import teamsList from './fixtures';
 
 const commit = jest.fn();
@@ -83,9 +76,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.patch.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(actions.update({ commit }, teamsList[1])).rejects.toThrow(
-        Error
-      );
+      await expect(actions.update({ commit }, teamsList[1])).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [SET_TEAM_UI_FLAG, { isUpdating: true }],
         [SET_TEAM_UI_FLAG, { isUpdating: false }],

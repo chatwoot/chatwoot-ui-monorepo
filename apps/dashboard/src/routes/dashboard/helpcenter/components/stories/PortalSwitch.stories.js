@@ -16,8 +16,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { PortalSwitch },
-  template:
-    '<PortalSwitch v-bind="$props" @click="onClick">{{label}}</PortalSwitch>',
+  template: '<PortalSwitch v-bind="$props" @click="onClick">{{label}}</PortalSwitch>',
 });
 
 export const Primary = Template.bind({});

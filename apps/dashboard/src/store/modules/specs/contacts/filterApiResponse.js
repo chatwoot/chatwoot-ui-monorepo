@@ -14,8 +14,7 @@ export const filterApiResponse = {
       name: 'fayaz',
       phone_number: null,
       identifier: null,
-      thumbnail:
-        'https://www.gravatar.com/avatar/f2e86d3a78353cdf51002f44cf6ea846?d=404',
+      thumbnail: 'https://www.gravatar.com/avatar/f2e86d3a78353cdf51002f44cf6ea846?d=404',
       custom_attributes: {},
       conversations_count: 1,
       last_activity_at: 1631081845,
@@ -28,8 +27,7 @@ export const filterApiResponse = {
       name: 'fayaz',
       phone_number: null,
       identifier: null,
-      thumbnail:
-        'https://www.gravatar.com/avatar/792af86e3ad4591552e1025a6415baa6?d=404',
+      thumbnail: 'https://www.gravatar.com/avatar/792af86e3ad4591552e1025a6415baa6?d=404',
       custom_attributes: {},
       conversations_count: 1,
       last_activity_at: 1631614585,

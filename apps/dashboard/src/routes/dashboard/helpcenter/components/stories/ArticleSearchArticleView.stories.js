@@ -22,8 +22,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ArticleSearchArticleView },
-  template:
-    '<article-search-article-view v-bind="$props"></article-search-article-view>',
+  template: '<article-search-article-view v-bind="$props"></article-search-article-view>',
 });
 
 export const ArticleHeaderView = Template.bind({});

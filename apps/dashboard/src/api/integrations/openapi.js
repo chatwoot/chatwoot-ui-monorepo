@@ -25,11 +25,7 @@ class OpenAIAPI extends ApiClient {
      * The conversation events supported by the API.
      * @type {string[]}
      */
-    this.conversation_events = [
-      'summarize',
-      'reply_suggestion',
-      'label_suggestion',
-    ];
+    this.conversation_events = ['summarize', 'reply_suggestion', 'label_suggestion'];
 
     /**
      * The message events supported by the API.

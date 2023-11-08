@@ -5,9 +5,7 @@ describe('#getters', () => {
     const state = {
       records: { 1: [{ id: 1, contact_id: 1, message: 'Hello' }] },
     };
-    expect(getters.getContactConversation(state)(1)).toEqual([
-      { id: 1, contact_id: 1, message: 'Hello' },
-    ]);
+    expect(getters.getContactConversation(state)(1)).toEqual([{ id: 1, contact_id: 1, message: 'Hello' }]);
   });
 
   it('getUIFlags', () => {

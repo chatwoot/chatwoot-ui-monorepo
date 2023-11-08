@@ -16,10 +16,7 @@ describe('#actions', () => {
       expect(commit.mock.calls).toEqual([
         [types.default.SET_CONTACT_LABELS_UI_FLAG, { isFetching: true }],
 
-        [
-          types.default.SET_CONTACT_LABELS,
-          { id: 1, data: ['customer-success', 'on-hold'] },
-        ],
+        [types.default.SET_CONTACT_LABELS, { id: 1, data: ['customer-success', 'on-hold'] }],
         [types.default.SET_CONTACT_LABELS_UI_FLAG, { isFetching: false }],
       ]);
     });
@@ -49,24 +46,16 @@ describe('#actions', () => {
             data: { contactId: '1', labels: ['on-hold'] },
           },
         ],
-        [
-          types.default.SET_CONTACT_LABELS_UI_FLAG,
-          { isUpdating: false, isError: false },
-        ],
+        [types.default.SET_CONTACT_LABELS_UI_FLAG, { isUpdating: false, isError: false }],
       ]);
     });
 
     it('sends correct actions if API is error', async () => {
       axios.post.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.update({ commit }, { contactId: '1', labels: ['on-hold'] })
-      ).rejects.toThrow(Error);
+      await expect(actions.update({ commit }, { contactId: '1', labels: ['on-hold'] })).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_CONTACT_LABELS_UI_FLAG, { isUpdating: true }],
-        [
-          types.default.SET_CONTACT_LABELS_UI_FLAG,
-          { isUpdating: false, isError: true },
-        ],
+        [types.default.SET_CONTACT_LABELS_UI_FLAG, { isUpdating: false, isError: true }],
       ]);
     });
   });

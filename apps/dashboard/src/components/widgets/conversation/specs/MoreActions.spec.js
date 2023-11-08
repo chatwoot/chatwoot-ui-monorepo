@@ -66,21 +66,13 @@ describe('MoveActions', () => {
     it('triggers "muteConversation"', async () => {
       await moreActions.find('button:first-child').trigger('click');
 
-      expect(muteConversation).toBeCalledWith(
-        expect.any(Object),
-        currentChat.id,
-        undefined
-      );
+      expect(muteConversation).toBeCalledWith(expect.any(Object), currentChat.id, undefined);
     });
 
     it('shows alert', async () => {
       await moreActions.find('button:first-child').trigger('click');
 
-      expect(window.bus.$emit).toBeCalledWith(
-        'newToastMessage',
-        'This conversation is muted for 6 hours',
-        undefined
-      );
+      expect(window.bus.$emit).toBeCalledWith('newToastMessage', 'This conversation is muted for 6 hours', undefined);
     });
   });
 
@@ -92,21 +84,13 @@ describe('MoveActions', () => {
     it('triggers "unmuteConversation"', async () => {
       await moreActions.find('button:first-child').trigger('click');
 
-      expect(unmuteConversation).toBeCalledWith(
-        expect.any(Object),
-        currentChat.id,
-        undefined
-      );
+      expect(unmuteConversation).toBeCalledWith(expect.any(Object), currentChat.id, undefined);
     });
 
     it('shows alert', async () => {
       await moreActions.find('button:first-child').trigger('click');
 
-      expect(window.bus.$emit).toBeCalledWith(
-        'newToastMessage',
-        'This conversation is unmuted',
-        undefined
-      );
+      expect(window.bus.$emit).toBeCalledWith('newToastMessage', 'This conversation is unmuted', undefined);
     });
   });
 });

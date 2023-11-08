@@ -26,13 +26,10 @@ describe('#ContactsAPI', () => {
 
     it('#merge', () => {
       accountActionsAPI.merge(1, 2);
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/api/v1/actions/contact_merge',
-        {
-          base_contact_id: 1,
-          mergee_contact_id: 2,
-        }
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/api/v1/actions/contact_merge', {
+        base_contact_id: 1,
+        mergee_contact_id: 2,
+      });
     });
   });
 });

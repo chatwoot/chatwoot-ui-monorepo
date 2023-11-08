@@ -57,10 +57,7 @@ describe('AvailabilityStatus', () => {
 
   it('dispatches an action when user changes status', async () => {
     await availabilityStatus;
-    availabilityStatus
-      .findAll('.status-change--dropdown-button')
-      .at(2)
-      .trigger('click');
+    availabilityStatus.findAll('.status-change--dropdown-button').at(2).trigger('click');
 
     expect(actions.updateAvailability).toBeCalledWith(
       expect.any(Object),

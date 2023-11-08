@@ -81,9 +81,7 @@ export const mutations = {
   },
 
   [types.REMOVE_PORTAL_ID]($state, portalSlug) {
-    $state.portals.allIds = $state.portals.allIds.filter(
-      slug => slug !== portalSlug
-    );
+    $state.portals.allIds = $state.portals.allIds.filter(slug => slug !== portalSlug);
   },
 
   [types.SET_HELP_PORTAL_UI_FLAG]($state, { portalSlug, uiFlags }) {

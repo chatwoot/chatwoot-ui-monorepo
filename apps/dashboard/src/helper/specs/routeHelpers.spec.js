@@ -16,9 +16,7 @@ describe('#getCurrentAccount', () => {
 
 describe('#getUserRole', () => {
   it('should return the current role', () => {
-    expect(
-      getUserRole({ accounts: [{ id: 1, role: 'administrator' }] }, 1)
-    ).toEqual('administrator');
+    expect(getUserRole({ accounts: [{ id: 1, role: 'administrator' }] }, 1)).toEqual('administrator');
     expect(getUserRole({ accounts: [] }, 1)).toEqual(null);
   });
 });
@@ -26,25 +24,15 @@ describe('#getUserRole', () => {
 describe('#routeIsAccessibleFor', () => {
   it('should return the correct access', () => {
     const roleWiseRoutes = { agent: ['conversations'], admin: ['billing'] };
-    expect(routeIsAccessibleFor('billing', 'agent', roleWiseRoutes)).toEqual(
-      false
-    );
-    expect(routeIsAccessibleFor('billing', 'admin', roleWiseRoutes)).toEqual(
-      true
-    );
+    expect(routeIsAccessibleFor('billing', 'agent', roleWiseRoutes)).toEqual(false);
+    expect(routeIsAccessibleFor('billing', 'admin', roleWiseRoutes)).toEqual(true);
   });
 });
 
 describe('#validateLoggedInRoutes', () => {
   describe('when account access is missing', () => {
     it('should return the login route', () => {
-      expect(
-        validateLoggedInRoutes(
-          { params: { accountId: 1 } },
-          { accounts: [] },
-          {}
-        )
-      ).toEqual(`app/login`);
+      expect(validateLoggedInRoutes({ params: { accountId: 1 } }, { accounts: [] }, {})).toEqual(`app/login`);
     });
   });
   describe('when account access is available', () => {
@@ -110,27 +98,13 @@ describe('isAConversationRoute', () => {
 describe('getConversationDashboardRoute', () => {
   it('returns dashboard route for conversation', () => {
     expect(getConversationDashboardRoute('inbox_conversation')).toEqual('home');
-    expect(
-      getConversationDashboardRoute('conversation_through_mentions')
-    ).toEqual('conversation_mentions');
-    expect(
-      getConversationDashboardRoute('conversation_through_unattended')
-    ).toEqual('conversation_unattended');
-    expect(
-      getConversationDashboardRoute('conversations_through_label')
-    ).toEqual('label_conversations');
-    expect(getConversationDashboardRoute('conversations_through_team')).toEqual(
-      'team_conversations'
-    );
-    expect(
-      getConversationDashboardRoute('conversations_through_folders')
-    ).toEqual('folder_conversations');
-    expect(
-      getConversationDashboardRoute('conversation_through_participating')
-    ).toEqual('conversation_participating');
-    expect(getConversationDashboardRoute('conversation_through_inbox')).toEqual(
-      'inbox_dashboard'
-    );
+    expect(getConversationDashboardRoute('conversation_through_mentions')).toEqual('conversation_mentions');
+    expect(getConversationDashboardRoute('conversation_through_unattended')).toEqual('conversation_unattended');
+    expect(getConversationDashboardRoute('conversations_through_label')).toEqual('label_conversations');
+    expect(getConversationDashboardRoute('conversations_through_team')).toEqual('team_conversations');
+    expect(getConversationDashboardRoute('conversations_through_folders')).toEqual('folder_conversations');
+    expect(getConversationDashboardRoute('conversation_through_participating')).toEqual('conversation_participating');
+    expect(getConversationDashboardRoute('conversation_through_inbox')).toEqual('inbox_dashboard');
     expect(getConversationDashboardRoute('non_existent_route')).toBeNull();
   });
 });

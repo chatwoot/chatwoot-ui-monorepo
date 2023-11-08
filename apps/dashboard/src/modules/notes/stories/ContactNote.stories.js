@@ -11,8 +11,7 @@ export default {
       },
     },
     note: {
-      defaultValue:
-        'A copy and paste musical notes symbols & music symbols collection for easy access.',
+      defaultValue: 'A copy and paste musical notes symbols & music symbols collection for easy access.',
       control: {
         type: 'text',
       },
@@ -41,8 +40,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ContactNote },
-  template:
-    '<contact-note v-bind="$props" @edit="onEdit" @delete="onDelete"></contact-note>',
+  template: '<contact-note v-bind="$props" @edit="onEdit" @delete="onDelete"></contact-note>',
 });
 
 export const Note = Template.bind({});

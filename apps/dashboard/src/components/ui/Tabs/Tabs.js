@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'WootTabs',
@@ -63,11 +63,7 @@ export default defineComponent({
   },
   render(createElement) {
     const Tabs = this.$slots.default
-      .filter(
-        node =>
-          node.componentOptions &&
-          node.componentOptions.tag === 'woot-tabs-item'
-      )
+      .filter(node => node.componentOptions && node.componentOptions.tag === 'woot-tabs-item')
       .map((node, index) => {
         const data = node.componentOptions.propsData;
         data.index = index;
@@ -75,16 +71,16 @@ export default defineComponent({
       });
     const leftButton = this.createScrollButton(createElement, 'left');
     const rightButton = this.createScrollButton(createElement, 'right');
-    return createElement(
-      'div',
-      { class: { 'tabs--container--with-border': this.border, 'tabs--container': true, }, },
-      [leftButton, createElement(
+    return createElement('div', { class: { 'tabs--container--with-border': this.border, 'tabs--container': true } }, [
+      leftButton,
+      createElement(
         'ul',
         {
           class: { tabs: true, 'tabs--with-scroll': this.hasScroll },
         },
         Tabs
-      ), rightButton]
-    );
+      ),
+      rightButton,
+    ]);
   },
 });

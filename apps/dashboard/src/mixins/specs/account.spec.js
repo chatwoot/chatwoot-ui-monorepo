@@ -35,8 +35,6 @@ describe('accountMixin', () => {
     };
 
     const wrapper = shallowMount(Component, { store, localVue });
-    expect(wrapper.vm.addAccountScoping('settings/inboxes/new')).toBe(
-      '/app/accounts/1/settings/inboxes/new'
-    );
+    expect(wrapper.vm.addAccountScoping('settings/inboxes/new')).toBe('/app/accounts/1/settings/inboxes/new');
   });
 });

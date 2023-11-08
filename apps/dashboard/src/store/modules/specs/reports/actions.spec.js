@@ -22,10 +22,7 @@ describe('#actions', () => {
         fileName: 'agent-report-01-09-2021.csv',
       };
       await actions.downloadAgentReports(1, param);
-      expect(DownloadHelper.downloadCsvFile).toBeCalledWith(
-        param.fileName,
-        data
-      );
+      expect(DownloadHelper.downloadCsvFile).toBeCalledWith(param.fileName, data);
     });
   });
 
@@ -41,10 +38,7 @@ describe('#actions', () => {
         fileName: 'label-report-01-09-2021.csv',
       };
       await actions.downloadLabelReports(1, param);
-      expect(DownloadHelper.downloadCsvFile).toBeCalledWith(
-        param.fileName,
-        data
-      );
+      expect(DownloadHelper.downloadCsvFile).toBeCalledWith(param.fileName, data);
     });
   });
 
@@ -61,10 +55,7 @@ describe('#actions', () => {
         fileName: 'inbox-report-24-10-2021.csv',
       };
       await actions.downloadInboxReports(1, param);
-      expect(DownloadHelper.downloadCsvFile).toBeCalledWith(
-        param.fileName,
-        data
-      );
+      expect(DownloadHelper.downloadCsvFile).toBeCalledWith(param.fileName, data);
     });
   });
 
@@ -80,10 +71,7 @@ describe('#actions', () => {
         fileName: 'inbox-report-24-10-2021.csv',
       };
       await actions.downloadInboxReports(1, param);
-      expect(DownloadHelper.downloadCsvFile).toBeCalledWith(
-        param.fileName,
-        data
-      );
+      expect(DownloadHelper.downloadCsvFile).toBeCalledWith(param.fileName, data);
     });
   });
 });

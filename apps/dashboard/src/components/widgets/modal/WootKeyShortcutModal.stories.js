@@ -9,8 +9,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WootKeyboardShortcutModal },
-  template:
-    '<woot-keyboard-shortcut-modal v-bind="$props"></woot-keyboard-shortcut-modal>',
+  template: '<woot-keyboard-shortcut-modal v-bind="$props"></woot-keyboard-shortcut-modal>',
 });
 
 export const KeyboardShortcut = Template.bind({});

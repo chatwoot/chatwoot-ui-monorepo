@@ -32,20 +32,15 @@ describe('#ConversationApi', () => {
 
     it('#getLabels', () => {
       conversationsAPI.getLabels(1);
-      expect(axiosMock.get).toHaveBeenCalledWith(
-        '/api/v1/conversations/1/labels'
-      );
+      expect(axiosMock.get).toHaveBeenCalledWith('/api/v1/conversations/1/labels');
     });
 
     it('#updateLabels', () => {
       const labels = ['support-query'];
       conversationsAPI.updateLabels(1, labels);
-      expect(axiosMock.post).toHaveBeenCalledWith(
-        '/api/v1/conversations/1/labels',
-        {
-          labels,
-        }
-      );
+      expect(axiosMock.post).toHaveBeenCalledWith('/api/v1/conversations/1/labels', {
+        labels,
+      });
     });
   });
 });

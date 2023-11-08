@@ -51,9 +51,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.patch.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.update({ commit }, automationsList[0])
-      ).rejects.toThrow(Error);
+      await expect(actions.update({ commit }, automationsList[0])).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_DASHBOARD_APPS_UI_FLAG, { isUpdating: true }],
         [types.SET_DASHBOARD_APPS_UI_FLAG, { isUpdating: false }],
@@ -73,9 +71,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.delete.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.delete({ commit }, automationsList[0].id)
-      ).rejects.toThrow(Error);
+      await expect(actions.delete({ commit }, automationsList[0].id)).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_DASHBOARD_APPS_UI_FLAG, { isDeleting: true }],
         [types.SET_DASHBOARD_APPS_UI_FLAG, { isDeleting: false }],

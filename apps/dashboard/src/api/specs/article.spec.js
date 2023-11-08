@@ -63,9 +63,7 @@ describe('#PortalAPI', () => {
         id: 1,
         portalSlug: 'room-rental',
       });
-      expect(axiosMock.get).toHaveBeenCalledWith(
-        '/api/v1/portals/room-rental/articles/1'
-      );
+      expect(axiosMock.get).toHaveBeenCalledWith('/api/v1/portals/room-rental/articles/1');
     });
   });
   describe('API calls', () => {
@@ -91,12 +89,9 @@ describe('#PortalAPI', () => {
         portalSlug: 'room-rental',
         articleObj: { title: 'Update shipping address' },
       });
-      expect(axiosMock.patch).toHaveBeenCalledWith(
-        '/api/v1/portals/room-rental/articles/1',
-        {
-          title: 'Update shipping address',
-        }
-      );
+      expect(axiosMock.patch).toHaveBeenCalledWith('/api/v1/portals/room-rental/articles/1', {
+        title: 'Update shipping address',
+      });
     });
   });
   describe('API calls', () => {
@@ -121,9 +116,7 @@ describe('#PortalAPI', () => {
         articleId: 1,
         portalSlug: 'room-rental',
       });
-      expect(axiosMock.delete).toHaveBeenCalledWith(
-        '/api/v1/portals/room-rental/articles/1'
-      );
+      expect(axiosMock.delete).toHaveBeenCalledWith('/api/v1/portals/room-rental/articles/1');
     });
   });
 });

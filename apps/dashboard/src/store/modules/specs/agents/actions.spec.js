@@ -63,9 +63,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.patch.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(actions.update({ commit }, agentList[0])).rejects.toThrow(
-        Error
-      );
+      await expect(actions.update({ commit }, agentList[0])).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_AGENT_UPDATING_STATUS, true],
         [types.default.SET_AGENT_UPDATING_STATUS, false],
@@ -85,9 +83,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.delete.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(actions.delete({ commit }, agentList[0].id)).rejects.toThrow(
-        Error
-      );
+      await expect(actions.delete({ commit }, agentList[0].id)).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_AGENT_DELETING_STATUS, true],
         [types.default.SET_AGENT_DELETING_STATUS, false],
@@ -99,9 +95,7 @@ describe('#actions', () => {
     it('sends correct actions', async () => {
       const data = { users: { 1: 'online' }, contacts: { 2: 'online' } };
       actions.updatePresence({ commit, dispatch }, data);
-      expect(commit.mock.calls).toEqual([
-        [types.default.UPDATE_AGENTS_PRESENCE, data],
-      ]);
+      expect(commit.mock.calls).toEqual([[types.default.UPDATE_AGENTS_PRESENCE, data]]);
     });
   });
 
@@ -109,9 +103,7 @@ describe('#actions', () => {
     it('sends correct actions', async () => {
       const data = { id: 1, availabilityStatus: 'online' };
       actions.updateSingleAgentPresence({ commit, dispatch }, data);
-      expect(commit.mock.calls).toEqual([
-        [types.default.UPDATE_SINGLE_AGENT_PRESENCE, data],
-      ]);
+      expect(commit.mock.calls).toEqual([[types.default.UPDATE_SINGLE_AGENT_PRESENCE, data]]);
     });
   });
 });

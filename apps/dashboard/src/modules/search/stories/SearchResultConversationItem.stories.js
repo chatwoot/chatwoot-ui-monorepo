@@ -43,8 +43,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { SearchResultConversationItem },
-  template:
-    '<search-result-conversation-item v-bind="$props"></search-result-conversation-item>',
+  template: '<search-result-conversation-item v-bind="$props"></search-result-conversation-item>',
 });
 
 export const ResultConversationItem = Template.bind({});

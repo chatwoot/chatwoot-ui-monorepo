@@ -20,9 +20,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.get.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(actions.get({ commit }, { contactId: 23 })).rejects.toThrow(
-        Error
-      );
+      await expect(actions.get({ commit }, { contactId: 23 })).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_CONTACT_NOTES_UI_FLAG, { isFetching: true }],
         [types.default.SET_CONTACT_NOTES_UI_FLAG, { isFetching: false }],
@@ -35,18 +33,13 @@ describe('#actions', () => {
       await actions.create({ commit }, { contactId: 1, content: 'hi' });
       expect(commit.mock.calls).toEqual([
         [types.default.SET_CONTACT_NOTES_UI_FLAG, { isCreating: true }],
-        [
-          types.default.ADD_CONTACT_NOTE,
-          { contactId: 1, data: { id: 2, content: 'hi' } },
-        ],
+        [types.default.ADD_CONTACT_NOTE, { contactId: 1, data: { id: 2, content: 'hi' } }],
         [types.default.SET_CONTACT_NOTES_UI_FLAG, { isCreating: false }],
       ]);
     });
     it('sends correct actions if API is error', async () => {
       axios.post.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.create({ commit }, { contactId: 1, content: 'hi' })
-      ).rejects.toThrow(Error);
+      await expect(actions.create({ commit }, { contactId: 1, content: 'hi' })).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_CONTACT_NOTES_UI_FLAG, { isCreating: true }],
         [types.default.SET_CONTACT_NOTES_UI_FLAG, { isCreating: false }],
@@ -66,9 +59,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.delete.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.delete({ commit }, { contactId: 1, noteId: 2 })
-      ).rejects.toThrow(Error);
+      await expect(actions.delete({ commit }, { contactId: 1, noteId: 2 })).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_CONTACT_NOTES_UI_FLAG, { isDeleting: true }],
         [types.default.SET_CONTACT_NOTES_UI_FLAG, { isDeleting: false }],

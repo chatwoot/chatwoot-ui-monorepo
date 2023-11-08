@@ -7,9 +7,7 @@ describe('#getters', () => {
         selected_email_flags: ['conversation_creation'],
       },
     };
-    expect(getters.getSelectedEmailFlags(state)).toEqual([
-      'conversation_creation',
-    ]);
+    expect(getters.getSelectedEmailFlags(state)).toEqual(['conversation_creation']);
   });
 
   it('getUIFlags', () => {

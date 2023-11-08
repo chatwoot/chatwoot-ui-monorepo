@@ -39,8 +39,6 @@ describe('CsatMetricCard.vue', () => {
       stubs: ['fluent-icon'],
     });
 
-    expect(wrapper.find('.csat--metric-card').classes()).not.toContain(
-      'disabled'
-    );
+    expect(wrapper.find('.csat--metric-card').classes()).not.toContain('disabled');
   });
 });

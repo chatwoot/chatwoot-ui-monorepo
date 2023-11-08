@@ -71,11 +71,7 @@ describe('#actions', () => {
   describe('#update', () => {
     it('sends correct actions if API is success', async () => {
       axios.patch.mockResolvedValue({ data: updateCustomViewList[0] });
-      await actions.update(
-        { commit },
-        updateCustomViewList[0].id,
-        updateCustomViewList[0]
-      );
+      await actions.update({ commit }, updateCustomViewList[0].id, updateCustomViewList[0]);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_CUSTOM_VIEW_UI_FLAG, { isCreating: true }],
         [types.default.UPDATE_CUSTOM_VIEW, updateCustomViewList[0]],

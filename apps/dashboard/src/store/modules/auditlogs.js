@@ -33,11 +33,7 @@ const actions = {
     try {
       const response = await AuditLogsAPI.get({ page });
       const { audit_logs: logs = [] } = response.data;
-      const {
-        total_entries: totalEntries,
-        per_page: perPage,
-        current_page: currentPage,
-      } = response.data;
+      const { total_entries: totalEntries, per_page: perPage, current_page: currentPage } = response.data;
       commit(types.default.SET_AUDIT_LOGS, logs);
       commit(types.default.SET_AUDIT_LOGS_META, {
         totalEntries,

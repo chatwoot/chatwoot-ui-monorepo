@@ -5,10 +5,7 @@ describe('#getters', () => {
     const state = {
       records: { 1: ['customer-success', 'on-hold'] },
     };
-    expect(getters.getContactLabels(state)(1)).toEqual([
-      'customer-success',
-      'on-hold',
-    ]);
+    expect(getters.getContactLabels(state)(1)).toEqual(['customer-success', 'on-hold']);
   });
 
   it('getUIFlags', () => {

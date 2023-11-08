@@ -37,13 +37,8 @@ describe('webhookMixin', () => {
       expect(wrapper.vm.getDropdownValues('assign_team')).toEqual(teams);
       expect(wrapper.vm.getDropdownValues('send_email_to_team')).toEqual(teams);
       expect(wrapper.vm.getDropdownValues('add_label')).toEqual(resolvedLabels);
-      expect(wrapper.vm.getDropdownValues('assign_agent')).toEqual([
-        { id: 'self', name: 'Self' },
-        ...agents,
-      ]);
-      expect(wrapper.vm.getDropdownValues('change_priority')).toEqual(
-        PRIORITY_CONDITION_VALUES
-      );
+      expect(wrapper.vm.getDropdownValues('assign_agent')).toEqual([{ id: 'self', name: 'Self' }, ...agents]);
+      expect(wrapper.vm.getDropdownValues('change_priority')).toEqual(PRIORITY_CONDITION_VALUES);
       expect(wrapper.vm.getDropdownValues()).toEqual([]);
     });
   });

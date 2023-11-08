@@ -22,9 +22,7 @@ export const getters = {
     return _state.uiFlags;
   },
   getLabelsOnSidebar(_state) {
-    return _state.records
-      .filter(record => record.show_on_sidebar)
-      .sort((a, b) => a.title.localeCompare(b.title));
+    return _state.records.filter(record => record.show_on_sidebar).sort((a, b) => a.title.localeCompare(b.title));
   },
 };
 
@@ -45,9 +43,7 @@ export const actions = {
     commit(types.SET_LABEL_UI_FLAG, { isFetching: true });
     try {
       const response = await LabelsAPI.get(true);
-      const sortedLabels = response.data.payload.sort((a, b) =>
-        a.title.localeCompare(b.title)
-      );
+      const sortedLabels = response.data.payload.sort((a, b) => a.title.localeCompare(b.title));
       commit(types.SET_LABELS, sortedLabels);
     } catch (error) {
       // Ignore error

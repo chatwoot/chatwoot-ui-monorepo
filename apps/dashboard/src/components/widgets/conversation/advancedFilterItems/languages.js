@@ -734,8 +734,7 @@ const languages = [
 ];
 
 export const getLanguageName = (languageCode = '') => {
-  const languageObj =
-    languages.find(language => language.id === languageCode) || {};
+  const languageObj = languages.find(language => language.id === languageCode) || {};
   return languageObj.name || '';
 };
 

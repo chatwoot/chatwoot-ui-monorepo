@@ -15,34 +15,20 @@ export const setContacts = (commit, chatList) => {
 };
 
 export const isOnMentionsView = ({ route: { name: routeName } }) => {
-  const MENTION_ROUTES = [
-    'conversation_mentions',
-    'conversation_through_mentions',
-  ];
+  const MENTION_ROUTES = ['conversation_mentions', 'conversation_through_mentions'];
   return MENTION_ROUTES.includes(routeName);
 };
 
 export const isOnUnattendedView = ({ route: { name: routeName } }) => {
-  const UNATTENDED_ROUTES = [
-    'conversation_unattended',
-    'conversation_through_unattended',
-  ];
+  const UNATTENDED_ROUTES = ['conversation_unattended', 'conversation_through_unattended'];
   return UNATTENDED_ROUTES.includes(routeName);
 };
 
-export const buildConversationList = (
-  context,
-  requestPayload,
-  responseData,
-  filterType
-) => {
+export const buildConversationList = (context, requestPayload, responseData, filterType) => {
   const { payload: conversationList, meta: metaData } = responseData;
   context.commit(types.SET_ALL_CONVERSATION, conversationList);
   context.dispatch('conversationStats/set', metaData);
-  context.dispatch(
-    'conversationLabels/setBulkConversationLabels',
-    conversationList
-  );
+  context.dispatch('conversationLabels/setBulkConversationLabels', conversationList);
   context.commit(types.CLEAR_LIST_LOADING_STATUS);
   setContacts(context.commit, conversationList);
   setPageFilter({

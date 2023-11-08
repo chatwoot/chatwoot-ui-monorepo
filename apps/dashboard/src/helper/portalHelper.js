@@ -4,12 +4,7 @@ export const buildPortalURL = portalSlug => {
   return `${baseURL}/hc/${portalSlug}`;
 };
 
-export const buildPortalArticleURL = (
-  portalSlug,
-  categorySlug,
-  locale,
-  articleSlug
-) => {
+export const buildPortalArticleURL = (portalSlug, categorySlug, locale, articleSlug) => {
   const portalURL = buildPortalURL(portalSlug);
   return `${portalURL}/articles/${articleSlug}`;
 };

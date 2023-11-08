@@ -22,9 +22,7 @@ describe('#mutations', () => {
     it('update macro record', () => {
       const state = { records: [macros[0]] };
       mutations[types.EDIT_MACRO](state, macros[0]);
-      expect(state.records[0].name).toEqual(
-        'Assign billing label and sales team and message user'
-      );
+      expect(state.records[0].name).toEqual('Assign billing label and sales team and message user');
     });
   });
 

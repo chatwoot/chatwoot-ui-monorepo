@@ -1,10 +1,4 @@
-import {
-  generateTimeSlots,
-  getTime,
-  timeSlotParse,
-  timeSlotTransform,
-  timeZoneOptions,
-} from '../businessHour';
+import { generateTimeSlots, getTime, timeSlotParse, timeSlotTransform, timeZoneOptions } from '../businessHour';
 
 describe('#generateTimeSlots', () => {
   it('returns correct number of time slots', () => {

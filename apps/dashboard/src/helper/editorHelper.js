@@ -1,8 +1,4 @@
-import {
-  messageSchema,
-  MessageMarkdownTransformer,
-  MessageMarkdownSerializer,
-} from '@chatwoot/prosemirror-schema';
+import { messageSchema, MessageMarkdownTransformer, MessageMarkdownSerializer } from '@chatwoot/prosemirror-schema';
 import * as Sentry from '@sentry/browser';
 
 /**
@@ -22,9 +18,7 @@ export function cleanSignature(signature) {
       .replace(/^( *- *){3,} *$/gm, '')
       .replace(/^( *_ *){3,} *$/gm, '');
 
-    const nodes = new MessageMarkdownTransformer(messageSchema).parse(
-      signature
-    );
+    const nodes = new MessageMarkdownTransformer(messageSchema).parse(signature);
     return MessageMarkdownSerializer.serialize(nodes);
   } catch (e) {
     // eslint-disable-next-line no-console
@@ -195,9 +189,7 @@ export function insertAtCursor(editorView, node, from, to) {
   // If the node is of type 'doc' and has only one child which is a paragraph,
   // then extract its inline content to be inserted as inline.
   const isWrappedInParagraph =
-    node.type.name === 'doc' &&
-    node.childCount === 1 &&
-    node.firstChild.type.name === 'paragraph';
+    node.type.name === 'doc' && node.childCount === 1 && node.firstChild.type.name === 'paragraph';
 
   if (isWrappedInParagraph) {
     node = node.firstChild.content;
@@ -248,8 +240,7 @@ export const findNodeToInsertImage = (editorState, fileUrl) => {
   if (!imageNode) return null;
 
   const isInParagraph = typeName === 'paragraph';
-  const needsNewLine =
-    !content.some(n => n.type.name === 'image') && size !== 0 ? 1 : 0;
+  const needsNewLine = !content.some(n => n.type.name === 'image') && size !== 0 ? 1 : 0;
 
   return {
     node: isInParagraph ? imageNode : nodes.paragraph.create({}, imageNode),
@@ -267,14 +258,10 @@ export const findNodeToInsertImage = (editorState, fileUrl) => {
 export function setURLWithQueryAndSize(selectedImageNode, size, editorView) {
   if (selectedImageNode) {
     // Create and apply the transaction
-    const tr = editorView.state.tr.setNodeMarkup(
-      editorView.state.selection.from,
-      null,
-      {
-        src: selectedImageNode.src,
-        height: size.height,
-      }
-    );
+    const tr = editorView.state.tr.setNodeMarkup(editorView.state.selection.from, null, {
+      src: selectedImageNode.src,
+      height: size.height,
+    });
 
     if (tr.docChanged) {
       editorView.dispatch(tr);

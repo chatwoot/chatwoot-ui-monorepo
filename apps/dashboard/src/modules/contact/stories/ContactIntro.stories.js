@@ -9,8 +9,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ContactIntro },
-  template:
-    '<contact-intro v-bind="$props" @edit="onEdit" @message="onNewMessage" />',
+  template: '<contact-intro v-bind="$props" @edit="onEdit" @message="onNewMessage" />',
 });
 
 export const DefaultContactIntro = Template.bind({});
@@ -29,8 +28,7 @@ DefaultContactIntro.args = {
     phone_number: '',
     custom_attributes: {},
     additional_attributes: {
-      description:
-        'Known for his dribbling, he is considered to be one of the best players in the world.',
+      description: 'Known for his dribbling, he is considered to be one of the best players in the world.',
       social_profiles: {
         twitter: 'hazardeden10',
         facebook: 'hazardeden10',

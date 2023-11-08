@@ -22,9 +22,7 @@ describe('#validateAuthenticateRoutePermission', () => {
           },
         };
 
-        expect(validateAuthenticateRoutePermission(to, next, { getters })).toBe(
-          '/app/login'
-        );
+        expect(validateAuthenticateRoutePermission(to, next, { getters })).toBe('/app/login');
       });
     });
     describe(`when user is logged in`, () => {

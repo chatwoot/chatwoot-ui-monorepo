@@ -8,9 +8,7 @@ describe('#getters', () => {
 
   it('getCSATResponses', () => {
     const state = { records: [{ id: 1, raring: 1, feedback_text: 'Bad' }] };
-    expect(getters.getCSATResponses(state)).toEqual([
-      { id: 1, raring: 1, feedback_text: 'Bad' },
-    ]);
+    expect(getters.getCSATResponses(state)).toEqual([{ id: 1, raring: 1, feedback_text: 'Bad' }]);
   });
 
   it('getMetrics', () => {

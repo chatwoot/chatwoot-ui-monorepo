@@ -16,17 +16,14 @@ export default {
       replyMode: 'draftMessages/getReplyEditorMode',
     }),
     isAIIntegrationEnabled() {
-      return !!this.appIntegrations.find(
-        integration => integration.id === 'openai' && !!integration.hooks.length
-      );
+      return !!this.appIntegrations.find(integration => integration.id === 'openai' && !!integration.hooks.length);
     },
     isFetchingAppIntegrations() {
       return this.uiFlags.isFetching;
     },
     hookId() {
-      return this.appIntegrations.find(
-        integration => integration.id === 'openai' && !!integration.hooks.length
-      ).hooks[0].id;
+      return this.appIntegrations.find(integration => integration.id === 'openai' && !!integration.hooks.length)
+        .hooks[0].id;
     },
     draftMessage() {
       return this.$store.getters['draftMessages/get'](this.draftKey);

@@ -21,9 +21,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.get.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.index({ commit }, { portalSlug: 'room-rental' })
-      ).rejects.toThrow(Error);
+      await expect(actions.index({ commit }, { portalSlug: 'room-rental' })).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_UI_FLAG, { isFetching: true }],
         [types.default.SET_UI_FLAG, { isFetching: false }],
@@ -46,9 +44,7 @@ describe('#actions', () => {
 
     it('sends correct actions if API is error', async () => {
       axios.post.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.create({ commit }, 'web-docs', categoriesPayload.payload[0])
-      ).rejects.toThrow(Error);
+      await expect(actions.create({ commit }, 'web-docs', categoriesPayload.payload[0])).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_UI_FLAG, { isCreating: true }],
         [types.default.SET_UI_FLAG, { isCreating: false }],
@@ -103,14 +99,8 @@ describe('#actions', () => {
         )
       ).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
-        [
-          types.default.ADD_CATEGORY_FLAG,
-          { uiFlags: { isUpdating: true }, categoryId: 1 },
-        ],
-        [
-          types.default.ADD_CATEGORY_FLAG,
-          { uiFlags: { isUpdating: false }, categoryId: 1 },
-        ],
+        [types.default.ADD_CATEGORY_FLAG, { uiFlags: { isUpdating: true }, categoryId: 1 }],
+        [types.default.ADD_CATEGORY_FLAG, { uiFlags: { isUpdating: false }, categoryId: 1 }],
       ]);
     });
   });
@@ -126,16 +116,10 @@ describe('#actions', () => {
         }
       );
       expect(commit.mock.calls).toEqual([
-        [
-          types.default.ADD_CATEGORY_FLAG,
-          { uiFlags: { isDeleting: true }, categoryId: 1 },
-        ],
+        [types.default.ADD_CATEGORY_FLAG, { uiFlags: { isDeleting: true }, categoryId: 1 }],
         [types.default.REMOVE_CATEGORY, categoriesPayload.payload[0].id],
         [types.default.REMOVE_CATEGORY_ID, categoriesPayload.payload[0].id],
-        [
-          types.default.ADD_CATEGORY_FLAG,
-          { uiFlags: { isDeleting: false }, categoryId: 1 },
-        ],
+        [types.default.ADD_CATEGORY_FLAG, { uiFlags: { isDeleting: false }, categoryId: 1 }],
       ]);
     });
     it('sends correct actions if API is error', async () => {
@@ -150,14 +134,8 @@ describe('#actions', () => {
         )
       ).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
-        [
-          types.default.ADD_CATEGORY_FLAG,
-          { uiFlags: { isDeleting: true }, categoryId: 1 },
-        ],
-        [
-          types.default.ADD_CATEGORY_FLAG,
-          { uiFlags: { isDeleting: false }, categoryId: 1 },
-        ],
+        [types.default.ADD_CATEGORY_FLAG, { uiFlags: { isDeleting: true }, categoryId: 1 }],
+        [types.default.ADD_CATEGORY_FLAG, { uiFlags: { isDeleting: false }, categoryId: 1 }],
       ]);
     });
   });

@@ -78,14 +78,10 @@ describe('accountSelctor', () => {
   });
 
   it('first account item is checked', () => {
-    const selectedAccountCheckmark = accountSelector.find(
-      '#account-1 > button > svg'
-    );
+    const selectedAccountCheckmark = accountSelector.find('#account-1 > button > svg');
     expect(selectedAccountCheckmark.exists()).toBe(true);
 
-    const otherAccountCheckmark = accountSelector.find(
-      '#account-2 > button > svg'
-    );
+    const otherAccountCheckmark = accountSelector.find('#account-2 > button > svg');
     expect(otherAccountCheckmark.exists()).toBe(true);
   });
 });

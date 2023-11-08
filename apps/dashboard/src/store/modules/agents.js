@@ -24,14 +24,9 @@ export const getters = {
   },
   getAgentStatus($state) {
     let status = {
-      online: $state.records.filter(
-        agent => agent.availability_status === 'online'
-      ).length,
-      busy: $state.records.filter(agent => agent.availability_status === 'busy')
-        .length,
-      offline: $state.records.filter(
-        agent => agent.availability_status === 'offline'
-      ).length,
+      online: $state.records.filter(agent => agent.availability_status === 'online').length,
+      busy: $state.records.filter(agent => agent.availability_status === 'busy').length,
+      offline: $state.records.filter(agent => agent.availability_status === 'offline').length,
     };
     return status;
   },
@@ -111,10 +106,7 @@ export const mutations = {
   [types.default.EDIT_AGENT]: MutationHelpers.update,
   [types.default.DELETE_AGENT]: MutationHelpers.destroy,
   [types.default.UPDATE_AGENTS_PRESENCE]: MutationHelpers.updatePresence,
-  [types.default.UPDATE_SINGLE_AGENT_PRESENCE]: (
-    $state,
-    { id, availabilityStatus }
-  ) =>
+  [types.default.UPDATE_SINGLE_AGENT_PRESENCE]: ($state, { id, availabilityStatus }) =>
     MutationHelpers.updateSingleRecordPresence($state.records, {
       id,
       availabilityStatus,

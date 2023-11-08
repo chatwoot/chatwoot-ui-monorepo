@@ -28,10 +28,7 @@ export const actions = {
       commit(types.SET_NOTIFICATIONS_UI_FLAG, { isUpdatingUnreadCount: false });
     }
   },
-  read: async (
-    { commit },
-    { primaryActorType, primaryActorId, unreadCount }
-  ) => {
+  read: async ({ commit }, { primaryActorType, primaryActorId, unreadCount }) => {
     try {
       await NotificationsAPI.read(primaryActorType, primaryActorId);
       commit(types.SET_NOTIFICATIONS_UNREAD_COUNT, unreadCount - 1);

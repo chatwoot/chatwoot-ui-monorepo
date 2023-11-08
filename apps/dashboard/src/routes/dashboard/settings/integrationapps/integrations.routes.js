@@ -10,10 +10,7 @@ export default {
       component: SettingsContent,
       props: params => {
         const showBackButton = params.name !== 'settings_applications';
-        const backUrl =
-          params.name === 'settings_applications_integration'
-            ? { name: 'settings_applications' }
-            : '';
+        const backUrl = params.name === 'settings_applications_integration' ? { name: 'settings_applications' } : '';
         return {
           headerTitle: 'INTEGRATION_APPS.HEADER',
           icon: 'star-emphasis',

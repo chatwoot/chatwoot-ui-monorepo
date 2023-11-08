@@ -1,9 +1,4 @@
-import {
-  ICON_APPEARANCE,
-  ICON_LIGHT_MODE,
-  ICON_DARK_MODE,
-  ICON_SYSTEM_MODE,
-} from './CommandBarIcons';
+import { ICON_APPEARANCE, ICON_LIGHT_MODE, ICON_DARK_MODE, ICON_SYSTEM_MODE } from './CommandBarIcons';
 import { LocalStorage } from '@chatwoot/shared/helpers/localStorage';
 import { LOCAL_STORAGE_KEYS } from 'dashboard/constants/localStorage';
 import { setColorTheme } from 'dashboard/helper/themeHelper.js';
@@ -56,9 +51,7 @@ export default {
   methods: {
     setAppearance(theme) {
       LocalStorage.set(LOCAL_STORAGE_KEYS.COLOR_SCHEME, theme);
-      const isOSOnDarkMode = window.matchMedia(
-        '(prefers-color-scheme: dark)'
-      ).matches;
+      const isOSOnDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setColorTheme(isOSOnDarkMode);
     },
   },

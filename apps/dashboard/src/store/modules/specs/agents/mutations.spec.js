@@ -5,9 +5,7 @@ describe('#mutations', () => {
   describe('#SET_AGENTS', () => {
     it('set agent records', () => {
       const state = { records: [] };
-      mutations[types.default.SET_AGENTS](state, [
-        { id: 1, name: 'Agent1', email: 'agent1@chatwoot.com' },
-      ]);
+      mutations[types.default.SET_AGENTS](state, [{ id: 1, name: 'Agent1', email: 'agent1@chatwoot.com' }]);
       expect(state.records).toEqual([
         {
           id: 1,
@@ -45,9 +43,7 @@ describe('#mutations', () => {
         name: 'Agent2',
         email: 'agent2@chatwoot.com',
       });
-      expect(state.records).toEqual([
-        { id: 1, name: 'Agent2', email: 'agent2@chatwoot.com' },
-      ]);
+      expect(state.records).toEqual([{ id: 1, name: 'Agent2', email: 'agent2@chatwoot.com' }]);
     });
   });
 

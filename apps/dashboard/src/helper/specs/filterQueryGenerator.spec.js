@@ -22,8 +22,7 @@ const testData = [
       available_name: 'Fayaz',
       name: 'Fayaz',
       role: 'agent',
-      thumbnail:
-        'https://www.gravatar.com/avatar/a35bf18a632f734c8d0c883dcc9fa0ef?d=404',
+      thumbnail: 'https://www.gravatar.com/avatar/a35bf18a632f734c8d0c883dcc9fa0ef?d=404',
     },
     query_operator: 'and',
   },
@@ -60,8 +59,6 @@ const finalResult = {
 describe('#filterQueryGenerator', () => {
   it('returns the correct format of filter query', () => {
     expect(filterQueryGenerator(testData)).toMatchObject(finalResult);
-    expect(
-      filterQueryGenerator(testData).payload.every(i => Array.isArray(i.values))
-    ).toBe(true);
+    expect(filterQueryGenerator(testData).payload.every(i => Array.isArray(i.values))).toBe(true);
   });
 });

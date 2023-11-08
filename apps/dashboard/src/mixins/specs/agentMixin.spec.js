@@ -43,15 +43,9 @@ describe('agentMixin', () => {
       },
     };
     const wrapper = shallowMount(Component, { store, localVue });
-    expect(
-      wrapper.vm.getAgentsByAvailability(agentFixtures.allAgents, 'online')
-    ).toEqual(agentFixtures.onlineAgents);
-    expect(
-      wrapper.vm.getAgentsByAvailability(agentFixtures.allAgents, 'busy')
-    ).toEqual(agentFixtures.busyAgents);
-    expect(
-      wrapper.vm.getAgentsByAvailability(agentFixtures.allAgents, 'offline')
-    ).toEqual(agentFixtures.offlineAgents);
+    expect(wrapper.vm.getAgentsByAvailability(agentFixtures.allAgents, 'online')).toEqual(agentFixtures.onlineAgents);
+    expect(wrapper.vm.getAgentsByAvailability(agentFixtures.allAgents, 'busy')).toEqual(agentFixtures.busyAgents);
+    expect(wrapper.vm.getAgentsByAvailability(agentFixtures.allAgents, 'offline')).toEqual(agentFixtures.offlineAgents);
   });
 
   it('return sorted agents by availability', () => {
@@ -72,9 +66,7 @@ describe('agentMixin', () => {
       },
     };
     const wrapper = shallowMount(Component, { store, localVue });
-    expect(
-      wrapper.vm.sortedAgentsByAvailability(agentFixtures.allAgents)
-    ).toEqual(agentFixtures.sortedByAvailability);
+    expect(wrapper.vm.sortedAgentsByAvailability(agentFixtures.allAgents)).toEqual(agentFixtures.sortedByAvailability);
   });
 
   it('return formatted agents', () => {
@@ -131,10 +123,8 @@ describe('agentMixin', () => {
       },
     };
     const wrapper = shallowMount(Component, { store, localVue });
-    expect(
-      wrapper.vm.getAgentsByUpdatedPresence(
-        agentFixtures.formattedAgentsByPresenceOnline
-      )
-    ).toEqual(agentFixtures.formattedAgentsByPresenceOffline);
+    expect(wrapper.vm.getAgentsByUpdatedPresence(agentFixtures.formattedAgentsByPresenceOnline)).toEqual(
+      agentFixtures.formattedAgentsByPresenceOffline
+    );
   });
 });

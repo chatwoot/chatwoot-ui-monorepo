@@ -1,6 +1,5 @@
 export const getInputType = (key, operator, filterTypes) => {
-  if (key === 'created_at' || key === 'last_activity_at')
-    if (operator === 'days_before') return 'plain_text';
+  if (key === 'created_at' || key === 'last_activity_at') if (operator === 'days_before') return 'plain_text';
   const type = filterTypes.find(filter => filter.attributeKey === key);
   return type?.inputType;
 };
@@ -18,13 +17,9 @@ export const generateCustomAttributesInputType = type => {
 };
 
 export const getAttributeInputType = (key, allCustomAttributes) => {
-  const customAttribute = allCustomAttributes.find(
-    attr => attr.attribute_key === key
-  );
+  const customAttribute = allCustomAttributes.find(attr => attr.attribute_key === key);
   const { attribute_display_type } = customAttribute;
-  const filterInputTypes = generateCustomAttributesInputType(
-    attribute_display_type
-  );
+  const filterInputTypes = generateCustomAttributesInputType(attribute_display_type);
   return filterInputTypes;
 };
 
@@ -49,9 +44,7 @@ const getValuesForLabels = (values, labels) => {
 };
 
 const getValuesForLanguages = (values, languages) => {
-  const selectedLanguages = languages.filter(language =>
-    values.includes(language.id)
-  );
+  const selectedLanguages = languages.filter(language => values.includes(language.id));
   return selectedLanguages.map(({ id, name }) => ({
     id: id.toLowerCase(),
     name: name,
@@ -59,9 +52,7 @@ const getValuesForLanguages = (values, languages) => {
 };
 
 const getValuesForCountries = (values, countries) => {
-  const selectedCountries = countries.filter(country =>
-    values.includes(country.id)
-  );
+  const selectedCountries = countries.filter(country => values.includes(country.id));
   return selectedCountries.map(({ id, name }) => ({
     id: id,
     name: name,
@@ -70,8 +61,7 @@ const getValuesForCountries = (values, countries) => {
 
 export const getValuesForFilter = (filter, params) => {
   const { attribute_key, values } = filter;
-  const { languages, countries, agents, inboxes, teams, campaigns, labels } =
-    params;
+  const { languages, countries, agents, inboxes, teams, campaigns, labels } = params;
   switch (attribute_key) {
     case 'status':
       return getValuesForStatus(values);
@@ -103,13 +93,8 @@ export const generateValuesForEditCustomViews = (filter, params) => {
   const inboxType = getInputType(attribute_key, filter_operator, filterTypes);
 
   if (inboxType === undefined) {
-    const filterInputTypes = getAttributeInputType(
-      attribute_key,
-      allCustomAttributes
-    );
-    return filterInputTypes === 'string'
-      ? values[0].toString()
-      : { id: values[0], name: values[0] };
+    const filterInputTypes = getAttributeInputType(attribute_key, allCustomAttributes);
+    return filterInputTypes === 'string' ? values[0].toString() : { id: values[0], name: values[0] };
   }
 
   return inboxType === 'multi_select' || inboxType === 'search_select'

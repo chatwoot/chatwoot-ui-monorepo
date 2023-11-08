@@ -16,12 +16,8 @@ describe('customViewsHelper', () => {
         { attributeKey: 'created_at', inputType: 'date' },
         { attributeKey: 'last_activity_at', inputType: 'date' },
       ];
-      expect(getInputType('created_at', 'days_before', filterTypes)).toEqual(
-        'plain_text'
-      );
-      expect(
-        getInputType('last_activity_at', 'days_before', filterTypes)
-      ).toEqual('plain_text');
+      expect(getInputType('created_at', 'days_before', filterTypes)).toEqual('plain_text');
+      expect(getInputType('last_activity_at', 'days_before', filterTypes)).toEqual('plain_text');
     });
 
     it('should return inputType if key is not created_at or last_activity_at', () => {
@@ -30,9 +26,7 @@ describe('customViewsHelper', () => {
         { attributeKey: 'last_activity_at', inputType: 'date' },
         { attributeKey: 'test', inputType: 'string' },
       ];
-      expect(getInputType('test', 'days_before', filterTypes)).toEqual(
-        'string'
-      );
+      expect(getInputType('test', 'days_before', filterTypes)).toEqual('string');
     });
 
     it('should return undefined if key is not created_at or last_activity_at and inputType is not present', () => {
@@ -41,9 +35,7 @@ describe('customViewsHelper', () => {
         { attributeKey: 'last_activity_at', inputType: 'date' },
         { attributeKey: 'test', inputType: 'string' },
       ];
-      expect(getInputType('test', 'days_before', filterTypes)).toEqual(
-        'string'
-      );
+      expect(getInputType('test', 'days_before', filterTypes)).toEqual('string');
     });
   });
 
@@ -53,12 +45,8 @@ describe('customViewsHelper', () => {
         { attribute_key: 'test', attribute_display_type: 'checkbox' },
         { attribute_key: 'test2', attribute_display_type: 'list' },
       ];
-      expect(getAttributeInputType('test', allCustomAttributes)).toEqual(
-        'multi_select'
-      );
-      expect(getAttributeInputType('test2', allCustomAttributes)).toEqual(
-        'multi_select'
-      );
+      expect(getAttributeInputType('test', allCustomAttributes)).toEqual('multi_select');
+      expect(getAttributeInputType('test2', allCustomAttributes)).toEqual('multi_select');
     });
 
     it('should return string if attribute_display_type is text, number, date or link', () => {
@@ -68,18 +56,10 @@ describe('customViewsHelper', () => {
         { attribute_key: 'test3', attribute_display_type: 'date' },
         { attribute_key: 'test4', attribute_display_type: 'link' },
       ];
-      expect(getAttributeInputType('test', allCustomAttributes)).toEqual(
-        'string'
-      );
-      expect(getAttributeInputType('test2', allCustomAttributes)).toEqual(
-        'string'
-      );
-      expect(getAttributeInputType('test3', allCustomAttributes)).toEqual(
-        'string'
-      );
-      expect(getAttributeInputType('test4', allCustomAttributes)).toEqual(
-        'string'
-      );
+      expect(getAttributeInputType('test', allCustomAttributes)).toEqual('string');
+      expect(getAttributeInputType('test2', allCustomAttributes)).toEqual('string');
+      expect(getAttributeInputType('test3', allCustomAttributes)).toEqual('string');
+      expect(getAttributeInputType('test4', allCustomAttributes)).toEqual('string');
     });
   });
 
@@ -110,9 +90,7 @@ describe('customViewsHelper', () => {
   describe('#getValuesForStatus', () => {
     it('should return id and name if value is present', () => {
       const values = ['open'];
-      expect(getValuesForStatus(values)).toEqual([
-        { id: 'open', name: 'open' },
-      ]);
+      expect(getValuesForStatus(values)).toEqual([{ id: 'open', name: 'open' }]);
     });
 
     it('should return id and name if multiple values are present', () => {
@@ -173,25 +151,19 @@ describe('customViewsHelper', () => {
     it('should return id and title if attribute_key is labels', () => {
       const filter = { attribute_key: 'labels', values: ['test'] };
       const params = { labels: [{ title: 'test' }] };
-      expect(getValuesForFilter(filter, params)).toEqual([
-        { id: 'test', name: 'test' },
-      ]);
+      expect(getValuesForFilter(filter, params)).toEqual([{ id: 'test', name: 'test' }]);
     });
 
     it('should return id and name if attribute_key is browser_language', () => {
       const filter = { attribute_key: 'browser_language', values: ['en'] };
       const params = { languages: [{ id: 'en', name: 'English' }] };
-      expect(getValuesForFilter(filter, params)).toEqual([
-        { id: 'en', name: 'English' },
-      ]);
+      expect(getValuesForFilter(filter, params)).toEqual([{ id: 'en', name: 'English' }]);
     });
 
     it('should return id and name if attribute_key is country_code', () => {
       const filter = { attribute_key: 'country_code', values: ['IN'] };
       const params = { countries: [{ id: 'IN', name: 'India' }] };
-      expect(getValuesForFilter(filter, params)).toEqual([
-        { id: 'IN', name: 'India' },
-      ]);
+      expect(getValuesForFilter(filter, params)).toEqual([{ id: 'IN', name: 'India' }]);
     });
 
     it('should return id and name if attribute_key is not present', () => {
@@ -289,9 +261,7 @@ describe('customViewsHelper', () => {
     });
 
     it('should return multi_select if type is checkbox', () => {
-      expect(generateCustomAttributesInputType('checkbox')).toEqual(
-        'multi_select'
-      );
+      expect(generateCustomAttributesInputType('checkbox')).toEqual('multi_select');
     });
 
     it('should return multi_select if type is list', () => {

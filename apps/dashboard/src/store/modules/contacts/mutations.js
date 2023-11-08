@@ -56,11 +56,7 @@ export const mutations = {
     Object.values($state.records).forEach(element => {
       const availabilityStatus = data[element.id];
       if (availabilityStatus) {
-        Vue.set(
-          $state.records[element.id],
-          'availability_status',
-          availabilityStatus
-        );
+        Vue.set($state.records[element.id], 'availability_status', availabilityStatus);
       } else {
         Vue.delete($state.records[element.id], 'availability_status');
       }

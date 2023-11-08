@@ -25,9 +25,7 @@ export const mutations = {
   [types.SET_ALL_CONVERSATION](_state, conversationList) {
     const newAllConversations = [..._state.allConversations];
     conversationList.forEach(conversation => {
-      const indexInCurrentList = newAllConversations.findIndex(
-        c => c.id === conversation.id
-      );
+      const indexInCurrentList = newAllConversations.findIndex(c => c.id === conversation.id);
       if (indexInCurrentList < 0) {
         newAllConversations.push(conversation);
       }
@@ -85,10 +83,7 @@ export const mutations = {
     Vue.set(chat.meta, 'team', team);
   },
 
-  [types.UPDATE_CONVERSATION_LAST_ACTIVITY](
-    _state,
-    { lastActivityAt, conversationId }
-  ) {
+  [types.UPDATE_CONVERSATION_LAST_ACTIVITY](_state, { lastActivityAt, conversationId }) {
     const [chat] = _state.allConversations.filter(c => c.id === conversationId);
     if (chat) {
       Vue.set(chat, 'last_activity_at', lastActivityAt);
@@ -104,12 +99,8 @@ export const mutations = {
     Vue.set(chat, 'custom_attributes', custom_attributes);
   },
 
-  [types.CHANGE_CONVERSATION_STATUS](
-    _state,
-    { conversationId, status, snoozedUntil }
-  ) {
-    const conversation =
-      getters.getConversationById(_state)(conversationId) || {};
+  [types.CHANGE_CONVERSATION_STATUS](_state, { conversationId, status, snoozedUntil }) {
+    const conversation = getters.getConversationById(_state)(conversationId) || {};
     Vue.set(conversation, 'snoozed_until', snoozedUntil);
     Vue.set(conversation, 'status', status);
   },
@@ -133,8 +124,7 @@ export const mutations = {
 
     if (!chat) return;
 
-    const isMessageSent =
-      message.status === MESSAGE_STATUS.SENT && message.attachments;
+    const isMessageSent = message.status === MESSAGE_STATUS.SENT && message.attachments;
     if (isMessageSent) {
       message.attachments.forEach(attachment => {
         if (!chat.attachments.some(a => a.id === attachment.id)) {
@@ -155,9 +145,7 @@ export const mutations = {
 
     const isMessageSent = message.status === MESSAGE_STATUS.SENT;
     if (isMessageSent) {
-      const attachmentIndex = chat.attachments.findIndex(
-        a => a.message_id === message.id
-      );
+      const attachmentIndex = chat.attachments.findIndex(a => a.message_id === message.id);
       if (attachmentIndex !== -1) chat.attachments.splice(attachmentIndex, 1);
     }
   },
@@ -191,9 +179,7 @@ export const mutations = {
 
   [types.UPDATE_CONVERSATION](_state, conversation) {
     const { allConversations } = _state;
-    const currentConversationIndex = allConversations.findIndex(
-      c => c.id === conversation.id
-    );
+    const currentConversationIndex = allConversations.findIndex(c => c.id === conversation.id);
     if (currentConversationIndex > -1) {
       const { messages, ...conversationAttributes } = conversation;
       const currentConversation = {
@@ -218,10 +204,7 @@ export const mutations = {
     _state.listLoadingStatus = false;
   },
 
-  [types.UPDATE_MESSAGE_UNREAD_COUNT](
-    _state,
-    { id, lastSeen, unreadCount = 0 }
-  ) {
+  [types.UPDATE_MESSAGE_UNREAD_COUNT](_state, { id, lastSeen, unreadCount = 0 }) {
     const [chat] = _state.allConversations.filter(c => c.id === id);
     if (chat) {
       Vue.set(chat, 'agent_last_seen_at', lastSeen);
@@ -261,9 +244,7 @@ export const mutations = {
   },
 
   [types.CLEAR_CONTACT_CONVERSATIONS](_state, contactId) {
-    const chats = _state.allConversations.filter(
-      c => c.meta.sender.id !== contactId
-    );
+    const chats = _state.allConversations.filter(c => c.meta.sender.id !== contactId);
     Vue.set(_state, 'allConversations', chats);
   },
 
@@ -275,10 +256,7 @@ export const mutations = {
     _state.appliedFilters = [];
   },
 
-  [types.SET_LAST_MESSAGE_ID_IN_SYNC_CONVERSATION](
-    _state,
-    { conversationId, messageId }
-  ) {
+  [types.SET_LAST_MESSAGE_ID_IN_SYNC_CONVERSATION](_state, { conversationId, messageId }) {
     _state.syncConversationsMessages[conversationId] = messageId;
   },
 };

@@ -1,8 +1,6 @@
 export const findPendingMessageIndex = (chat, message) => {
   const { echo_id: tempMessageId } = message;
-  return chat.messages.findIndex(
-    m => m.id === message.id || m.id === tempMessageId
-  );
+  return chat.messages.findIndex(m => m.id === message.id || m.id === tempMessageId);
 };
 
 export const filterByStatus = (chatStatus, filterStatus) =>
@@ -22,15 +20,8 @@ export const filterByLabel = (shouldFilter, labels, chatLabels) => {
   const isOnLabel = labels.every(label => chatLabels.includes(label));
   return labels.length ? isOnLabel && shouldFilter : shouldFilter;
 };
-export const filterByUnattended = (
-  shouldFilter,
-  conversationType,
-  firstReplyOn,
-  waitingSince
-) => {
-  return conversationType === 'unattended'
-    ? (!firstReplyOn || !!waitingSince) && shouldFilter
-    : shouldFilter;
+export const filterByUnattended = (shouldFilter, conversationType, firstReplyOn, waitingSince) => {
+  return conversationType === 'unattended' ? (!firstReplyOn || !!waitingSince) && shouldFilter : shouldFilter;
 };
 
 export const applyPageFilters = (conversation, filters) => {
@@ -50,12 +41,7 @@ export const applyPageFilters = (conversation, filters) => {
   shouldFilter = filterByInbox(shouldFilter, inboxId, chatInboxId);
   shouldFilter = filterByTeam(shouldFilter, teamId, chatTeamId);
   shouldFilter = filterByLabel(shouldFilter, labels, chatLabels);
-  shouldFilter = filterByUnattended(
-    shouldFilter,
-    conversationType,
-    firstReplyOn,
-    waitingSince
-  );
+  shouldFilter = filterByUnattended(shouldFilter, conversationType, firstReplyOn, waitingSince);
 
   return shouldFilter;
 };

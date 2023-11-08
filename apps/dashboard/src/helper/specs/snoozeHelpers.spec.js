@@ -55,36 +55,28 @@ describe('#Snooze Helpers', () => {
     it('should return next hour time stamp if an_hour_from_now is passed', () => {
       const nextHour = new Date();
       nextHour.setHours(nextHour.getHours() + 1);
-      expect(findSnoozeTime('an_hour_from_now')).toBeCloseTo(
-        Math.floor(nextHour.getTime() / 1000)
-      );
+      expect(findSnoozeTime('an_hour_from_now')).toBeCloseTo(Math.floor(nextHour.getTime() / 1000));
     });
 
     it('should return next day 9.00AM time stamp until_tomorrow is passed', () => {
       const today = new Date('06/16/2023');
       const nextDay = new Date('06/17/2023');
       nextDay.setHours(9, 0, 0, 0);
-      expect(findSnoozeTime('until_tomorrow', today)).toBeCloseTo(
-        nextDay.getTime() / 1000
-      );
+      expect(findSnoozeTime('until_tomorrow', today)).toBeCloseTo(nextDay.getTime() / 1000);
     });
 
     it('should return next week monday 9.00AM time stamp if until_next_week is passed', () => {
       const today = new Date('06/16/2023');
       const startOfNextWeek = new Date('06/19/2023');
       startOfNextWeek.setHours(9, 0, 0, 0);
-      expect(findSnoozeTime('until_next_week', today)).toBeCloseTo(
-        startOfNextWeek.getTime() / 1000
-      );
+      expect(findSnoozeTime('until_next_week', today)).toBeCloseTo(startOfNextWeek.getTime() / 1000);
     });
 
     it('should return next month 9.00AM time stamp if until_next_month is passed', () => {
       const today = new Date('06/21/2023');
       const startOfNextMonth = new Date('07/03/2023');
       startOfNextMonth.setHours(9, 0, 0, 0);
-      expect(findSnoozeTime('until_next_month', today)).toBeCloseTo(
-        startOfNextMonth.getTime() / 1000
-      );
+      expect(findSnoozeTime('until_next_month', today)).toBeCloseTo(startOfNextMonth.getTime() / 1000);
     });
   });
 
@@ -94,9 +86,7 @@ describe('#Snooze Helpers', () => {
     });
 
     it('should return formatted date if snoozedUntil is not nil', () => {
-      expect(conversationReopenTime('2023-06-07T09:00:00.000Z')).toEqual(
-        '7 Jun, 9.00am'
-      );
+      expect(conversationReopenTime('2023-06-07T09:00:00.000Z')).toEqual('7 Jun, 9.00am');
     });
   });
 

@@ -10,8 +10,7 @@ export default [
   },
   {
     id: 12346,
-    content:
-      'It is simply dummy text of the printing and typesetting industry.',
+    content: 'It is simply dummy text of the printing and typesetting industry.',
     user: {
       name: 'Pearl Cruz',
       thumbnail: 'https://randomuser.me/api/portraits/women/29.jpg',

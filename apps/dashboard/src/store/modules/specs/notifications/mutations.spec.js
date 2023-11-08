@@ -51,12 +51,7 @@ describe('#mutations', () => {
   describe('#SET_NOTIFICATIONS', () => {
     it('set notifications ', () => {
       const state = { records: {} };
-      mutations[types.SET_NOTIFICATIONS](state, [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-        { id: 4 },
-      ]);
+      mutations[types.SET_NOTIFICATIONS](state, [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]);
       expect(state.records).toEqual({
         1: { id: 1 },
         2: { id: 2 },

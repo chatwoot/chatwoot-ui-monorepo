@@ -28,9 +28,7 @@ describe('#mutations', () => {
         attribute_key: 'language',
         attribute_model: 0,
       });
-      expect(state.records[0].attribute_description).toEqual(
-        'The conversation language'
-      );
+      expect(state.records[0].attribute_description).toEqual('The conversation language');
     });
   });
 

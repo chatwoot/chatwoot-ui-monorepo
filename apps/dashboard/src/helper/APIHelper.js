@@ -7,13 +7,7 @@ export default axios => {
   const wootApi = axios.create({ baseURL: `${apiHost}/` });
   // Add Auth Headers to requests if logged in
   if (Auth.hasAuthCookie()) {
-    const {
-      'access-token': accessToken,
-      'token-type': tokenType,
-      client,
-      expiry,
-      uid,
-    } = Auth.getAuthData();
+    const { 'access-token': accessToken, 'token-type': tokenType, client, expiry, uid } = Auth.getAuthData();
     Object.assign(wootApi.defaults.headers.common, {
       'access-token': accessToken,
       'token-type': tokenType,

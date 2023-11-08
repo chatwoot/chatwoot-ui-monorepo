@@ -5,8 +5,7 @@ export default {
   title: 'Components/Popup/Announcement Popup',
   argTypes: {
     popupMessage: {
-      defaultValue:
-        'Now a new key shortcut (⌘ + ↵) is available to send messages. You can enable it in the',
+      defaultValue: 'Now a new key shortcut (⌘ + ↵) is available to send messages. You can enable it in the',
       control: {
         type: 'text',
       },

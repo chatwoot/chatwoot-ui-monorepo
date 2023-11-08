@@ -52,9 +52,7 @@ describe('validationMixin', () => {
       },
     });
     wrapper.vm.$v.$touch();
-    expect(wrapper.vm.getLabelTitleErrorMessage).toBe(
-      'Minimum length 2 is required'
-    );
+    expect(wrapper.vm.getLabelTitleErrorMessage).toBe('Minimum length 2 is required');
   });
   it('it should return invalid character error message if invalid lable name passed', async () => {
     const wrapper = shallowMount(Component, {
@@ -65,8 +63,6 @@ describe('validationMixin', () => {
       },
     });
     wrapper.vm.$v.$touch();
-    expect(wrapper.vm.getLabelTitleErrorMessage).toBe(
-      'Only Alphabets, Numbers, Hyphen and Underscore are allowed'
-    );
+    expect(wrapper.vm.getLabelTitleErrorMessage).toBe('Only Alphabets, Numbers, Hyphen and Underscore are allowed');
   });
 });

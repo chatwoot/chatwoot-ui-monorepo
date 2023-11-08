@@ -1,9 +1,4 @@
-import {
-  getLoadingStatus,
-  parseAPIErrorResponse,
-  setLoadingStatus,
-  throwErrorMessage,
-} from '../api';
+import { getLoadingStatus, parseAPIErrorResponse, setLoadingStatus, throwErrorMessage } from '../api';
 
 describe('#getLoadingStatus', () => {
   it('returns correct status', () => {
@@ -33,9 +28,7 @@ describe('#parseAPIErrorResponse', () => {
       })
     ).toBe('Error Message [error]');
 
-    expect(parseAPIErrorResponse('Error: 422 Failed')).toBe(
-      'Error: 422 Failed'
-    );
+    expect(parseAPIErrorResponse('Error: 422 Failed')).toBe('Error: 422 Failed');
   });
 });
 

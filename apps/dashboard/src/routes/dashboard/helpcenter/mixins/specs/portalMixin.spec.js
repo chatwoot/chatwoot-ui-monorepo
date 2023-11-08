@@ -45,9 +45,7 @@ describe('portalMixin', () => {
       name: 'list_all_locale_articles',
       params: { portalSlug: 'fur-rent', locale: 'en' },
     });
-    expect(wrapper.vm.articleUrl(1)).toBe(
-      '/app/accounts/1/portals/fur-rent/en/articles/1'
-    );
+    expect(wrapper.vm.articleUrl(1)).toBe('/app/accounts/1/portals/fur-rent/en/articles/1');
   });
 
   it('returns portal locale', () => {

@@ -3,15 +3,7 @@ export const frontendURL = (path, params) => {
   return `/app/${path}${stringifiedParams}`;
 };
 
-export const conversationUrl = ({
-  accountId,
-  activeInbox,
-  id,
-  label,
-  teamId,
-  conversationType = '',
-  foldersId,
-}) => {
+export const conversationUrl = ({ accountId, activeInbox, id, label, teamId, conversationType = '', foldersId }) => {
   let url = `accounts/${accountId}/conversations/${id}`;
   if (activeInbox) {
     url = `accounts/${accountId}/inbox/${activeInbox}/conversations/${id}`;
@@ -31,14 +23,7 @@ export const conversationUrl = ({
   return url;
 };
 
-export const conversationListPageURL = ({
-  accountId,
-  conversationType = '',
-  inboxId,
-  label,
-  teamId,
-  customViewId,
-}) => {
+export const conversationListPageURL = ({ accountId, conversationType = '', inboxId, label, teamId, customViewId }) => {
   let url = `accounts/${accountId}/dashboard`;
   if (label) {
     url = `accounts/${accountId}/label/${label}`;

@@ -15,9 +15,7 @@ const {
 const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
   darkMode: 'class',
-  content: [
-    './src/**/*.vue'
-  ],
+  content: ['./src/**/*.vue'],
   theme: {
     fontSize: {
       ...defaultTheme.fontSize,

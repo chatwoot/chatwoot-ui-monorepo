@@ -14,10 +14,7 @@ export const DEFAULT_CONTACT_SIDEBAR_ITEMS_ORDER = [
 ];
 
 export const isEditorHotKeyEnabled = (uiSettings, key) => {
-  const {
-    editor_message_key: editorMessageKey,
-    enter_to_send_enabled: enterToSendEnabled,
-  } = uiSettings || {};
+  const { editor_message_key: editorMessageKey, enter_to_send_enabled: enterToSendEnabled } = uiSettings || {};
   if (!editorMessageKey) {
     if (enterToSendEnabled) {
       return key === 'enter';

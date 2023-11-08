@@ -67,8 +67,6 @@ export const mutations = {
     Vue.set($state.categories, 'byId', newById);
   },
   [types.REMOVE_CATEGORY_ID]($state, categoryId) {
-    $state.categories.allIds = $state.categories.allIds.filter(
-      id => id !== categoryId
-    );
+    $state.categories.allIds = $state.categories.allIds.filter(id => id !== categoryId);
   },
 };

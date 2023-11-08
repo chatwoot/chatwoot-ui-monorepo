@@ -73,9 +73,7 @@ describe('#mutations', () => {
         id: 2,
         title: 'This category is for product updates',
       });
-      expect(state.categories.byId[2].title).toEqual(
-        'This category is for product updates'
-      );
+      expect(state.categories.byId[2].title).toEqual('This category is for product updates');
     });
   });
 

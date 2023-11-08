@@ -46,8 +46,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ArticleItemComponent },
-  template:
-    '<article-item-component v-bind="$props" ></article-item-component>',
+  template: '<article-item-component v-bind="$props" ></article-item-component>',
 });
 
 export const ArticleItem = Template.bind({});

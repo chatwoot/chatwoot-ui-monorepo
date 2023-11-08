@@ -23,10 +23,7 @@ describe('#actions', () => {
       expect(commit.mock.calls).toEqual([
         [types.SEARCH_CONVERSATIONS_SET, []],
         [types.SEARCH_CONVERSATIONS_SET_UI_FLAG, { isFetching: true }],
-        [
-          types.SEARCH_CONVERSATIONS_SET,
-          [{ messages: [{ id: 1, content: 'value testing' }], id: 1 }],
-        ],
+        [types.SEARCH_CONVERSATIONS_SET, [{ messages: [{ id: 1, content: 'value testing' }], id: 1 }]],
         [types.SEARCH_CONVERSATIONS_SET_UI_FLAG, { isFetching: false }],
       ]);
     });

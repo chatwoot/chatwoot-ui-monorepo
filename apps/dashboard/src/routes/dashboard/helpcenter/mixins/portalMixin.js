@@ -13,9 +13,7 @@ export default {
   },
   methods: {
     articleUrl(id) {
-      return frontendURL(
-        `accounts/${this.accountId}/portals/${this.portalSlug}/${this.locale}/articles/${id}`
-      );
+      return frontendURL(`accounts/${this.accountId}/portals/${this.portalSlug}/${this.locale}/articles/${id}`);
     },
     localeName(code) {
       return allLocales[code];

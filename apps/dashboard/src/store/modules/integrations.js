@@ -21,9 +21,7 @@ const state = {
 };
 
 const isAValidAppIntegration = integration => {
-  return ['dialogflow', 'dyte', 'google_translate', 'openai'].includes(
-    integration.id
-  );
+  return ['dialogflow', 'dyte', 'google_translate', 'openai'].includes(integration.id);
 };
 export const getters = {
   getIntegrations($state) {
@@ -33,9 +31,7 @@ export const getters = {
     return $state.records.filter(item => isAValidAppIntegration(item));
   },
   getIntegration: $state => integrationId => {
-    const [integration] = $state.records.filter(
-      record => record.id === integrationId
-    );
+    const [integration] = $state.records.filter(record => record.id === integrationId);
     return integration || {};
   },
   getUIFlags($state) {
@@ -163,9 +159,7 @@ export const mutations = {
     $state.records.forEach((element, index) => {
       if (element.id === appId) {
         const record = $state.records[index];
-        const hooksWithoutDeletedHook = record.hooks.filter(
-          hook => hook.id !== hookId
-        );
+        const hooksWithoutDeletedHook = record.hooks.filter(hook => hook.id !== hookId);
         Vue.set(record, 'hooks', hooksWithoutDeletedHook);
       }
     });

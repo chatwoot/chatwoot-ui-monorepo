@@ -19,8 +19,7 @@ describe('uiSettingsMixin', () => {
       getUISettings: () => ({
         enter_to_send_enabled: false,
         is_ct_labels_open: true,
-        conversation_sidebar_items_order:
-          DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
+        conversation_sidebar_items_order: DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
         contact_sidebar_items_order: DEFAULT_CONTACT_SIDEBAR_ITEMS_ORDER,
       }),
     };
@@ -37,8 +36,7 @@ describe('uiSettingsMixin', () => {
     expect(wrapper.vm.uiSettings).toEqual({
       enter_to_send_enabled: false,
       is_ct_labels_open: true,
-      conversation_sidebar_items_order:
-        DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
+      conversation_sidebar_items_order: DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
       contact_sidebar_items_order: DEFAULT_CONTACT_SIDEBAR_ITEMS_ORDER,
     });
   });
@@ -58,8 +56,7 @@ describe('uiSettingsMixin', () => {
           uiSettings: {
             enter_to_send_enabled: true,
             is_ct_labels_open: true,
-            conversation_sidebar_items_order:
-              DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
+            conversation_sidebar_items_order: DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
             contact_sidebar_items_order: DEFAULT_CONTACT_SIDEBAR_ITEMS_ORDER,
           },
         },
@@ -83,8 +80,7 @@ describe('uiSettingsMixin', () => {
           uiSettings: {
             enter_to_send_enabled: false,
             is_ct_labels_open: false,
-            conversation_sidebar_items_order:
-              DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
+            conversation_sidebar_items_order: DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER,
             contact_sidebar_items_order: DEFAULT_CONTACT_SIDEBAR_ITEMS_ORDER,
           },
         },
@@ -101,12 +97,8 @@ describe('uiSettingsMixin', () => {
         mixins: [uiSettingsMixin],
       };
       const wrapper = shallowMount(Component, { store, localVue });
-      expect(wrapper.vm.isContactSidebarItemOpen('is_ct_labels_open')).toEqual(
-        true
-      );
-      expect(
-        wrapper.vm.isContactSidebarItemOpen('is_ct_prev_conv_open')
-      ).toEqual(false);
+      expect(wrapper.vm.isContactSidebarItemOpen('is_ct_labels_open')).toEqual(true);
+      expect(wrapper.vm.isContactSidebarItemOpen('is_ct_prev_conv_open')).toEqual(false);
     });
   });
 
@@ -147,23 +139,15 @@ describe('uiSettingsMixin', () => {
 
 describe('isEditorHotKeyEnabled', () => {
   it('returns true if hot key is not configured and enter to send flag is true', () => {
-    expect(
-      isEditorHotKeyEnabled({ enter_to_send_enabled: true }, 'enter')
-    ).toEqual(true);
-    expect(
-      isEditorHotKeyEnabled({ enter_to_send_enabled: true }, 'cmd_enter')
-    ).toEqual(false);
+    expect(isEditorHotKeyEnabled({ enter_to_send_enabled: true }, 'enter')).toEqual(true);
+    expect(isEditorHotKeyEnabled({ enter_to_send_enabled: true }, 'cmd_enter')).toEqual(false);
 
     expect(isEditorHotKeyEnabled({}, 'cmd_enter')).toEqual(true);
     expect(isEditorHotKeyEnabled({}, 'enter')).toEqual(false);
   });
 
   it('returns correct value if hot key is configured', () => {
-    expect(
-      isEditorHotKeyEnabled({ editor_message_key: 'enter' }, 'enter')
-    ).toEqual(true);
-    expect(
-      isEditorHotKeyEnabled({ editor_message_key: 'cmd_enter' }, 'enter')
-    ).toEqual(false);
+    expect(isEditorHotKeyEnabled({ editor_message_key: 'enter' }, 'enter')).toEqual(true);
+    expect(isEditorHotKeyEnabled({ editor_message_key: 'cmd_enter' }, 'enter')).toEqual(false);
   });
 });

@@ -15,10 +15,7 @@ describe('#actions', () => {
       await actions.get({ commit });
       expect(commit.mock.calls).toEqual([
         [types.default.SET_USER_NOTIFICATION_UI_FLAG, { isFetching: true }],
-        [
-          types.default.SET_USER_NOTIFICATION,
-          { selected_email_flags: ['conversation_creation'] },
-        ],
+        [types.default.SET_USER_NOTIFICATION, { selected_email_flags: ['conversation_creation'] }],
         [types.default.SET_USER_NOTIFICATION_UI_FLAG, { isFetching: false }],
       ]);
     });
@@ -37,27 +34,16 @@ describe('#actions', () => {
       axios.patch.mockResolvedValue({
         data: { selected_email_flags: ['conversation_creation'] },
       });
-      await actions.update(
-        { commit },
-        { selected_email_flags: ['conversation_creation'] }
-      );
+      await actions.update({ commit }, { selected_email_flags: ['conversation_creation'] });
       expect(commit.mock.calls).toEqual([
         [types.default.SET_USER_NOTIFICATION_UI_FLAG, { isUpdating: true }],
-        [
-          types.default.SET_USER_NOTIFICATION,
-          { selected_email_flags: ['conversation_creation'] },
-        ],
+        [types.default.SET_USER_NOTIFICATION, { selected_email_flags: ['conversation_creation'] }],
         [types.default.SET_USER_NOTIFICATION_UI_FLAG, { isUpdating: false }],
       ]);
     });
     it('sends correct actions if API is error', async () => {
       axios.patch.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.update(
-          { commit },
-          { selected_email_flags: ['conversation_creation'] }
-        )
-      ).rejects.toEqual({
+      await expect(actions.update({ commit }, { selected_email_flags: ['conversation_creation'] })).rejects.toEqual({
         message: 'Incorrect header',
       });
       expect(commit.mock.calls).toEqual([

@@ -66,9 +66,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.put.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(actions.update({ commit }, webhooks[0])).rejects.toThrow(
-        Error
-      );
+      await expect(actions.update({ commit }, webhooks[0])).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_WEBHOOK_UI_FLAG, { updatingItem: true }],
         [types.default.SET_WEBHOOK_UI_FLAG, { updatingItem: false }],

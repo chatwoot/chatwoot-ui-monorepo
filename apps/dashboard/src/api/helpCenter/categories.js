@@ -16,10 +16,7 @@ class CategoriesAPI extends PortalsAPI {
   }
 
   update({ portalSlug, categoryId, categoryObj }) {
-    return axios.patch(
-      `${this.url}/${portalSlug}/categories/${categoryId}`,
-      categoryObj
-    );
+    return axios.patch(`${this.url}/${portalSlug}/categories/${categoryId}`, categoryObj);
   }
 
   delete({ portalSlug, categoryId }) {

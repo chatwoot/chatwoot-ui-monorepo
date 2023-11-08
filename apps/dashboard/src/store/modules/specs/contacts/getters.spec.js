@@ -9,10 +9,7 @@ describe('#getters', () => {
       records: { 1: contactList[0], 3: contactList[2] },
       sortOrder: [3, 1],
     };
-    expect(getters.getContacts(state)).toEqual([
-      contactList[2],
-      contactList[0],
-    ]);
+    expect(getters.getContacts(state)).toEqual([contactList[2], contactList[0]]);
   });
 
   it('getContact', () => {

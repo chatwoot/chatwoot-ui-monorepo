@@ -37,9 +37,7 @@ const createEditorState = (content = '') => {
   }
   return EditorState.create({
     schema,
-    doc: schema.node('doc', null, [
-      schema.node('paragraph', null, [schema.text(content)]),
-    ]),
+    doc: schema.node('doc', null, [schema.node('paragraph', null, [schema.text(content)])]),
   });
 };
 
@@ -56,8 +54,7 @@ const DOES_NOT_HAVE_SIGNATURE = {
   },
   'signature has images': {
     body: 'This is a test',
-    signature:
-      'Testing\n![](http://localhost:3000/rails/active_storage/blobs/redirect/some-hash/image.png)',
+    signature: 'Testing\n![](http://localhost:3000/rails/active_storage/blobs/redirect/some-hash/image.png)',
   },
   'signature has non commonmark syntax': {
     body: 'This is a test',
@@ -108,9 +105,7 @@ describe('appendSignature', () => {
     Object.keys(DOES_NOT_HAVE_SIGNATURE).forEach(key => {
       const { body, signature } = DOES_NOT_HAVE_SIGNATURE[key];
       const cleanedSignature = cleanSignature(signature);
-      expect(
-        appendSignature(body, signature).includes(cleanedSignature)
-      ).toBeTruthy();
+      expect(appendSignature(body, signature).includes(cleanedSignature)).toBeTruthy();
     });
   });
   it('does not append signature if already present', () => {
@@ -164,8 +159,7 @@ describe('removeSignature', () => {
     expect(removeSignature(body, signature)).toBe('This is a test\n\n');
   });
   it('removes signature if present with spaces and new lines', () => {
-    const { body, signature } =
-      HAS_SIGNATURE['signature at end with spaces and new lines'];
+    const { body, signature } = HAS_SIGNATURE['signature at end with spaces and new lines'];
     expect(removeSignature(body, signature)).toBe('This is a test\n\n');
   });
   it('removes signature if present without text before it', () => {
@@ -173,9 +167,7 @@ describe('removeSignature', () => {
     expect(removeSignature(body, signature)).toBe('\n\n');
   });
   it('removes just the delimiter if no signature is present', () => {
-    expect(removeSignature('This is a test\n\n--', 'This is a signature')).toBe(
-      'This is a test\n\n'
-    );
+    expect(removeSignature('This is a test\n\n--', 'This is a signature')).toBe('This is a test\n\n');
   });
 });
 
@@ -183,29 +175,20 @@ describe('replaceSignature', () => {
   it('appends the new signature if not present', () => {
     Object.keys(DOES_NOT_HAVE_SIGNATURE).forEach(key => {
       const { body, signature } = DOES_NOT_HAVE_SIGNATURE[key];
-      expect(replaceSignature(body, signature, NEW_SIGNATURE)).toBe(
-        `${body}\n\n--\n\n${NEW_SIGNATURE}`
-      );
+      expect(replaceSignature(body, signature, NEW_SIGNATURE)).toBe(`${body}\n\n--\n\n${NEW_SIGNATURE}`);
     });
   });
   it('removes signature if present at the end', () => {
     const { body, signature } = HAS_SIGNATURE['signature at end'];
-    expect(replaceSignature(body, signature, NEW_SIGNATURE)).toBe(
-      `This is a test\n\n--\n\n${NEW_SIGNATURE}`
-    );
+    expect(replaceSignature(body, signature, NEW_SIGNATURE)).toBe(`This is a test\n\n--\n\n${NEW_SIGNATURE}`);
   });
   it('removes signature if present with spaces and new lines', () => {
-    const { body, signature } =
-      HAS_SIGNATURE['signature at end with spaces and new lines'];
-    expect(replaceSignature(body, signature, NEW_SIGNATURE)).toBe(
-      `This is a test\n\n--\n\n${NEW_SIGNATURE}`
-    );
+    const { body, signature } = HAS_SIGNATURE['signature at end with spaces and new lines'];
+    expect(replaceSignature(body, signature, NEW_SIGNATURE)).toBe(`This is a test\n\n--\n\n${NEW_SIGNATURE}`);
   });
   it('removes signature if present without text before it', () => {
     const { body, signature } = HAS_SIGNATURE['no text before signature'];
-    expect(replaceSignature(body, signature, NEW_SIGNATURE)).toBe(
-      `\n\n--\n\n${NEW_SIGNATURE}`
-    );
+    expect(replaceSignature(body, signature, NEW_SIGNATURE)).toBe(`\n\n--\n\n${NEW_SIGNATURE}`);
   });
 });
 
@@ -242,9 +225,7 @@ describe('insertAtCursor', () => {
   });
 
   it('should unwrap doc nodes that are wrapped in a paragraph', () => {
-    const docNode = schema.node('doc', null, [
-      schema.node('paragraph', null, [schema.text('Hello')]),
-    ]);
+    const docNode = schema.node('doc', null, [schema.node('paragraph', null, [schema.text('Hello')])]);
 
     const editorState = createEditorState();
     const editorView = new EditorView(document.body, { state: editorState });

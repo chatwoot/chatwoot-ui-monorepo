@@ -24,10 +24,7 @@ const getters = {
 };
 
 const actions = {
-  getCannedResponse: async function getCannedResponse(
-    { commit },
-    { searchKey } = {}
-  ) {
+  getCannedResponse: async function getCannedResponse({ commit }, { searchKey } = {}) {
     commit(types.default.SET_CANNED_UI_FLAG, { fetchingList: true });
     try {
       const response = await CannedResponseAPI.get({ searchKey });
@@ -38,10 +35,7 @@ const actions = {
     }
   },
 
-  createCannedResponse: async function createCannedResponse(
-    { commit },
-    cannedObj
-  ) {
+  createCannedResponse: async function createCannedResponse({ commit }, cannedObj) {
     commit(types.default.SET_CANNED_UI_FLAG, { creatingItem: true });
     try {
       const response = await CannedResponseAPI.create(cannedObj);
@@ -54,10 +48,7 @@ const actions = {
     }
   },
 
-  updateCannedResponse: async function updateCannedResponse(
-    { commit },
-    { id, ...updateObj }
-  ) {
+  updateCannedResponse: async function updateCannedResponse({ commit }, { id, ...updateObj }) {
     commit(types.default.SET_CANNED_UI_FLAG, { updatingItem: true });
     try {
       const response = await CannedResponseAPI.update(id, updateObj);

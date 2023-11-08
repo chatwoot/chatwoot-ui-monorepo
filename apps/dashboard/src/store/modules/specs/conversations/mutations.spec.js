@@ -16,9 +16,7 @@ describe('#mutations', () => {
       const state = { allConversations: [{ id: 1 }] };
       const lastSeen = new Date().getTime() / 1000;
       mutations[types.UPDATE_MESSAGE_UNREAD_COUNT](state, { id: 1, lastSeen });
-      expect(state.allConversations).toEqual([
-        { id: 1, agent_last_seen_at: lastSeen, unread_count: 0 },
-      ]);
+      expect(state.allConversations).toEqual([{ id: 1, agent_last_seen_at: lastSeen, unread_count: 0 }]);
     });
 
     it('doesnot send any mutation if chat doesnot exist', () => {
@@ -45,9 +43,7 @@ describe('#mutations', () => {
         conversationId: 1,
       });
 
-      expect(state.allConversations).toEqual([
-        { id: 1, meta: {}, last_activity_at: 1602256198 },
-      ]);
+      expect(state.allConversations).toEqual([{ id: 1, meta: {}, last_activity_at: 1602256198 }]);
     });
   });
   describe('#UPDATE_CONVERSATION_LAST_ACTIVITY', () => {
@@ -57,9 +53,7 @@ describe('#mutations', () => {
         team: { id: 1, name: 'Team 1' },
         conversationId: 1,
       });
-      expect(state.allConversations).toEqual([
-        { id: 1, meta: { team: { id: 1, name: 'Team 1' } } },
-      ]);
+      expect(state.allConversations).toEqual([{ id: 1, meta: { team: { id: 1, name: 'Team 1' } } }]);
     });
   });
 
@@ -233,9 +227,7 @@ describe('#mutations', () => {
           conversationId: 1,
           custom_attributes,
         });
-        expect(
-          state.allConversations[0].custom_attributes.custom_attributes
-        ).toEqual(custom_attributes);
+        expect(state.allConversations[0].custom_attributes.custom_attributes).toEqual(custom_attributes);
       });
     });
   });
@@ -310,9 +302,7 @@ describe('#mutations', () => {
       };
 
       mutations[types.ADD_CONVERSATION_ATTACHMENTS](state, message);
-      expect(state.allConversations[0].attachments).toEqual(
-        message.attachments
-      );
+      expect(state.allConversations[0].attachments).toEqual(message.attachments);
     });
 
     it('should not add duplicate attachments', () => {

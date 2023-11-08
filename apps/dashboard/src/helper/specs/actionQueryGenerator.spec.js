@@ -34,8 +34,6 @@ const finalResult = [
 describe('#actionQueryGenerator', () => {
   it('returns the correct format of filter query', () => {
     expect(actionQueryGenerator(testData)).toEqual(finalResult);
-    expect(
-      actionQueryGenerator(testData).every(i => Array.isArray(i.action_params))
-    ).toBe(true);
+    expect(actionQueryGenerator(testData).every(i => Array.isArray(i.action_params))).toBe(true);
   });
 });

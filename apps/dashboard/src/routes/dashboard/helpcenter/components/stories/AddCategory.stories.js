@@ -17,8 +17,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { AddCategoryComponent },
-  template:
-    '<add-category-component v-bind="$props" @create="onCreate" @cancel="onClose" />',
+  template: '<add-category-component v-bind="$props" @create="onCreate" @cancel="onClose" />',
 });
 
 export const AddCategory = Template.bind({});

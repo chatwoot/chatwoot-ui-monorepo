@@ -1,9 +1,5 @@
 import axios from 'axios';
-import {
-  actions,
-  SET_TEAM_MEMBERS_UI_FLAG,
-  ADD_AGENTS_TO_TEAM,
-} from '../../teamMembers';
+import { actions, SET_TEAM_MEMBERS_UI_FLAG, ADD_AGENTS_TO_TEAM } from '../../teamMembers';
 import teamMembers from './fixtures';
 
 const commit = jest.fn();
@@ -23,9 +19,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.get.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(actions.get({ commit }, { teamId: 1 })).rejects.toThrow(
-        Error
-      );
+      await expect(actions.get({ commit }, { teamId: 1 })).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [SET_TEAM_MEMBERS_UI_FLAG, { isFetching: true }],
         [SET_TEAM_MEMBERS_UI_FLAG, { isFetching: false }],
@@ -46,9 +40,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.post.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.create({ commit }, { agentsList: teamMembers, teamId: 1 })
-      ).rejects.toThrow(Error);
+      await expect(actions.create({ commit }, { agentsList: teamMembers, teamId: 1 })).rejects.toThrow(Error);
 
       expect(commit.mock.calls).toEqual([
         [SET_TEAM_MEMBERS_UI_FLAG, { isCreating: true }],
@@ -70,9 +62,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.patch.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.update({ commit }, { agentsList: teamMembers, teamId: 1 })
-      ).rejects.toThrow(Error);
+      await expect(actions.update({ commit }, { agentsList: teamMembers, teamId: 1 })).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [SET_TEAM_MEMBERS_UI_FLAG, { isUpdating: true }],
         [SET_TEAM_MEMBERS_UI_FLAG, { isUpdating: false }],

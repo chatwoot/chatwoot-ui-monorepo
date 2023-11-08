@@ -11,8 +11,7 @@ export default {
       },
     },
     text: {
-      defaultValue:
-        'A copy and paste musical notes symbols & music symbols collection for easy access.',
+      defaultValue: 'A copy and paste musical notes symbols & music symbols collection for easy access.',
       control: {
         type: 'text',
       },
@@ -40,8 +39,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ReminderItem },
-  template:
-    '<reminder-item v-bind="$props" @completed="onClick" @edit="onEdit" @delete="onDelete"></reminder-item>',
+  template: '<reminder-item v-bind="$props" @completed="onClick" @edit="onEdit" @delete="onDelete"></reminder-item>',
 });
 
 export const Item = Template.bind({});

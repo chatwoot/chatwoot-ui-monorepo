@@ -12,11 +12,7 @@ export const mutations = {
     Vue.set($state, 'records', {});
   },
   [types.SET_NOTIFICATIONS_META]: ($state, data) => {
-    const {
-      count,
-      current_page: currentPage,
-      unread_count: unreadCount,
-    } = data;
+    const { count, current_page: currentPage, unread_count: unreadCount } = data;
 
     Vue.set($state.meta, 'count', count);
     Vue.set($state.meta, 'currentPage', currentPage);

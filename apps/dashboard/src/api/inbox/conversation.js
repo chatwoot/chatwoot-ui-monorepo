@@ -6,16 +6,7 @@ class ConversationApi extends ApiClient {
     super('conversations', { accountScoped: true });
   }
 
-  get({
-    inboxId,
-    status,
-    assigneeType,
-    page,
-    labels,
-    teamId,
-    conversationType,
-    sortBy,
-  }) {
+  get({ inboxId, status, assigneeType, page, labels, teamId, conversationType, sortBy }) {
     return axios.get(this.url, {
       params: {
         inbox_id: inboxId,
@@ -61,10 +52,7 @@ class ConversationApi extends ApiClient {
   }
 
   assignAgent({ conversationId, agentId }) {
-    return axios.post(
-      `${this.url}/${conversationId}/assignments?assignee_id=${agentId}`,
-      {}
-    );
+    return axios.post(`${this.url}/${conversationId}/assignments?assignee_id=${agentId}`, {});
   }
 
   assignTeam({ conversationId, teamId }) {

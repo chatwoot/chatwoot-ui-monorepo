@@ -44,9 +44,7 @@ describe('ReportsFiltersAgents.vue', () => {
     wrapper.vm.handleInput();
 
     expect(wrapper.emitted('agents-filter-selection')).toBeTruthy();
-    expect(wrapper.emitted('agents-filter-selection')[0]).toEqual([
-      selectedAgents,
-    ]);
+    expect(wrapper.emitted('agents-filter-selection')[0]).toEqual([selectedAgents]);
   });
 
   it('dispatches the "agents/get" action when the component is mounted', () => {

@@ -2,10 +2,7 @@
 
 import Cookies from 'js-cookie';
 import endPoints from './endPoints';
-import {
-  clearCookiesOnLogout,
-  deleteIndexedDBOnLogout,
-} from '../store/utils/api';
+import { clearCookiesOnLogout, deleteIndexedDBOnLogout } from '../store/utils/api';
 
 export default {
   validityCheck() {
@@ -37,13 +34,7 @@ export default {
     }
     return false;
   },
-  profileUpdate({
-    password,
-    password_confirmation,
-    displayName,
-    avatar,
-    ...profileAttributes
-  }) {
+  profileUpdate({ password, password_confirmation, displayName, avatar, ...profileAttributes }) {
     const formData = new FormData();
     Object.keys(profileAttributes).forEach(key => {
       const hasValue = profileAttributes[key] === undefined;

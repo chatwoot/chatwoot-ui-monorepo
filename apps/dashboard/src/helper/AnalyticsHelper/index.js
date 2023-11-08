@@ -50,9 +50,7 @@ export class AnalyticsHelper {
     });
 
     const { accounts, account_id: accountId } = this.user;
-    const [currentAccount] = accounts.filter(
-      account => account.id === accountId
-    );
+    const [currentAccount] = accounts.filter(account => account.id === accountId);
     if (currentAccount) {
       this.analytics.group(currentAccount.id, this.user.id, {
         name: currentAccount.name,

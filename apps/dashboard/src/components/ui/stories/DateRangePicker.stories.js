@@ -27,8 +27,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WootDateRangePicker },
-  template:
-    '<woot-date-range-picker v-bind="$props" @change="onChange"></woot-date-range-picker>',
+  template: '<woot-date-range-picker v-bind="$props" @change="onChange"></woot-date-range-picker>',
 });
 
 export const DateRangePicker = Template.bind({});

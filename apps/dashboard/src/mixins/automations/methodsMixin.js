@@ -60,9 +60,7 @@ export default {
   methods: {
     getFileName,
     onEventChange() {
-      this.automation.conditions = getDefaultConditions(
-        this.automation.event_name
-      );
+      this.automation.conditions = getDefaultConditions(this.automation.event_name);
       this.automation.actions = getDefaultActions();
     },
     getAttributes(key) {
@@ -71,19 +69,14 @@ export default {
     getInputType(key) {
       const customAttribute = isACustomAttribute(this.allCustomAttributes, key);
       if (customAttribute) {
-        return getCustomAttributeInputType(
-          customAttribute.attribute_display_type
-        );
+        return getCustomAttributeInputType(customAttribute.attribute_display_type);
       }
       const type = this.getAutomationType(key);
       return type.inputType;
     },
     getOperators(key) {
       if (this.mode === 'edit') {
-        const customAttribute = isACustomAttribute(
-          this.allCustomAttributes,
-          key
-        );
+        const customAttribute = isACustomAttribute(this.allCustomAttributes, key);
         if (customAttribute) {
           return getOperatorTypes(customAttribute.attribute_display_type);
         }
@@ -92,14 +85,12 @@ export default {
       return type.filterOperators;
     },
     getAutomationType(key) {
-      return this.automationTypes[this.automation.event_name].conditions.find(
-        condition => condition.key === key
-      );
+      return this.automationTypes[this.automation.event_name].conditions.find(condition => condition.key === key);
     },
     getCustomAttributeType(key) {
-      const type = this.automationTypes[
-        this.automation.event_name
-      ].conditions.find(i => i.key === key).customAttributeType;
+      const type = this.automationTypes[this.automation.event_name].conditions.find(
+        i => i.key === key
+      ).customAttributeType;
       return type;
     },
     getConditionDropdownValues(type) {
@@ -128,9 +119,7 @@ export default {
       });
     },
     appendNewCondition() {
-      this.automation.conditions.push(
-        ...getDefaultConditions(this.automation.event_name)
-      );
+      this.automation.conditions.push(...getDefaultConditions(this.automation.event_name));
     },
     appendNewAction() {
       this.automation.actions.push(...getDefaultActions());
@@ -158,20 +147,15 @@ export default {
     resetFilter(index, currentCondition) {
       this.automation.conditions[index].filter_operator = this.automationTypes[
         this.automation.event_name
-      ].conditions.find(
-        condition => condition.key === currentCondition.attribute_key
-      ).filterOperators[0].value;
+      ].conditions.find(condition => condition.key === currentCondition.attribute_key).filterOperators[0].value;
       this.automation.conditions[index].values = '';
     },
     showUserInput(type) {
       return !(type === 'is_present' || type === 'is_not_present');
     },
     showActionInput(action) {
-      if (action === 'send_email_to_team' || action === 'send_message')
-        return false;
-      const type = this.automationActionTypes.find(
-        i => i.key === action
-      ).inputType;
+      if (action === 'send_email_to_team' || action === 'send_message') return false;
+      const type = this.automationActionTypes.find(i => i.key === action).inputType;
       return !!type;
     },
     resetAction(index) {
@@ -180,10 +164,7 @@ export default {
     manifestConditions(automation) {
       const customAttributes = filterCustomAttributes(this.allCustomAttributes);
       const conditions = automation.conditions.map(condition => {
-        const customAttr = isCustomAttribute(
-          customAttributes,
-          condition.attribute_key
-        );
+        const customAttr = isCustomAttribute(customAttributes, condition.attribute_key);
         let inputType = 'plain_text';
         if (customAttr) {
           inputType = getCustomAttributeInputType(customAttr.type);
@@ -209,9 +190,9 @@ export default {
         return {
           ...condition,
           query_operator: condition.query_operator || 'and',
-          values: [
-            ...this.getConditionDropdownValues(condition.attribute_key),
-          ].filter(item => [...condition.values].includes(item.id)),
+          values: [...this.getConditionDropdownValues(condition.attribute_key)].filter(item =>
+            [...condition.values].includes(item.id)
+          ),
         };
       });
       return conditions;
@@ -219,18 +200,16 @@ export default {
     generateActionsArray(action) {
       const params = action.action_params;
       let actionParams = [];
-      const inputType = this.automationActionTypes.find(
-        item => item.key === action.action_name
-      ).inputType;
+      const inputType = this.automationActionTypes.find(item => item.key === action.action_name).inputType;
       if (inputType === 'multi_select' || inputType === 'search_select') {
-        actionParams = [
-          ...this.getActionDropdownValues(action.action_name),
-        ].filter(item => [...params].includes(item.id));
+        actionParams = [...this.getActionDropdownValues(action.action_name)].filter(item =>
+          [...params].includes(item.id)
+        );
       } else if (inputType === 'team_message') {
         actionParams = {
-          team_ids: [
-            ...this.getActionDropdownValues(action.action_name),
-          ].filter(item => [...params[0].team_ids].includes(item.id)),
+          team_ids: [...this.getActionDropdownValues(action.action_name)].filter(item =>
+            [...params[0].team_ids].includes(item.id)
+          ),
           message: params[0].message,
         };
       } else actionParams = [...params];
@@ -261,40 +240,25 @@ export default {
       return getActionOptions({ agents, labels, teams, languages, type });
     },
     manifestCustomAttributes() {
-      const conversationCustomAttributesRaw = this.$store.getters[
-        'attributes/getAttributesByModel'
-      ]('conversation_attribute');
+      const conversationCustomAttributesRaw =
+        this.$store.getters['attributes/getAttributesByModel']('conversation_attribute');
 
-      const contactCustomAttributesRaw =
-        this.$store.getters['attributes/getAttributesByModel'](
-          'contact_attribute'
-        );
+      const contactCustomAttributesRaw = this.$store.getters['attributes/getAttributesByModel']('contact_attribute');
       const conversationCustomAttributeTypes = generateCustomAttributeTypes(
         conversationCustomAttributesRaw,
         'conversation_attribute'
       );
-      const contactCustomAttributeTypes = generateCustomAttributeTypes(
-        contactCustomAttributesRaw,
-        'contact_attribute'
-      );
+      const contactCustomAttributeTypes = generateCustomAttributeTypes(contactCustomAttributesRaw, 'contact_attribute');
       let manifestedCustomAttributes = generateCustomAttributes(
         conversationCustomAttributeTypes,
         contactCustomAttributeTypes,
         this.$t('AUTOMATION.CONDITION.CONVERSATION_CUSTOM_ATTR_LABEL'),
         this.$t('AUTOMATION.CONDITION.CONTACT_CUSTOM_ATTR_LABEL')
       );
-      this.automationTypes.message_created.conditions.push(
-        ...manifestedCustomAttributes
-      );
-      this.automationTypes.conversation_created.conditions.push(
-        ...manifestedCustomAttributes
-      );
-      this.automationTypes.conversation_updated.conditions.push(
-        ...manifestedCustomAttributes
-      );
-      this.automationTypes.conversation_opened.conditions.push(
-        ...manifestedCustomAttributes
-      );
+      this.automationTypes.message_created.conditions.push(...manifestedCustomAttributes);
+      this.automationTypes.conversation_created.conditions.push(...manifestedCustomAttributes);
+      this.automationTypes.conversation_updated.conditions.push(...manifestedCustomAttributes);
+      this.automationTypes.conversation_opened.conditions.push(...manifestedCustomAttributes);
     },
   },
 };

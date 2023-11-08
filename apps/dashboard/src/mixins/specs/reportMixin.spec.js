@@ -24,9 +24,7 @@ describe('reportMixin', () => {
     };
     const wrapper = shallowMount(Component, { store, localVue });
     expect(wrapper.vm.displayMetric('conversations_count')).toEqual('5,000');
-    expect(wrapper.vm.displayMetric('avg_first_response_time')).toEqual(
-      '3 Min 18 Sec'
-    );
+    expect(wrapper.vm.displayMetric('avg_first_response_time')).toEqual('3 Min 18 Sec');
   });
 
   it('calculate the trend', () => {

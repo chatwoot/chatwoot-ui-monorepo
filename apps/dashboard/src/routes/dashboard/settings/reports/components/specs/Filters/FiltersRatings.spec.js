@@ -24,9 +24,7 @@ describe('ReportFiltersRatings.vue', () => {
     wrapper.vm.handleInput(selectedRating);
 
     expect(wrapper.emitted('rating-filter-selection')).toBeTruthy();
-    expect(wrapper.emitted('rating-filter-selection')[0]).toEqual([
-      selectedRating,
-    ]);
+    expect(wrapper.emitted('rating-filter-selection')[0]).toEqual([selectedRating]);
   });
 
   it('initializes options correctly', () => {

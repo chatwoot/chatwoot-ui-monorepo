@@ -59,9 +59,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.patch.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.update({ commit }, agentBotRecords[0])
-      ).rejects.toThrow(Error);
+      await expect(actions.update({ commit }, agentBotRecords[0])).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_AGENT_BOT_UI_FLAG, { isUpdating: true }],
         [types.SET_AGENT_BOT_UI_FLAG, { isUpdating: false }],
@@ -81,9 +79,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.delete.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.delete({ commit }, agentBotRecords[0].id)
-      ).rejects.toThrow(Error);
+      await expect(actions.delete({ commit }, agentBotRecords[0].id)).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_AGENT_BOT_UI_FLAG, { isDeleting: true }],
         [types.SET_AGENT_BOT_UI_FLAG, { isDeleting: false }],
@@ -102,9 +98,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.post.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.setAgentBotInbox({ commit }, { inboxId: 2, botId: 3 })
-      ).rejects.toThrow(Error);
+      await expect(actions.setAgentBotInbox({ commit }, { inboxId: 2, botId: 3 })).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_AGENT_BOT_UI_FLAG, { isSettingAgentBot: true }],
         [types.SET_AGENT_BOT_UI_FLAG, { isSettingAgentBot: false }],
@@ -123,9 +117,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.get.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.fetchAgentBotInbox({ commit }, { inboxId: 2, agentBotId: 3 })
-      ).rejects.toThrow(Error);
+      await expect(actions.fetchAgentBotInbox({ commit }, { inboxId: 2, agentBotId: 3 })).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_AGENT_BOT_UI_FLAG, { isFetchingAgentBot: true }],
         [types.SET_AGENT_BOT_UI_FLAG, { isFetchingAgentBot: false }],
@@ -144,9 +136,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.post.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.disconnectBot({ commit }, { inboxId: 2, agentBotId: '' })
-      ).rejects.toThrow(Error);
+      await expect(actions.disconnectBot({ commit }, { inboxId: 2, agentBotId: '' })).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.SET_AGENT_BOT_UI_FLAG, { isDisconnecting: true }],
         [types.SET_AGENT_BOT_UI_FLAG, { isDisconnecting: false }],

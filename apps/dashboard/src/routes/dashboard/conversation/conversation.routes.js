@@ -32,9 +32,7 @@ export default {
       },
     },
     {
-      path: frontendURL(
-        'accounts/:accountId/inbox/:inbox_id/conversations/:conversation_id'
-      ),
+      path: frontendURL('accounts/:accountId/inbox/:inbox_id/conversations/:conversation_id'),
       name: 'conversation_through_inbox',
       roles: ['administrator', 'agent'],
       component: ConversationView,
@@ -53,9 +51,7 @@ export default {
       props: route => ({ label: route.params.label }),
     },
     {
-      path: frontendURL(
-        'accounts/:accountId/label/:label/conversations/:conversation_id'
-      ),
+      path: frontendURL('accounts/:accountId/label/:label/conversations/:conversation_id'),
       name: 'conversations_through_label',
       roles: ['administrator', 'agent'],
       component: ConversationView,
@@ -72,9 +68,7 @@ export default {
       props: route => ({ teamId: route.params.teamId }),
     },
     {
-      path: frontendURL(
-        'accounts/:accountId/team/:teamId/conversations/:conversationId'
-      ),
+      path: frontendURL('accounts/:accountId/team/:teamId/conversations/:conversationId'),
       name: 'conversations_through_team',
       roles: ['administrator', 'agent'],
       component: ConversationView,
@@ -91,9 +85,7 @@ export default {
       props: route => ({ foldersId: route.params.id }),
     },
     {
-      path: frontendURL(
-        'accounts/:accountId/custom_view/:id/conversations/:conversation_id'
-      ),
+      path: frontendURL('accounts/:accountId/custom_view/:id/conversations/:conversation_id'),
       name: 'conversations_through_folders',
       roles: ['administrator', 'agent'],
       component: ConversationView,
@@ -110,9 +102,7 @@ export default {
       props: () => ({ conversationType: 'mention' }),
     },
     {
-      path: frontendURL(
-        'accounts/:accountId/mentions/conversations/:conversationId'
-      ),
+      path: frontendURL('accounts/:accountId/mentions/conversations/:conversationId'),
       name: 'conversation_through_mentions',
       roles: ['administrator', 'agent'],
       component: ConversationView,
@@ -129,9 +119,7 @@ export default {
       props: () => ({ conversationType: 'unattended' }),
     },
     {
-      path: frontendURL(
-        'accounts/:accountId/unattended/conversations/:conversationId'
-      ),
+      path: frontendURL('accounts/:accountId/unattended/conversations/:conversationId'),
       name: 'conversation_through_unattended',
       roles: ['administrator', 'agent'],
       component: ConversationView,
@@ -148,9 +136,7 @@ export default {
       props: () => ({ conversationType: 'participating' }),
     },
     {
-      path: frontendURL(
-        'accounts/:accountId/participating/conversations/:conversationId'
-      ),
+      path: frontendURL('accounts/:accountId/participating/conversations/:conversationId'),
       name: 'conversation_through_participating',
       roles: ['administrator', 'agent'],
       component: ConversationView,

@@ -48,9 +48,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.patch.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.update({ commit, getters }, accountData)
-      ).rejects.toThrow(Error);
+      await expect(actions.update({ commit, getters }, accountData)).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_ACCOUNT_UI_FLAG, { isUpdating: true }],
         [types.default.SET_ACCOUNT_UI_FLAG, { isUpdating: false }],
@@ -71,9 +69,7 @@ describe('#actions', () => {
     });
     it('sends correct actions if API is error', async () => {
       axios.patch.mockRejectedValue({ message: 'Incorrect header' });
-      await expect(
-        actions.create({ commit, getters }, newAccountInfo)
-      ).rejects.toThrow(Error);
+      await expect(actions.create({ commit, getters }, newAccountInfo)).rejects.toThrow(Error);
       expect(commit.mock.calls).toEqual([
         [types.default.SET_ACCOUNT_UI_FLAG, { isCreating: true }],
         [types.default.SET_ACCOUNT_UI_FLAG, { isCreating: false }],

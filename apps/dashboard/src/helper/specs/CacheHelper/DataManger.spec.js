@@ -10,10 +10,7 @@ describe('DataManager', () => {
   });
 
   afterEach(async () => {
-    const tx = dataManager.db.transaction(
-      dataManager.modelsToSync,
-      'readwrite'
-    );
+    const tx = dataManager.db.transaction(dataManager.modelsToSync, 'readwrite');
     dataManager.modelsToSync.forEach(modelName => {
       tx.objectStore(modelName).clear();
     });

@@ -13,10 +13,7 @@ export default {
       component: SettingsContent,
       props: params => {
         const showBackButton = params.name !== 'settings_integrations';
-        const backUrl =
-          params.name === 'settings_integrations_integration'
-            ? { name: 'settings_integrations' }
-            : '';
+        const backUrl = params.name === 'settings_integrations_integration' ? { name: 'settings_integrations' } : '';
         return {
           headerTitle: 'INTEGRATION_SETTINGS.HEADER',
           icon: 'flash-on',

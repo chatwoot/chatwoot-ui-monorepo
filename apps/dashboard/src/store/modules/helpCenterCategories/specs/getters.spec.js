@@ -14,9 +14,7 @@ describe('#getters', () => {
   });
 
   it('categoryById', () => {
-    expect(getters.categoryById(state)(1)).toEqual(
-      categoriesState.categories.byId[1]
-    );
+    expect(getters.categoryById(state)(1)).toEqual(categoriesState.categories.byId[1]);
   });
 
   it('categoriesByLocaleCode', () => {

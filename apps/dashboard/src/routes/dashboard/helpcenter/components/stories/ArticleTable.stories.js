@@ -28,8 +28,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ArticleTableComponent },
-  template:
-    '<article-table-component @onPageChange="onPageChange" v-bind="$props" ></article-table-component>',
+  template: '<article-table-component @onPageChange="onPageChange" v-bind="$props" ></article-table-component>',
 });
 
 export const ArticleTable = Template.bind({});

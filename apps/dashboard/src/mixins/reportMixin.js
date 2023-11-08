@@ -25,19 +25,13 @@ export default {
         return '';
       }
       if (this.isAverageMetricType(key)) {
-        const total = this.accountReport.data
-          .map(item => item.count)
-          .reduce((prev, curr) => prev + curr, 0);
+        const total = this.accountReport.data.map(item => item.count).reduce((prev, curr) => prev + curr, 0);
         return `${this.metrics[this.currentSelection].INFO_TEXT} ${total}`;
       }
       return '';
     },
     isAverageMetricType(key) {
-      return [
-        'avg_first_response_time',
-        'avg_resolution_time',
-        'reply_time',
-      ].includes(key);
+      return ['avg_first_response_time', 'avg_resolution_time', 'reply_time'].includes(key);
     },
   },
 };

@@ -37,17 +37,13 @@ export const getters = {
 
   getCurrentUserAvailability($state, $getters) {
     const { accounts = [] } = $state.currentUser;
-    const [currentAccount = {}] = accounts.filter(
-      account => account.id === $getters.getCurrentAccountId
-    );
+    const [currentAccount = {}] = accounts.filter(account => account.id === $getters.getCurrentAccountId);
     return currentAccount.availability;
   },
 
   getCurrentUserAutoOffline($state, $getters) {
     const { accounts = [] } = $state.currentUser;
-    const [currentAccount = {}] = accounts.filter(
-      account => account.id === $getters.getCurrentAccountId
-    );
+    const [currentAccount = {}] = accounts.filter(account => account.id === $getters.getCurrentAccountId);
     return currentAccount.auto_offline;
   },
 
@@ -60,9 +56,7 @@ export const getters = {
 
   getCurrentRole($state, $getters) {
     const { accounts = [] } = $state.currentUser;
-    const [currentAccount = {}] = accounts.filter(
-      account => account.id === $getters.getCurrentAccountId
-    );
+    const [currentAccount = {}] = accounts.filter(account => account.id === $getters.getCurrentAccountId);
     return currentAccount.role;
   },
 
@@ -78,9 +72,7 @@ export const getters = {
 
   getCurrentAccount($state, $getters) {
     const { accounts = [] } = $state.currentUser;
-    const [currentAccount = {}] = accounts.filter(
-      account => account.id === $getters.getCurrentAccountId
-    );
+    const [currentAccount = {}] = accounts.filter(account => account.id === $getters.getCurrentAccountId);
     return currentAccount || {};
   },
 

@@ -45,10 +45,7 @@ export const actions = {
       isUpdating: true,
     });
     try {
-      const response = await ConversationAPI.updateLabels(
-        conversationId,
-        labels
-      );
+      const response = await ConversationAPI.updateLabels(conversationId, labels);
       commit(types.default.SET_CONVERSATION_LABELS, {
         id: conversationId,
         data: response.data.payload,

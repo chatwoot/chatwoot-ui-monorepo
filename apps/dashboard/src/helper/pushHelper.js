@@ -45,9 +45,7 @@ export const getPushSubscriptionPayload = subscription => ({
 
 export const sendRegistrationToServer = subscription => {
   if (auth.hasAuthCookie()) {
-    return NotificationSubscriptions.create(
-      getPushSubscriptionPayload(subscription)
-    );
+    return NotificationSubscriptions.create(getPushSubscriptionPayload(subscription));
   }
   return null;
 };
@@ -68,19 +66,13 @@ export const registerSubscription = (onSuccess = () => {}) => {
       onSuccess();
     })
     .catch(() => {
-      window.bus.$emit(
-        'newToastMessage',
-        'This browser does not support desktop notification'
-      );
+      window.bus.$emit('newToastMessage', 'This browser does not support desktop notification');
     });
 };
 
 export const requestPushPermissions = ({ onSuccess }) => {
   if (!('Notification' in window)) {
-    window.bus.$emit(
-      'newToastMessage',
-      'This browser does not support desktop notification'
-    );
+    window.bus.$emit('newToastMessage', 'This browser does not support desktop notification');
   } else if (Notification.permission === 'granted') {
     registerSubscription(onSuccess);
   } else if (Notification.permission !== 'denied') {

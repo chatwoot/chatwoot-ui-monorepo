@@ -56,10 +56,7 @@ export const isACustomAttribute = (customAttributes, key) => {
   });
 };
 
-export const getCustomAttributeListDropdownValues = (
-  customAttributes,
-  type
-) => {
+export const getCustomAttributeListDropdownValues = (customAttributes, type) => {
   return customAttributes
     .find(attr => attr.attribute_key === type)
     .attribute_values.map(item => {
@@ -72,17 +69,13 @@ export const getCustomAttributeListDropdownValues = (
 
 export const isCustomAttributeCheckbox = (customAttributes, key) => {
   return customAttributes.find(attr => {
-    return (
-      attr.attribute_key === key && attr.attribute_display_type === 'checkbox'
-    );
+    return attr.attribute_key === key && attr.attribute_display_type === 'checkbox';
   });
 };
 
 export const isCustomAttributeList = (customAttributes, type) => {
   return customAttributes.find(attr => {
-    return (
-      attr.attribute_key === type && attr.attribute_display_type === 'list'
-    );
+    return attr.attribute_key === type && attr.attribute_display_type === 'list';
   });
 };
 
@@ -242,8 +235,7 @@ export const filterCustomAttributes = customAttributes => {
 };
 
 export const getStandardAttributeInputType = (automationTypes, event, key) => {
-  return automationTypes[event].conditions.find(item => item.key === key)
-    .inputType;
+  return automationTypes[event].conditions.find(item => item.key === key).inputType;
 };
 
 export const generateAutomationPayload = payload => {

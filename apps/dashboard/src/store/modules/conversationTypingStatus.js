@@ -34,26 +34,16 @@ export const actions = {
 };
 
 export const mutations = {
-  [types.default.ADD_USER_TYPING_TO_CONVERSATION]: (
-    $state,
-    { conversationId, user }
-  ) => {
+  [types.default.ADD_USER_TYPING_TO_CONVERSATION]: ($state, { conversationId, user }) => {
     const records = $state.records[conversationId] || [];
-    const hasUserRecordAlready = !!records.filter(
-      record => record.id === user.id && record.type === user.type
-    ).length;
+    const hasUserRecordAlready = !!records.filter(record => record.id === user.id && record.type === user.type).length;
     if (!hasUserRecordAlready) {
       Vue.set($state.records, conversationId, [...records, user]);
     }
   },
-  [types.default.REMOVE_USER_TYPING_FROM_CONVERSATION]: (
-    $state,
-    { conversationId, user }
-  ) => {
+  [types.default.REMOVE_USER_TYPING_FROM_CONVERSATION]: ($state, { conversationId, user }) => {
     const records = $state.records[conversationId] || [];
-    const updatedRecords = records.filter(
-      record => record.id !== user.id || record.type !== user.type
-    );
+    const updatedRecords = records.filter(record => record.id !== user.id || record.type !== user.type);
     Vue.set($state.records, conversationId, updatedRecords);
   },
 };

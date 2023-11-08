@@ -37,40 +37,30 @@ describe('setColorTheme', () => {
   it('should set documentElement style to dark if selectedColorScheme is dark', () => {
     LocalStorage.get.mockReturnValue('dark');
     setColorTheme(true);
-    expect(document.documentElement.getAttribute('style')).toBe(
-      'color-scheme: dark;'
-    );
+    expect(document.documentElement.getAttribute('style')).toBe('color-scheme: dark;');
   });
 
   it('should set documentElement style to dark if selectedColorScheme is auto and isOSOnDarkMode is true', () => {
     LocalStorage.get.mockReturnValue('auto');
     setColorTheme(true);
-    expect(document.documentElement.getAttribute('style')).toBe(
-      'color-scheme: dark;'
-    );
+    expect(document.documentElement.getAttribute('style')).toBe('color-scheme: dark;');
   });
 
   it('should set documentElement style to light if selectedColorScheme is auto and isOSOnDarkMode is false', () => {
     LocalStorage.get.mockReturnValue('auto');
     setColorTheme(false);
-    expect(document.documentElement.getAttribute('style')).toBe(
-      'color-scheme: light;'
-    );
+    expect(document.documentElement.getAttribute('style')).toBe('color-scheme: light;');
   });
 
   it('should set documentElement style to light if selectedColorScheme is light', () => {
     LocalStorage.get.mockReturnValue('light');
     setColorTheme(true);
-    expect(document.documentElement.getAttribute('style')).toBe(
-      'color-scheme: light;'
-    );
+    expect(document.documentElement.getAttribute('style')).toBe('color-scheme: light;');
   });
 
   it('should set documentElement style to light if selectedColorScheme is undefined', () => {
     LocalStorage.get.mockReturnValue(undefined);
     setColorTheme(true);
-    expect(document.documentElement.getAttribute('style')).toBe(
-      'color-scheme: dark;'
-    );
+    expect(document.documentElement.getAttribute('style')).toBe('color-scheme: dark;');
   });
 });

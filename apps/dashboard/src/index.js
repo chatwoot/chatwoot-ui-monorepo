@@ -22,10 +22,7 @@ import constants from 'dashboard/constants/globals';
 import * as Sentry from '@sentry/vue';
 import 'vue-easytable/libs/theme-default/index.css';
 import { Integrations } from '@sentry/tracing';
-import {
-  initializeAnalyticsEvents,
-  initializeChatwootEvents,
-} from './helper/scriptHelpers';
+import { initializeAnalyticsEvents, initializeChatwootEvents } from './helper/scriptHelpers';
 import FluentIcon from '@chatwoot/shared/components/FluentIcon/DashboardIcon.vue';
 import VueDOMPurifyHTML from 'vue-dompurify-html';
 import { domPurifyConfig } from '@chatwoot/shared/helpers/HTMLSanitizer';
@@ -102,5 +99,5 @@ window.onload = () => {
 };
 
 window.addEventListener('load', () => {
-  window.playAudioAlert = () => { };
+  window.playAudioAlert = () => {};
 });

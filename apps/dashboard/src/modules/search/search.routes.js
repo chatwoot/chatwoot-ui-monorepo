@@ -1,4 +1,3 @@
-/* eslint-disable storybook/default-exports */
 import SearchView from './components/SearchView.vue';
 import { frontendURL } from '../../helper/URLHelper';
 

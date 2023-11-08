@@ -113,15 +113,12 @@ describe('#Reports API', () => {
 
     it('#getConversationMetric', () => {
       reportsAPI.getConversationMetric('account');
-      expect(axiosMock.get).toHaveBeenCalledWith(
-        '/api/v2/reports/conversations',
-        {
-          params: {
-            type: 'account',
-            page: 1,
-          },
-        }
-      );
+      expect(axiosMock.get).toHaveBeenCalledWith('/api/v2/reports/conversations', {
+        params: {
+          type: 'account',
+          page: 1,
+        },
+      });
     });
   });
 });

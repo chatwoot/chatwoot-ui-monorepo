@@ -86,9 +86,7 @@ describe('attributeMixin', () => {
     };
     const wrapper = shallowMount(Component, { store, localVue });
     expect(wrapper.vm.attributeDisplayType('date')).toBe('text');
-    expect(
-      wrapper.vm.attributeDisplayType('https://www.chatwoot.com/pricing')
-    ).toBe('link');
+    expect(wrapper.vm.attributeDisplayType('https://www.chatwoot.com/pricing')).toBe('link');
     expect(wrapper.vm.attributeDisplayType(9988)).toBe('number');
   });
 
