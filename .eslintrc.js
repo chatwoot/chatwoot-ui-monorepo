@@ -58,5 +58,6 @@ module.exports = {
   },
   globals: {
     bus: true,
+    process: true,
   },
 };
