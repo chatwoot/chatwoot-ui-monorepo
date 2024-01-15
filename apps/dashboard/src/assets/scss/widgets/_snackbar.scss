@@ -1,0 +1,37 @@
+.ui-snackbar-container {
+
+}
+
+.ui-snackbar {
+  @include shadow;
+  background-color: $woot-snackbar-bg;
+  border-radius: $space-smaller;
+  display: inline-flex;
+  margin-bottom: $space-small;
+  max-width: 25rem;
+  min-height: 1.875rem;
+  min-width: 15rem;
+  padding: $space-slab $space-medium;
+  text-align: left;
+}
+
+.ui-snackbar-text {
+  color: $color-white;
+  font-size: $font-size-small;
+  font-weight: $font-weight-medium;
+}
+
+.ui-snackbar-action {
+  margin-left: auto;
+  padding-left: 1.875rem;
+
+  button {
+    background: none;
+    border: 0;
+    color: $woot-snackbar-button;
+    font-size: $font-size-small;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+  }
+}
